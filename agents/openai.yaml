@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI 教育 PPT 商业化生产"
+  short_description: "将教学主题与参考素材转化为可售卖的精品教育课件产品"
+  default_prompt: "使用 $edu-ppt 把我的教学主题和参考资料制作成经过审核的商业级教育 PPT 产品包。"
