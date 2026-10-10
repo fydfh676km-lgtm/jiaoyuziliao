@@ -1,6 +1,6 @@
 # Product deliverable contracts and capability routing
 
-Read this reference before final production, after the page-content and visual-blueprint contracts are frozen. It defines the only Premium product package and the checks required before the package can become `verified`.
+Read this reference when authoring the lesson plan and again as needed for final production. It defines one Premium package, delivered together in `auto` or through the `plan-first` checkpoint in `workflow.md`.
 
 ## Product manifest
 
@@ -17,7 +17,11 @@ product:
     xiaohongshu_notes: null
 ```
 
-The filenames are examples derived from the approved topic; replace `<topic>` with the approved topic's delivery-safe name. The default package has four logical document deliverables in three Word files: the combined outline/blueprint Word, the lesson-plan Word, and the speaker-script Word. Unless the user explicitly opts out of the Xiaohongshu reference, add exactly one standalone Xiaohongshu first-viewport reference screenshot to the final handoff even when user references were supplied; send it separately in the conversation and do not embed it in the Word files. The exercise package, editable PPTX, PDF preview, and Xiaohongshu notes are opt-in extras: keep them `null` and do not generate or verify them unless the user explicitly requests that specific extra. A normal start command never activates an exercise package.
+The filenames are examples derived from the approved topic; replace `<topic>` with the approved topic's delivery-safe name. The default package has four logical document deliverables in three Word files: the combined outline/blueprint Word, the lesson-plan Word, and the speaker-script Word. Reference research/analysis or the authorized content-derived visual route are internal production steps, not extra deliverables. Do not capture or attach a Xiaohongshu search screenshot, reference-image package or research report by default. The exercise package, editable PPTX, PDF preview, and Xiaohongshu notes are opt-in extras: keep them `null` and do not generate or verify them unless the user explicitly requests that specific extra. A normal start command never activates an exercise package.
+
+Apply explicit user omissions/split requests to this manifest. Verify the requested scope rather than generating an omitted file to satisfy defaults. Research evidence belongs to `visual_research` and the source ledger in `workflow.md`, not a mandatory screenshot field. When resuming an older task, retire its automatic `reference_screenshot` requirement while preserving historical files; do not delete user files or trigger a fresh screenshot. If the user explicitly requests references or a source list, deliver only that added scope and verify its actual content.
+
+In `plan-first`, the first handoff is only the complete, rendered/checked lesson-plan Word, awaiting actual approval of that version. It has no invented PPT page ranges. After approval, complete the lecture → outline → aligned script → visual blueprint sequence and deliver the three current Word files together; the plan receives real page references without unauthorized substantive changes. `auto` performs the lesson-plan review internally and has no intermediate handoff. The embedded board image belongs inside the lesson plan, not a fourth default file. A request for the plan, PPT outline and script together does not implicitly omit the visual blueprint or request a PPTX.
 
 ## Format-specific contracts
 
@@ -50,22 +54,23 @@ The filenames are examples derived from the approved topic; replace `<topic>` wi
 
 ### Lesson plan Word — `<topic>-lesson-plan.docx`
 
-- Read and follow [`teaching-plan-standard.md`](teaching-plan-standard.md) before authoring and verification. Use its required section order and its fixed detailed teaching-process block: content-based block title, corresponding PPT page range, `教学目标`, `教师组织`, `学生学习`, `关键问题`, `评价要点`, and `承接推进`.
-- Follow the approved page order and timing from the combined outline/blueprint Word.
-- Include teaching objectives, key points, difficulties, preparation, timed teaching flow, teacher activity, audience activity, rationale/design intent, evaluation, and an extension/homework/action follow-up.
-- Write `教学重点` and `教学难点` as two separate sections, each at least 100 Chinese characters. Each must explain its textbook/learning-task basis, the intended student understanding or action, the likely obstacle, and the teaching response; do not satisfy the requirement with a one-sentence label or padded repetition.
+- Follow [`teaching-plan-standard.md`](teaching-plan-standard.md): seven top sections `课程信息 / 教材与学情分析 / 教学目标 / 教学重难点 / 教学过程 / 板书设计 / 作业设计`, in native editable Word tables with a centered title, gray section rows and readable cell spacing. Do not replace the whole document with screenshots or continuous prose.
+- In the `教学环节 | 具体教学安排` process table, use content-based block titles and the six detailed process fields from the standard. Add actual corresponding PPT ranges only in the final mapped plan; omit them at the first plan-review stage. Preparation, evaluation and implementation cautions belong within the relevant process block; reflection is not a default extra section.
+- The checked/approved plan guides the lecture and pages; final page references must follow their shared teaching order. Use pacing internally. The combined Word contains no timing fields and is not a timing source.
+- Inside `教学重难点`, write distinct `教学重点` and `教学难点` subsections, each at least 100 Chinese characters. Explain textbook/task basis, intended student understanding/action, likely obstacle and teaching response; one-sentence labels or padded repetition do not pass.
 - Apply the visible-emphasis system from `teaching-plan-standard.md`: default to dark red plus bold for short substantive key phrases in `教学重点`, `教学难点`, every major teaching-process block, and the final synthesis. Headings or field labels alone do not satisfy this requirement; reject missing, inconsistent, or excessive emphasis in the rendered Word file.
-- Include both `板书成品示意` and `板书生成顺序`. The board must be lesson-specific, contain at least three logical layers and at least two explicit relationships, map to the detailed teaching process, and remain writable/readable in classroom use. Reject generic procedures, disconnected keywords, or a board with no stated generation order.
+- Include `板书成品示意` as an actual embedded complete PNG/JPEG blackboard diagram, followed by concise `板书生成顺序`. Default green board, white text and yellow key terms/relationship lines. Use exact text and deliberate diagram rendering; check every visible word and link. It needs three logical layers, at least two explicit relationships and at least three process-linked additions. Fit the usable Word page/cell width and height proportionally; use a dedicated page if needed, never cropping, stretching or illegibly shrinking. A text placeholder, generic keyword list or image elsewhere in the document does not satisfy this section.
 - Do not add a section or field named `成果证据`, `学习成果证据`, or equivalent outcome-evidence wording.
 - Do not print an overall duration statement such as `总时长：X分钟`, `课程总时长`, or `全课共X分钟`. Use timing internally for planning and consistency checks only; do not summarize it as a total-duration heading or sentence in this Word file.
-- Do not introduce a new page sequence or contradict the approved page outline.
+- Do not change approved pedagogical decisions to fit an independently generated outline. Page references and layout-only improvements may be backfilled; substantive approved-plan changes follow the authorization boundary in `workflow.md`.
 
 ### Speaker script Word — `<topic>-speaker-script.docx`
 
-- Follow the approved page order and timing from the combined outline/blueprint Word.
+- First draft a continuous, natural teacher lecture from the checked/approved teaching design, then derive the PPT outline and finalize this script's page mapping. Follow the final shared page order and internal pacing; do not invent a confirmed duration or independently rewrite the teaching sequence.
 - Include an opening, explanation for each page, questions and likely answer directions, transitions, activity instructions, and a closing.
 - Give every PPT page one corresponding script block with these fields, in this order: `教师逐字讲述`, `课堂提问`, `预设回答`, `教师点拨`, `过渡语`. Use `无` only when a field is genuinely not applicable.
 - Do not introduce a new page sequence or contradict the approved page outline.
+- Automatically rehearse the actual page sequence against the script: source material must be available when mentioned, questions precede the intended answer reveal, response guidance answers the actual question, and transitions connect to the next page. Keep oral explanation distinct from concise on-slide copy; no requirement to put all narration on slides. Preserve the five fields, using display cues within them, without automatically creating animations or PPTX.
 
 ### Optional exercise-and-answer Word
 
@@ -98,7 +103,7 @@ An approved Premium product may opt into `image-deck` for its PPT rendering only
 
 ### Optional Xiaohongshu notes DOCX — `<topic>-xiaohongshu-notes.docx`
 
-Generate only when explicitly requested. When requested, provide exactly ten notes (`note_count: 10`). Each note must have a genuinely distinct marketing angle; do not create ten superficial rewrites of the same hook, audience pain point, use case, teaching feature, or product value. Every note must make truthful claims: each claim about pages, content, use, audience, files, or product value must be supported by the approved blueprint and this manifest, with no invented results, features, endorsements, or separate display-only version.
+Generate only when explicitly requested. Default to ten notes (`note_count: 10`) unless the user specified another count. Each note must have a genuinely distinct marketing angle; do not create superficial rewrites of the same hook, audience pain point, use case, teaching feature, or product value. Every claim about pages, content, use, audience, files, or value must be supported by the approved page records and manifest, with no invented results, features, endorsements, or separate display-only version.
 
 Every note includes:
 
@@ -112,45 +117,48 @@ Every note includes:
 
 ## Cross-file verification matrix
 
-Compare every listed field across the approved blueprint and every produced artifact. The approved page outline and visual blueprint are the source contracts; the three mandatory Word files must represent them directly. The optional exercise package, PPTX, PDF, and notes participate only when explicitly requested. When an exercise package participates, also compare its scope, terminology, objective/key-point/difficulty coverage, source anchors, selected PPT practice/homework references, and lesson-plan homework references against the frozen source ledger and sibling files.
+Compare every listed field across the shared page records and the currently requested artifacts. The default is three Word files, but explicit omissions/splits and scoped edits determine the actual checklist. Optional exercises, PPTX, PDF and notes participate only when requested. For exercises also compare scope, terminology, objective/key-point/difficulty coverage, source anchors and any practice/homework cross-references.
 
 | Comparison field | Approved outline/blueprint Word | Lesson plan Word | Speaker script Word | Optional exercise Word | Optional PPTX | Optional PDF | Optional Xiaohongshu notes |
 |---|---|---|---|---|---|---|---|
 | Topic | Approved topic and product positioning | Course name and scope use it | Opening and page narration use it | Uses the exact requested lesson or unit scope | Uses it only if requested | Same as optional PPTX | Describe this product only if requested |
 | Audience | Approved school level and audience | Activities fit it | Questions and delivery fit it | Difficulty, wording, and response demand fit it | Language and examples fit it | Same as optional PPTX | Target user and claims fit it |
-| Duration | Approved total and page timing | Timed flow totals to it | Speaking/activity pacing fits it | Does not alter the approved lesson/PPT duration | Page timings total to it | Same as optional PPTX | Do not imply a different duration |
-| Page order | Frozen page sequence, outline, and blueprint | Flow and page references follow it | Explanations follow it | Follows the approved knowledge order without adding slides | Pages match exactly | Same as optional PPTX | Suggested pages do not imply another sequence |
+| Duration | Internal page records hold supplied or explicitly estimated pacing; no extra Word field | Planned pacing fits that record; no visible total | Speaking/activity pacing fits that record | Does not alter that pacing | Matches it when timing is used | Same as optional PPTX | Do not present an estimate as a confirmed duration |
+| Page order | Pages derived from the checked/approved plan's lecture sequence; blueprint follows them | Substantive teaching flow preserved; actual page ranges backfilled | Oral draft finalized against those pages; no separate sequence | Follows the approved knowledge order without adding slides | Pages match exactly | Same as optional PPTX | Suggested pages do not imply another sequence |
 | Learning objectives | Frozen objectives and page goals | Objectives, flow, evaluation, extension match | Opening, explanations, closing reinforce them | Questions and analyses cover the approved objectives, key points, and difficulties | Objectives and reinforcement match | Same as optional PPTX | Value claims accurately reflect them |
 | Terminology | Approved terms, names, and definitions | Use terms consistently | Use the same terms | Stems, answers, and analyses use the same terms | Use terms consistently | Same as optional PPTX | Use terms consistently if requested |
-| Activity timing | Frozen timing for each activity/page | Timed flow and teacher/audience actions match | Instructions and pacing match | Any cited practice/homework item matches the sibling files | Activities occur at approved pages/times | Same as optional PPTX | Do not claim extra or differently timed activities |
+| Activity timing and display | Internal page record describes what is visible during instruction/question/feedback | Teacher/audience actions and question progression match | Materials, prompts, likely response, feedback and transitions match the current page and do not reveal conclusions too soon | Cited practice/homework matches sibling files | Activities use the same pages and internal plan | Same as optional PPTX | Do not claim extra or differently timed activities |
 | Product claims | Approved scope and manifest | Describes the same package | Describes the same package | Exists only when explicitly requested and matches the selected route | Shows only the requested product | Faithful preview if requested | Truthfully markets the requested package |
 | Source coverage | Frozen textbook + all SmartEdu teaching designs and learning-task sheets | Uses the same source facts, objectives, tasks, and sequence | Narrates the same source-backed page content and activities | Every item has a supported source anchor and the selected scope is fully covered | Implements only the approved source-backed content | Same as optional PPTX | Claims only what the approved source-backed product contains |
 | WPS compatibility | N/A unless an optional PPTX is requested; then record its approved WPS-safe constraints and verdict | N/A | N/A | N/A; verify valid DOCX package and rendered layout | Opens, renders, and remains editable in WPS when the editable PPTX route is requested; image-only route preserves its declared image-only contract | Matches the WPS-verified PPTX render | N/A |
 
 ## Authoritative verification predicate
 
-Record an explicit verification verdict before any final-deliverable claim. This two-group technical verdict is the sole authoritative predicate for the transition from `production_approved` to `verified`:
+Record an explicit evidence-backed verdict before any final-deliverable claim. Each check uses PASS, FAIL, NOT_RUN or N/A with artifact/version and evidence; unavailable required checks are NOT_RUN, never N/A or PASS. These two groups control the transition from `production_approved` to `verified`:
 
-1. **Full format-contract verdict:** record pass or fail for each mandatory artifact: combined outline/visual-blueprint Word (exact sections and fields, page correspondence, no `课时` variants); lesson-plan Word (all required sections and detailed process fields, `教学重点` and `教学难点` each at least 100 Chinese characters, approved flow and timing, visible substantive emphasis, and a three-layer lesson-specific board with an explicit generation order); and speaker-script Word (one page block per slide with all five delivery fields, approved facts, and timing). Also record rendered-layout and valid-DOCX-package checks for all three Word files. Check an optional exercise package, PPTX, PDF, or Xiaohongshu notes only when explicitly requested; apply its format contract and WPS-safe checklist where applicable.
-2. **Cross-file matrix verdict:** record pass or fail for every row in the matrix above—topic, audience, duration, page order, learning objectives, terminology, activity timing, product claims, source coverage, and WPS compatibility when applicable—across the mandatory Word files and any requested optional files.
+1. **Full format-contract verdict:** check requested artifacts: combined outline/blueprint Word (exact formats, page correspondence, no banned terms); lesson-plan Word (seven-section native tables, six process fields, key/difficult point subsections each ≥100 Chinese characters, approved mainline, substantive emphasis, complete embedded board image and generation order); script Word (one five-field block per page, natural lecture flow, source accuracy and real display mapping). Render and inspect every current requested Word, honoring omissions/splits/scoped edits. At the first `plan-first` handoff, check only the plan-review scope, without fabricated PPT mappings or a whole-package pass claim. Optional products require their explicit request and relevant checks.
+2. **Cross-file matrix verdict:** record actual status for each applicable matrix row from shared source/page records. Validate teaching-source coverage and page ranges, then semantic accuracy. Explicit omissions are N/A with the request recorded. Apply the visual route and evidence rules in `workflow.md`: inspected same-style references or permitted `content-derived` text anchors and design rationale. Both must pass content-fit, unified-style and page-level quality checks; the authorized text-derived route does not itself make a package incomplete. Required online research cannot be replaced or claimed complete when unavailable. Preserve the real basis and any failed attempts. No screenshot evidence or separate reference attachment is required by default.
 
-`verified` is entered automatically only when both verdict groups pass in full. Any format-contract failure or matrix mismatch keeps the workflow state at `production_approved`, never `verified`. No sixth human approval gate, user acceptance, or user confirmation is required for this technical transition. Every user-facing verification or repair transition response must explicitly state that user acceptance or feedback is an optional post-verification handoff, not a condition for entering `verified`.
+`verified` is entered automatically only when all applicable required checks in both groups pass with evidence. FAIL or NOT_RUN blocks that whole-package verdict; independently checked artifacts may be handed off with missing checks identified. The selected `plan-first` checkpoint waits for actual user approval, not for package verification; passing first-stage checks does not authorize the next stage. `auto` and the post-approval final handoff require no further routine acceptance. Do not claim that automatic structural checks alone guarantee no semantic or classroom-flow errors.
 
 ## Capability routing
 
 Use the bundled capability that owns the relevant stage. The stage owner works from the frozen contracts and does not alter approved decisions.
 
+For lesson-plan Word creation, the user's seven-section table template in `teaching-plan-standard.md` controls the document structure and gray section rows. Apply `documents` for authoring, readability and render verification within that template; its generic preferences must not move the required analysis/process cells into prose or introduce new sections.
+
 | Stage | Primary bundled capability | Responsibility |
 |---|---|---|
-| Combined outline/visual-blueprint Word, lesson-plan Word, and speaker-script Word | `documents` | Produce the three mandatory Word files from the frozen teaching and visual contracts. |
+| Combined outline/visual-blueprint Word, lesson-plan Word, and speaker-script Word | `documents` | Produce the requested Word files from shared teaching and visual records, honoring explicit omissions or splits. |
+| Board image embedded in the lesson-plan Word | Exact text/diagram rendering within document production | Render the approved lesson-specific board into PNG/JPEG, embed and inspect its page fit; not a slide-image production route or extra attachment. |
 | Explicitly requested exercise-and-answer Word | `documents` | Produce the selected single-lesson or unit exercise package from the frozen source ledger and teaching contracts. |
 | Optional PPTX creation, editing, and verification | `presentations` | Produce and inspect an editable PPTX only when explicitly requested. |
 | Optional original illustrations and backgrounds | `imagegen` | Create needed generated raster assets only for an explicitly requested PPTX/image route. |
 | Optional PDF rendering, export, and inspection | `pdf` or the presentation export workflow | Create or inspect a PDF only when explicitly requested. |
 
-## Required production-start response
+## Production communication
 
-A response that accepts a fully approved Premium request for production must explicitly name `documents` as the owner of the three mandatory Word files: the combined PPT页纲+视觉蓝图 Word, the lesson-plan Word, and the speaker-script Word. If an exercise package was explicitly requested, also name `documents` as its owner. Name `presentations`, `imagegen`, or `pdf` only when the user explicitly requested the corresponding optional output. Community PPT Skills remain runtime-checked optional adapters, never prerequisites; their absence does not block the bundled route.
+Acknowledge the scoped deliverables concisely and execute. Explain skill use when the host requires it, but do not recite every capability or adapter. Community PPT Skills are optional; inspect availability only when the requested output needs one. Their absence does not block an available primary capability.
 
 ## Optional adapter routing
 
@@ -159,11 +167,11 @@ Check adapter availability at runtime. None of these adapters is required: absen
 | Optional adapter | Useful stage ownership when available |
 |---|---|
 | PPT-Master | Native editable PPTX production or refinement. |
-| Frontend-Slides | Visual-direction exploration before visual approval. |
+| Frontend-Slides | Explicitly requested HTML/web presentation or preview; do not start HTML work for the default Word package. |
 | Beautiful-HTML-Templates | Design-asset and layout-reference exploration before visual approval. |
 | Guizang-PPT-Skill | Education, emotional, or magazine-style visual design before visual approval. |
 | HTML-PPT-Skill | Explicitly requested dynamic HTML presentation or preview production. |
 
 ## Failure isolation and repair
 
-When a produced artifact fails its format contract or a matrix check, regenerate only that failed artifact from the frozen contracts. Do not reopen approved decisions and do not silently change successful sibling artifacts. After repair, re-run that artifact's full format-contract checks, then place the regenerated artifact back into the complete cross-file verification matrix and update the explicit verification verdict. Only all-pass full format-contract and cross-file matrix verdicts permit the move from `production_approved` to `verified`.
+When an artifact fails, repair only the failed parts from the current shared records. Do not silently change successful siblings or rebuild their unchanged rendering evidence. Rerun the repaired artifact's checks and affected cross-file comparisons; retained evidence must correspond to unchanged file versions. A changed source/content contract invalidates all genuinely dependent outputs. Only all applicable required checks passing permits `verified`.

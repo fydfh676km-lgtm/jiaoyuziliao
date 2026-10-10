@@ -1,8 +1,24 @@
 # Visual-system decision contract
 
-Use this reference after `content_approved` to create the visual-system proposal and page-by-page visual blueprint. It produces the review artifact for `visual_approved`; it does not authorize final production.
+Use this reference after `content_approved` to determine the visual system and page-by-page blueprint. After the explicit start command, complete this checkpoint internally and continue production; no separate visual approval is required.
 
-When a persistent user visual-reference library is available, read `style-reference-library.md` before selecting the master visual direction. Use its selected subset as primary aesthetic evidence and the required Xiaohongshu first-viewport screenshot as secondary trend evidence; textbook content remains authoritative for factual and scene accuracy.
+When a persistent user visual-reference library is available, read `style-reference-library.md` before selecting the master visual direction. Combine compatible user references with content-matched web/image research as described below; textbook content remains authoritative for factual and scene accuracy. Do not perform a dedicated Xiaohongshu search or require a standalone reference screenshot.
+
+## Content-matched style research
+
+Before creating a new blueprint, derive a compact visual brief from the actual text already read: genre, era and geography, season, central imagery, emotional movement, audience, and page-level teaching purposes. Unknown facts remain unknown; do not assign a season, location, or historical setting merely to fit an attractive style. First identify a candidate aesthetic direction from the user's images or from understanding the text, then find actual visual references matching BOTH that style and the lesson content. Search for useful scenes, backgrounds, elements, materials, composition and light, not only a style name or finished courseware template.
+
+For the search route, start with two or three distinct queries combining the identified style's concrete traits, a textual scene/subject, and the needed visual treatment. For example, if compatible user images establish restrained watercolor, seek watercolor spring vegetation or rural scenes rather than unrelated polished styles; this is not a preset for every lesson. Proactively use web/image search and open useful images. When browser interaction is needed, use the system default browser unless the user specifies another and read the applicable browsing skill. Do not create another mandatory browser or login workflow.
+
+Actually open and inspect usable reference images before claiming to have analyzed their style. Search titles and snippets alone are not visual evidence. Prefer sources that allow the pictured work and its context to be inspected; exclude unreadable, irrelevant, login-only, blank, or error results. Stop once there is sufficient evidence to select a content-compatible direction; reformulate only to fill a concrete relevance gap. Do not search again for every page or keep collecting attractive but redundant examples.
+
+Textbook facts and explicit user preferences take priority. With compatible user images, inspect them first, establish their primary aesthetic traits, and actively search for matching references to supplement relevant scenes, materials and composition; new results must not pull the deck into an unrelated style. With no current-task images, independently infer a suitable direction from the text: either research matching images or develop a concrete design directly from textual understanding and design judgment, optionally informed by an authorized library. The direct-understanding route is permitted normally, not only after search failure; never ask for a reference image as a prerequisite. A current explicit demand for web references still requires actual search. A contradictory reference cannot override textbook facts; retain compatible abstract traits or discard it instead of blending incompatible styles. Do not create a persistent library without a future-reuse request.
+
+Maintain research evidence inside the existing task/reference records: actual queries, source URLs or authorized local paths, whether an image was visually inspected, its relevance to the text, and the concrete abstract rules adopted or rejected. This is internal evidence, not an extra report, screenshot delivery, or seventh blueprint field. For the no-image direct-understanding route, record `content-derived`, the textual anchors and design rationale instead of invented image sources. If networking is explicitly prohibited, record `skipped-by-user`; if required search is unavailable, record `unavailable` and the real limitation. Use `workflow.md` for route-specific acceptance and transitions. Never claim that a search result was viewed when it was not.
+
+Translate chosen reference cues or text-derived design decisions into every page's existing six fields: style/material, content-specific elements, typographic hierarchy, composition, camera/light, and continuity/variation. Style keywords or collected image links alone are not a blueprint. If no real image was used, describe decisions as inferred, not observed or learned from an online reference.
+
+For a local revision that preserves the topic and visual direction, reuse the already inspected evidence instead of researching again. Search anew only if the topic or main direction changes or the user explicitly asks for fresh references. Record missing historical evidence without inventing it or expanding the edit into a new search. Image-only execution with a frozen content/style contract reuses that contract and its references; it does not reopen content planning or style research.
 
 ## Reference authenticity and low-AI gate
 
@@ -14,10 +30,13 @@ The visual system and generation prompts should deliberately minimize generic AI
 
 Create one analysis record for every current-task reference and every library reference selected for this deck. Do not re-analyze or load the entire persistent library during ordinary production; use its stored index to retrieve the active subset first. Record what is directly observed separately from an inference, and assess it against the approved lesson type, audience, topic, and content contract. Do not recreate a third-party page, composition, illustration, photograph, logo, type treatment, or other protected element.
 
-If the reference was auto-collected from Xiaohongshu, it must be treated as one composite search-results reference captured from the initial first viewport only. Analyze the visible result grid for abstract visual tendencies; do not infer or copy any individual note's full page, wording, or assets.
+For researched images, record what was actually visible at the inspected resolution. A thumbnail supports only traits that can genuinely be seen; it cannot establish an unseen full-page layout, legibility, or deck-wide page rhythm. User-supplied search-result screenshots may be analyzed as composite references, but do not infer unseen individual pages or treat third-party popularity as proof of content suitability.
 
 ```yaml
 reference: "Source identifier and provenance"
+source: "Actual source URL or authorized local path; query when discovered by search"
+inspection: "What image was actually viewed and any resolution or access limitations"
+content_fit: "Connection to the text's imagery, setting, emotion, and teaching purpose"
 palette: "Observed colors and their roles"
 typography: "Observed hierarchy, relative scale and weight, color roles, spacing, and legibility; name a font only when the user explicitly specified it"
 imagery: "Illustration, photography, icon, or texture language"
@@ -29,13 +48,14 @@ page_rhythm: "How cover, section, body, activity, and closing pages vary"
 suitable_contexts: ["Audience, subject, age, or teaching situation it supports"]
 unsuitable_contexts: ["Audience, subject, age, or teaching situation it weakens"]
 copyright_sensitive_elements: ["Specific artwork, photo, logo, character, font, layout, or other element requiring avoidance, permission, or licensed use"]
+adopted_rules: ["Concrete abstract principles retained for this deck; no copied source assets"]
 ```
 
 `copyright_sensitive_elements` must be explicit even when the answer is `none identified from the supplied reference`; unknown provenance is not permission to reuse. Extract only abstract, transferable rules. For any asset used later, use an original generation prompt, a licensed source with its licence checked, or a user-supplied asset with confirmed rights.
 
-## Resolve conflicts and offer independent directions
+## Resolve conflicts and select one direction
 
-When supplied references conflict, explicitly classify the incompatible visual languages and explain their topic/audience tensions (for example, editorial minimalism, playful flat illustration, or documentary photography). Do not average incompatible references into a compromise style. Before the explicit start command, do not choose a direction until the user reviews the options; after the start command, choose the strongest compliant direction internally. Generate 3–5 independent, topic-appropriate directions derived from the references' abstract transferable rules, not from any one supplied reference family; each direction uses this exact schema:
+For a clear topic and compatible references, select one suitable direction directly. Do not routinely generate 3–5 discarded alternatives. When references genuinely conflict, record the incompatible languages and topic/audience fit; compare at most two or three plausible directions if comparison would resolve the conflict. Offer choices only when the user asks for exploration or is still planning a consequential unresolved choice; after start select internally. Each direction actually needed can use this compact record:
 
 ```yaml
 name: "Direction name"
@@ -45,7 +65,7 @@ layout_logic: "Repeated grid and hierarchy"
 imagery: "Illustration or photography language"
 fit_reason: "Why it suits the approved lesson"
 risks: ["Readability or tone risk"]
-retained_rules: ["Abstract rules learned from references"]
+retained_rules: ["Abstract rules observed in references or justified from the text; distinguish the basis"]
 discarded_elements: ["Elements that do not fit"]
 ```
 
@@ -53,7 +73,7 @@ The options must differ in visual language, not merely shade, decoration, or sli
 
 ## Gate order for provisional directions
 
-Visual conflict analysis and 3–5 independent directions may be generated internally when references are supplied. Resolve incomplete or conflicting visual inputs conservatively before production; after the start command, do not solicit a visual choice or any other mid-process approval.
+Visual conflict analysis is conditional, not a new compulsory artifact. Reuse a previously selected direction unless the user changes it or concrete source/quality evidence invalidates it. After start, do not solicit a visual choice or other routine mid-process approval.
 
 ## Scene-driven prompts and Chinese-aesthetic routing
 
@@ -61,7 +81,7 @@ Every selected direction and per-page prompt must create a recognizable place, m
 
 1. identify the page's teaching purpose and the exact textual image, event, object, person, or relationship that should become the visual focus;
 2. define the viewpoint and spatial depth through foreground, middle ground, and distance, using scale, overlap, mist, light, water, paths, architecture, or vegetation only when they fit the source;
-3. specify season, time of day, weather, light, color temperature, material or brush language, and the intended emotional tone;
+3. specify source-supported season, time of day and weather; when these are unknown, retain an unspecified or neutral setting and distinguish chosen light, color temperature, material/brush language and emotional treatment as design decisions rather than textbook facts;
 4. reserve purposeful negative space and a readable text region without weakening the main scene; and
 5. keep every motif historically, geographically, seasonally, and semantically compatible with the text.
 
@@ -88,7 +108,7 @@ Give every page one primary visual focal point and an intentional reading order.
 
 When a person, place, building, or important prop recurs, create an internal recurring-character and recurring-object continuity sheet before drafting the page blueprints. Keep identity anchors stable across pages: age and facial features, hair, clothing silhouette and color, role, era, architecture, vessel, book, desk, map, tool, or other defining form. If the source requires a time, season, location, or emotional change, describe that change while preserving enough anchors for the entity to remain recognizable. Put page-specific continuity cues inside `添加元素`; do not print the continuity sheet as an extra deliverable.
 
-Before drafting the user-facing blueprint, create an internal whole-deck visual map with one row per page: page/text or chapter, teaching function, primary subject and action, composition axis or route, shot/viewpoint, time/light/weather, motion or stillness, information structure, nearest similar page, and forbidden reuse. For a multi-text deck, also plan a justified emotion-and-light progression from entry through development to closure. Use this map to populate `镜头与光影` and `画面去重与统一约束`; keep it internal rather than adding another deliverable or field.
+Before drafting the user-facing blueprint, extend the existing shared page records with the visual map: page/text or chapter, teaching function, primary subject/action, composition axis or route, shot/viewpoint, time/light/weather, motion or stillness, information structure, nearest similar page, and forbidden reuse. Do not separately rewrite a second full page plan. For a multi-text deck, plan a justified emotion-and-light progression. Use these decisions to populate the six output fields; the internal map is not another deliverable.
 
 Make each page description self-contained enough to be copied into an external image-generation call without losing the deck identity. Begin `画面风格` with a short master-world anchor, then add the chapter dialect and page-specific scene. In `添加元素`, name the primary subject, action or state, approximate count or role where relevant, foreground/middle-ground/distant placement, scale, relationships, and any historical/geographic constraints. In `布局排版`, name the dominant axis or path, image-to-text proportion and zones, reading order, and purposeful negative space. Avoid padding these fields with repeated generic prose.
 
@@ -122,4 +142,4 @@ Replace `X` with the actual Arabic page number. The page number and all six visu
 
 An approved reusable layout family is the only exception to a bespoke page blueprint. It may define repeated rules internally, but the user-facing mapping for every covered page must still use exactly the six fields above and identify that page's topic-specific style, elements, text emphasis, layout, camera/light, and unique-versus-shared visual decisions.
 
-Final production is forbidden until every page has a complete six-field visual blueprint or is explicitly covered by a reusable layout family. After the start command, complete this check internally and continue to final production; do not ask the user to approve the visual gate.
+Final coordinated-package production requires every page to have a complete six-field visual blueprint or an explicitly defined reusable layout family. The earlier `plan-first` lesson-plan Word handoff is governed by `workflow.md` and does not require nonexistent page blueprints. Complete the visual check internally and continue; it adds no visual approval checkpoint.

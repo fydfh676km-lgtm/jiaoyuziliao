@@ -132,7 +132,7 @@ test('rejects a layout archetype occupying more than 25 percent of a 21-page dec
         generationAttempts: 1,
         ocr: { titleExact: true, essentialTextExact: true, bodyMatchRatio: 1 },
         commercialScores: scores,
-        candidateCount: index < 3 ? 3 : 1,
+        candidateCount: 1,
         dominantPanelAreaRatio: 0.1,
       },
     }],

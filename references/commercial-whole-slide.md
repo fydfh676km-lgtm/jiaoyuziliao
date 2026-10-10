@@ -22,9 +22,9 @@ If the user later requests an editable version of a commercial whole-slide deck,
 
 ## Reference-to-style pipeline
 
-1. Analyze supplied or Xiaohongshu search-result references only for transferable principles: palette roles, illustration family, material, title scale, information density, page rhythm, and decorative grammar.
+1. Reuse the frozen blueprint's style and its actually inspected user, authorized-library, and content-matched web/image references. If a new blueprint is genuinely needed within the requested scope, first follow `visual-system.md`; do not re-plan frozen content/style or initiate a dedicated Xiaohongshu search. Analyze active references only for transferable principles: palette roles, illustration family, material, title scale, information density, page rhythm, and decorative grammar. Keep provenance and adopted rules internal; no standalone reference screenshot is required.
 2. Write one deck style bible with a named visual world, fixed palette, material vocabulary, recurring motifs, character sheet, typography behavior, prohibited cues, and originality boundaries.
-3. Generate three anchor slides before the full run: cover, standard content page, and dense information/analysis page. The anchors must be independently composed and together demonstrate the deck's full design range.
+3. Select `min(3, pageCount)` distinct anchor pages before the full run. For decks of at least three pages, use the cover, a standard content page, and a dense information/analysis page; for one- or two-page decks, use all pages. Generate one candidate per anchor first and retain it as soon as it passes. The anchors must demonstrate the available design range; three anchors do not require nine generated images.
 4. Use the style bible and the most relevant approved anchor as visual conditioning for every subsequent page. A verbal prompt alone is insufficient for continuity.
 5. Do not copy a reference slide, branded asset, logo, creator signature, or distinctive protected composition.
 
@@ -73,9 +73,11 @@ Repair a failed text region by localized image editing or by replacing only the 
 
 ## Candidate and repair policy
 
-- Generate three candidates for each of the three anchor slides and select the strongest passing candidate.
-- For every other page, generate at least one candidate; generate a second candidate whenever the first scores below the commercial threshold or repeats a neighboring composition.
-- Permit at most two localized repair rounds per page. If the page still fails, regenerate the full page from the same frozen content using a different layout archetype.
+- Generate one candidate for each anchor and each remaining page first. Reuse a passing candidate immediately; do not generate extra candidates for routine comparison.
+- The total budget is at most three full-page candidates per page, including the initial generation and every full-page regeneration. A failed local repair may lead to another candidate from the same frozen content and a different layout archetype, only while that budget remains.
+- Permit at most two localized repair rounds per candidate. Each candidate's `generationAttempts` equals its initial generation plus its local repairs (`repairRounds + 1`); it is not the page's full-candidate count. Switching to a new full-page candidate never resets the total page budget.
+- Record `candidateCount` from 1 to 3. For multiple candidates, record `candidateHistory` in actual generation order, with each entry containing `repairRounds` and `generationAttempts`; its length must equal `candidateCount`. Record the 1-based `selectedCandidate`, and make the top-level retry fields match that selected entry. A legacy single-candidate record may omit this history because its existing retry fields describe the complete budget; multi-candidate records with missing history do not pass budget verification.
+- If all three full-page candidates or the final candidate's two local repairs fail, report the page as failed. Do not generate a fourth candidate or report the page as verified.
 - Preserve passing pages. Do not restart the full deck to repair one page.
 
 ## Commercial acceptance score
@@ -108,6 +110,6 @@ Reject and regenerate any page showing one of these symptoms:
 
 ## Packaging and verification
 
-Set `deck.renderMode` to `commercial-whole-slide`. Each slide has one reviewed generated image layer named `whole-slide`, positioned at `x: 0, y: 0` and covering the exact deck resolution. Record the layout archetype, OCR verdict, per-dimension commercial score, candidate count, repair rounds, and visual checks in `visualReview`.
+Set `deck.renderMode` to `commercial-whole-slide`. Each slide has one reviewed generated image layer named `whole-slide`, positioned at `x: 0, y: 0` and covering the exact deck resolution. The source raster must have the same aspect ratio as the deck: proportional enlargement is allowed, but implicit cropping or stretching is not. A ratio mismatch is a failed page and must be repaired and re-reviewed before packaging. Record the layout archetype, OCR verdict, per-dimension commercial score, candidate count/history, repair rounds, and visual checks in `visualReview`.
 
 Package the reviewed full-page PNGs without adding generic layout panels. Produce 3840×2160 final PNGs, a contact sheet, and the image-only PPTX. Inspect the contact sheet for deck rhythm and at least the cover, one standard page, one dense page, one activity page, and the closing page at full resolution. Open the PPTX in WPS when available and reject any file that prompts for repair or displays cropping, scaling, or page-order errors.

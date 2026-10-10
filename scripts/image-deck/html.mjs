@@ -1,13 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { validateGeneratedLayer } from './manifest.mjs';
 
-const REQUIRED_REVIEW_CHECKS = [
-  'pseudo-text',
-  'watermark',
-  'logo',
-  'reference-copying',
-  'safe-text-region',
-];
 const RASTER_EXTENSION = /\.(?:png|jpe?g|webp|avif|gif)$/iu;
 const COLOR = /^(?:transparent|currentColor|#[\da-f]{3,8}|(?:rgb|hsl)a?\([\d.%\s,/-]+\))$/iu;
 const FONT_FAMILY = /^[\p{L}\p{N} ,_-]+$/u;
@@ -85,16 +79,9 @@ function layerAttributes(layer) {
   return `data-layer="${escapeHtml(layer.id)}" data-layer-kind="${escapeHtml(layer.kind)}" data-allow-overlap-with="${escapeHtml(JSON.stringify(allowed))}"`;
 }
 
-function assertReviewedRaster(layer) {
+function assertReviewedRaster(deck, slide, layer) {
   if (layer.generated !== true) return;
-  const review = layer.visualReview;
-  if (review?.status !== 'pass' || !REQUIRED_REVIEW_CHECKS.every((check) => review?.checkedFor?.includes(check))) {
-    throw new Error('GENERATED_ASSET_NOT_REVIEWED: Generated asset lacks a passing visual review.');
-  }
-  if (!Number.isInteger(review.repairRounds) || review.repairRounds < 0 || review.repairRounds > 2
-    || !Number.isInteger(review.generationAttempts) || review.generationAttempts !== review.repairRounds + 1) {
-    throw new Error('GENERATED_ASSET_RETRY_LIMIT: Generated asset has invalid retry metadata.');
-  }
+  validateGeneratedLayer(layer, slide.page, deck.renderMode);
   const source = String(layer.src ?? '');
   const pathname = source.startsWith('file:') ? new URL(source).pathname : source;
   const isRaster = /^data:image\/(?:png|jpe?g|webp|avif|gif)(?:;|,)/iu.test(source) || RASTER_EXTENSION.test(pathname);
@@ -113,6 +100,20 @@ function localAssetUrl(source) {
     throw new Error('EXTERNAL_ASSET_URL: Only local file URLs are allowed.');
   }
   return pathToFileURL(source).href;
+}
+
+function embeddedImageUrl(source) {
+  const url = localAssetUrl(source);
+  if (url.startsWith('data:')) return url;
+  const filePath = fileURLToPath(url);
+  const extension = /\.([a-z\d]+)$/iu.exec(filePath)?.[1]?.toLowerCase();
+  const mime = {
+    png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg',
+    webp: 'image/webp', avif: 'image/avif', gif: 'image/gif', svg: 'image/svg+xml',
+  }[extension] ?? 'application/octet-stream';
+  // normalizeManifest authorizes project-local paths before HTML construction.
+  // Embedding avoids Chromium's about:blank -> file: origin restriction.
+  return `data:${mime};base64,${readFileSync(filePath).toString('base64')}`;
 }
 
 function readSvg(layer) {
@@ -264,10 +265,10 @@ function textHtml(deck, layer) {
   return `<div ${layerAttributes(layer)} data-text-layer="${escapeHtml(layer.id)}" data-min-font-size="${minFontSize}" data-source-font-size="${fontSize}" data-source-line-height="${lineHeight}" style="${bounds(layer)};overflow:hidden;white-space:pre-wrap;overflow-wrap:normal;word-break:normal;font-family:${cssFontFamily(style.fontFamily ?? deck.visualTheme?.fontFamily, 'sans-serif')};font-size:${fontSize}px;font-weight:${cssFontWeight(style.fontWeight, 400)};color:${cssColor(style.color ?? deck.visualTheme?.body, '#000')};line-height:${lineHeight};text-align:${cssTextAlign(style.align, 'left')}">${escapeHtml(layer.text ?? '')}</div>`;
 }
 
-function imageHtml(layer) {
-  assertReviewedRaster(layer);
+function imageHtml(deck, slide, layer) {
+  assertReviewedRaster(deck, slide, layer);
   const style = layer.style ?? {};
-  return `<img ${layerAttributes(layer)} src="${escapeHtml(localAssetUrl(layer.src))}" alt="" style="${bounds(layer)};display:block;object-fit:${cssObjectFit(style.objectFit ?? layer.objectFit, 'cover')};border-radius:${number(style.radius ?? 0, 'radius')}px">`;
+  return `<img ${layerAttributes(layer)} src="${escapeHtml(embeddedImageUrl(layer.src))}" alt="" style="${bounds(layer)};display:block;object-fit:${cssObjectFit(style.objectFit ?? layer.objectFit, deck.renderMode === 'commercial-whole-slide' ? 'contain' : 'cover')};border-radius:${number(style.radius ?? 0, 'radius')}px">`;
 }
 
 function shapeHtml(layer) {
@@ -286,7 +287,7 @@ export function buildLayerHtml(deck, slide, layer) {
     throw new Error('GENERATED_ASSET_NOT_RASTER: Generated visuals must use raster image assets.');
   }
   if (layer.kind === 'text') return textHtml(deck, layer);
-  if (layer.kind === 'image') return imageHtml(layer);
+  if (layer.kind === 'image') return imageHtml(deck, slide, layer);
   if (layer.kind === 'shape') return shapeHtml(layer);
   if (layer.kind === 'svg') return `<div ${layerAttributes(layer)} style="${bounds(layer)};overflow:hidden">${trustedSvg(readSvg(layer))}</div>`;
   throw new Error(`UNSUPPORTED_LAYER_KIND: ${layer.kind}`);

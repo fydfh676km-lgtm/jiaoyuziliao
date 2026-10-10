@@ -1,6 +1,6 @@
 # WPS-safe PPTX checklist
 
-Apply this checklist after PPTX generation and again after any repair. Record an explicit `WPS-safe: PASS` or `FAIL` verdict.
+Apply this checklist only to requested PPTX output, after generation and again when that PPTX changes. Record `WPS-safe: PASS | FAIL | NOT_RUN | N/A` with the actual file/version, WPS open observation and exported comparison evidence. PASS requires a real WPS check; another renderer or an OOXML inspection cannot substitute for it. NOT_RUN means WPS/evidence is unavailable; N/A means no PPTX was requested.
 
 ## File and layout
 
@@ -26,3 +26,5 @@ Apply this checklist after PPTX generation and again after any repair. Record an
 ## Failure handling
 
 If any check fails, keep the workflow at `production_approved`, repair only the affected artifact or page, and rerun the complete checklist plus the cross-file matrix. Do not claim `verified` until the verdict is `PASS`.
+
+If WPS cannot be opened or its output cannot be inspected, record NOT_RUN and the reason. Do not repeatedly retry an unchanged unavailable environment, ask for routine mid-process confirmation, or claim compatibility. Deliver independently verified Word files and identify any optional PPTX as awaiting WPS validation. WPS-exported PDF/PNGs are internal QA evidence unless the user requested them as deliverables.

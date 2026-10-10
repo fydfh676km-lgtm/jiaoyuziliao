@@ -1,42 +1,40 @@
 # Teaching-plan Word standard
 
-Read this reference before authoring or verifying every teaching-plan Word. It fixes the reusable structure and quality floor distilled from the approved teaching-design exemplar while keeping lesson-specific content source-backed.
+Read before authoring or verifying a teaching-plan Word. This is the owner of the seven-section template, teaching depth, visible emphasis, and embedded board-image requirements. Production mode and approval state are defined in `workflow.md`.
 
-## Governing outcome
+## Understand the textbook before designing the lesson
 
-The teaching plan must be an executable classroom document rather than an expanded outline. It must connect source analysis, learner needs, objectives, key points, difficulties, page-aligned teaching actions, evaluation, board writing, homework, implementation cautions, and reflection into one continuous teaching line. Preserve textbook order and the frozen PPT page contract. Do not copy lesson-specific wording from a prior project.
+Read and check the complete assigned textbook section, including relevant notes, illustrations, questions, and exercises. Establish the actual content structure, important evidence, relationships, emotional or reasoning progression, and likely learner obstacles before choosing activities. Distinguish what the text explicitly states from an interpretation; do not invent facts or assume that extracting text means understanding it.
 
-## Required document order
+Then compare that understanding with all available official teaching designs and learning-task sheets. Use them to check emphasis, coverage, and workable tasks, not as a template to copy over a different lesson. Resolve source discrepancies against the original textbook and record material uncertainty rather than silently harmonizing it. The substantive reading/checking process lives in the shared internal record, not an additional delivered report.
 
-Use the following sections in this order unless the user explicitly requests a different teaching-plan template:
+The resulting plan must be executable in class and specific to this lesson. Its objectives, questions, activities, evaluation, board, and homework must follow one teaching line supported by the sources. Preserve textbook order and any already approved content contract. A simulated teacher lecture is used later to test transitions and derive the page sequence; it must not silently change approved objectives, key points, core activities, or the main teaching line.
 
-1. document title and concise course metadata;
-2. `课程基本信息`;
-3. `设计说明`;
-4. `教材分析`;
-5. `学情分析`;
-6. `教学目标`;
-7. `教学重点`;
-8. `教学难点`;
-9. `教学准备`;
-10. `整体教学逻辑`;
-11. `教学过程`;
-12. `课堂评价`;
-13. `板书设计`;
-14. `作业设计`;
-15. `教学实施提醒`;
-16. `教学反思建议`.
+## Seven-section template and Word layout
 
-`整体教学逻辑` should summarize the major content blocks, corresponding PPT page ranges, core tasks, and evaluation thresholds in a compact table or equally scannable structure. It does not replace the detailed process.
+Place a centered document title above an editable Word table layout. Unless the user explicitly selects another template, use exactly these seven top-level sections in order:
 
-Keep the existing exclusions: never add `成果证据` or equivalent wording, never print an overall duration statement, and never expose `课时` or a teaching-period variant. Use content-based section titles.
+1. `课程信息` — concise subject, grade, textbook/edition, and topic information supported by the source; do not invent publication metadata.
+2. `教材与学情分析` — integrate content analysis, learner starting points and obstacles, design rationale, and the lesson's main teaching logic. Explain why this lesson needs these particular questions and activities rather than reusing generic subject descriptions.
+3. `教学目标` — concrete, checkable learning outcomes grounded in the text and learner needs.
+4. `教学重难点` — separate `教学重点` and `教学难点` within this section; apply the depth requirement below.
+5. `教学过程` — the two-column, content-led process defined below.
+6. `板书设计` — a complete embedded board image plus concise generation order.
+7. `作业设计` — source-backed consolidation or transfer that follows the lesson.
 
-## Detailed teaching-process block
+Use native Word text and tables, not a screenshot of the whole lesson plan. Section-header rows span the content width with a light-gray fill and black text; body cells stay white, with clear restrained borders and comfortable cell padding. Course metadata may use compact paired cells; longer analysis and objectives use full-width cells. Keep text readable, with natural paragraph spacing rather than dense prose walls.
 
-Divide `教学过程` by content logic, not administrative periods. Every major block must contain the following items in this order:
+Use automatic row height, not a fixed height that clips text. Repeat applicable table-header rows over page breaks; keep a section label with its following content and avoid stranded headings. Long process rows may continue across pages when necessary; do not force a whole oversized row onto one page or shrink all text to make it fit. Verify actual renders, including cell margins, split rows, empty space, and pagination.
+
+Do not restore `设计说明`, separate `教材分析`/`学情分析`, `教学准备`, `整体教学逻辑`, `课堂评价`, or `教学实施提醒` as extra top-level sections. Their useful substance is integrated above or into the relevant process block. `教学反思建议` is optional only when the user requests it, not a mandatory eighth section.
+
+Never add `成果证据` or a renamed equivalent field, print an overall duration statement, or expose `课时` or administrative teaching-period variants. Use content-based titles. Internal estimates are not visible course metadata.
+
+## Detailed teaching-process table
+
+Use two columns headed `教学环节` and `具体教学安排`. The left cell contains a meaningful content-block title; the right cell contains the following items in order:
 
 ```text
-内容性板块标题
 对应PPT第X—X页
 教学目标：
 教师组织：
@@ -46,79 +44,76 @@ Divide `教学过程` by content logic, not administrative periods. Every major 
 承接推进：
 ```
 
-- `教学目标` states the concrete understanding or action completed in this block.
-- `教师组织` describes the actual material, prompt, demonstration, comparison, feedback, or scaffolding used; it cannot say only “教师讲解” or “组织讨论”.
-- `学生学习` states observable reading, marking, discussion, writing, comparison, explanation, performance, or revision behavior.
-- `关键问题` normally gives two to four purposeful questions that advance from evidence to interpretation or application rather than a list of unrelated questions.
-- `评价要点` states what counts as an acceptable response and identifies the evidence, reasoning, accuracy, or performance threshold.
-- `承接推进` uses content logic to bridge into the next block and never uses a period label.
+The page-range line is **stage-dependent**:
 
-Each block must agree with the corresponding PPT pages and contribute directly to at least one stated objective, key point, or difficulty. Avoid repeating the same generic activity wording across blocks.
+- Before page planning, including the first delivery in lesson-plan approval mode, omit the line entirely. Map blocks with stable internal identifiers, never fictitious page ranges, `待定` page placeholders, or leaked internal IDs.
+- In the final coordinated package, add real ranges after lecture-led page splitting is complete. This is a mapping/formatting update, not permission to rewrite an approved plan. Cover the actual pages and make any deliberate revisits explicit.
+
+Every major block keeps all six substantive items:
+
+- `教学目标`: the concrete understanding or action completed here.
+- `教师组织`: actual material, prompts, demonstrations, comparison, feedback, or scaffolding. Integrate necessary preparation and implementation cautions here; “教师讲解” or “组织讨论” alone is insufficient.
+- `学生学习`: observable reading, marking, discussion, writing, comparison, explanation, performance, or revision.
+- `关键问题`: normally two to four connected questions advancing from evidence to interpretation or application, not unrelated prompts.
+- `评价要点`: acceptable-response criteria and the relevant reasoning, accuracy, or performance threshold. Integrate classroom assessment here; use a compact rubric only when useful.
+- `承接推进`: the content-based reason for moving from this block to the next, with a usable transition rather than an administrative label.
+
+Each block contributes to at least one objective, key point, or difficulty. Vary activities according to the actual reading or reasoning demands. Retain practical teaching detail while reducing headings; do not reduce the process to one generic sentence per cell. In final review, match the plan's block order and questions to the spoken script, then check that each PPT page presents the material when the teacher needs it, without premature answer reveals or missing visual support.
 
 ## Teaching key points and difficulties
 
-Write `教学重点` and `教学难点` separately, each with at least 100 Chinese characters of substantive explanation. Each section must identify the textbook or learning-task basis, what students need to understand or do, the likely obstacle, and how the teaching process addresses it. The two sections must describe different instructional problems; do not paraphrase the same paragraph twice.
+Within `教学重难点`, write `教学重点` and `教学难点` separately, each with at least 100 Chinese characters of substantive explanation. Each must identify the textbook or learning-task basis, what students need to understand or do, the likely obstacle, and how the process addresses it. The two must describe different instructional problems, not paraphrase the same paragraph. Do not fill the count with repeated labels, slogans, or unrelated theory.
 
 ## Visible emphasis system
 
-Important information must remain visually discoverable in the rendered Word file.
+- Default substantive emphasis is dark red `#C00000` plus bold; color alone is insufficient. If the user's style disallows red, use one consistent high-contrast accent plus bold or restrained highlighting.
+- Mark short semantic phrases, not entire paragraphs. Field labels alone do not count as substantive emphasis.
+- Visibly mark the central claim in `教学重点`, the obstacle or breakthrough in `教学难点`, and one to three lesson-specific phrases in every major process block. At least one emphasized phrase per block must be inside the substantive `关键问题` or `评价要点` text. Also mark the final synthesis or transfer conclusion.
+- Suitable targets include decisive text evidence, key concepts, reasoning pivots, misconceptions, response criteria, and conclusions. Normally keep no more than three short emphasized phrases per process block and about 15 percent of visible text per page.
+- Headings remain black. Inspect the final renders to ensure emphasis identifies real priorities, remains visible, and does not turn the page into a red wall.
 
-- Default emphasis is dark red `#C00000` plus bold. Color alone is insufficient.
-- If the user supplies a style that disallows red, use one consistent high-contrast accent plus bold or a restrained highlight. It must remain more prominent than body text in the final render.
-- Emphasize short semantic phrases, not whole paragraphs. Structural field labels do not count as highlighting the substantive point.
-- At minimum, visibly mark the central claim in `教学重点`, the central obstacle or breakthrough in `教学难点`, and one to three lesson-specific key phrases in every major teaching-process block. In each process block, at least one emphasized phrase must appear inside the substantive text of `关键问题` or `评价要点`; its field label does not count. Also mark the final synthesis or transfer conclusion.
-- Suitable targets include key concepts, decisive textual or material evidence, reasoning pivots, common misconceptions, response criteria, and final conclusions.
-- Keep emphasis selective: normally no more than three short emphasized phrases in one process block and no more than about 15 percent of visible text on a page. Do not turn the document into a full-page red or highlighted sheet.
-- Headings remain black; emphasis is used inside substantive content so the reader can locate the lesson’s real priorities immediately.
+## Board-design image contract
 
-The final PNG review must explicitly check that emphasized runs are visible, consistent, and attached to actual key content rather than only headings or labels.
+`板书设计` compresses the lesson's reasoning into a board usable during class, not a table of contents. Include these two subsections:
 
-## Board-design contract
+1. `板书成品示意` — an actual complete PNG or JPEG image embedded in the Word, not a text-only placeholder, ASCII diagram, or link to an external image.
+2. `板书生成顺序` — concise text beneath the image showing how the teacher adds, connects, revises, or boxes its parts.
 
-`板书设计` is a required teaching artifact. It must compress the lesson’s reasoning into a board that can be written and used during class, not merely repeat the table of contents.
+Default visual treatment follows the user's example: dark-green blackboard background, clear white lettering, and restrained yellow key terms and relationship arrows. Transfer the layout principles, not the example lesson's wording. Prefer rendering verified real text and simple diagram lines into the image for accurate Chinese text. This embedded board image is part of the lesson-plan Word, not a new default delivery, a call to generate all PPT images, or a requirement to use AI image generation. The rest of the document remains editable native text/tables.
 
-Include both:
+The finished board must contain three logical layers:
 
-1. `板书成品示意` — a readable spatial or multiline diagram of the completed board; and
-2. `板书生成顺序` — the sequence in which the teacher adds, connects, revises, or boxes its parts during the teaching process.
+- a lesson title and a central question or actionable organizing focus;
+- the content/evidence path with lesson-specific terms, quotations, events, examples, or comparison nodes;
+- meaningful relationships and synthesis, such as progression, contrast, cause/effect, evidence-to-conclusion, method, principle, or transfer.
 
-The completed board must contain at least three logical layers:
+Make at least two important relationships clear through arrows, brackets, grouping, alignment, or comparison axes. Label a relationship if its meaning is not self-evident. Preserve text/case boundaries in multi-text units before adding a shared conclusion. The board must contain enough specific content that it cannot be reused unchanged for another lesson, but must remain writable and readable in real classroom use.
 
-- the lesson title plus a central question or actionable organizing focus;
-- the main content/evidence path with lesson-specific terms, text evidence, events, examples, or comparison nodes; and
-- the relationship and synthesis layer, such as cause and effect, progression, contrast, evidence-to-conclusion, method, principle, or transfer.
+`板书生成顺序` describes at least three distinct additions, connections, or revisions, mapped to real teaching blocks; add page ranges only once they exist. The board normally grows with student inquiry and supports final review. Do not reveal the entire conclusion at the opening unless the plan deliberately uses an advance organizer.
 
-Use arrows, brackets, alignment, grouping, or a comparison axis to make at least two important relationships explicit. Raw arrows without clear meaning do not pass: label or explain cause, progression, contrast, coordination, evidence-to-conclusion, or another actual relationship when the meaning is not self-evident. Include enough lesson-specific content that the board could not be reused unchanged for another lesson. For a multi-text or multi-case unit, keep each text/case boundary visible before adding the shared synthesis.
+Fit the image within the **actual usable Word cell/page width and available height**, preserving aspect ratio. Do not crop edges, stretch the board, or shrink lettering until unreadable. Shorten unnecessary wording or improve the arrangement when crowded; a dedicated page is allowed if needed. Inspect the embedded image at its final rendered size, not only the full-resolution source, and check every word, punctuation mark, arrow endpoint, and relationship. Image-presence checks cannot establish text accuracy or readability.
 
-`板书生成顺序` must map the board’s major layers to relevant teaching blocks or PPT page ranges and describe at least three distinct additions, connections, or revisions. Do not reveal the full conclusion at the opening unless the teaching design explicitly uses advance organizers; the board should normally grow with student inquiry and support the final review.
+Reject a board that has only generic steps or disconnected keywords, lacks specific evidence/relationships or generation order, conflicts with the teaching process, has missing/garbled text, or overflows/is too dense at its actual Word size.
 
-Reject the board when any of the following is true:
+## Homework and integrated supporting content
 
-- it contains only “导入—新授—练习—总结” or another generic procedure;
-- it is only a title plus several disconnected keywords;
-- it lacks lesson-specific evidence or terminology;
-- it does not show relationships between nodes;
-- it cannot be mapped to the actual teaching process;
-- it has no stated generation order; or
-- it is so dense that it cannot be read or written in normal classroom use.
+`作业设计` follows the lesson's understanding and skills. Differentiated consolidation, deepening, transfer, or extension is appropriate only where supported by the source; do not force several levels into every lesson. Ordinary homework in the plan does not enable a separately delivered exercise package.
 
-## Evaluation, homework, reminders, and reflection
+Put likely misconceptions, source boundaries, necessary preparations, safety/sensitivity issues, and implementation choices in the process block they affect. If reflection is explicitly requested, use concrete post-lesson questions about student explanations, activity effectiveness, and needed follow-up rather than generic advice.
 
-- `课堂评价` uses observable criteria that match the objectives and process; a compact rubric is appropriate when several dimensions share the same performance scale.
-- `作业设计` includes differentiated consolidation, deepening, transfer, or extension tasks only when they are supported by the lesson content.
-- `教学实施提醒` records likely misconceptions, source boundaries, safety or sensitivity issues, and implementation choices that materially affect the lesson.
-- `教学反思建议` gives concrete post-lesson review questions tied to student evidence, explanation quality, activity effectiveness, and needed follow-up.
+## Stage-aware verification
 
-## Verification checklist
+Before any lesson-plan handoff, check:
 
-Before delivery, verify all of the following:
-
-- all required sections exist in the prescribed order;
-- the detailed process contains every required item for every major block;
-- PPT page ranges are complete, non-overlapping unless intentionally revisited, and consistent with the page outline;
+- the seven top-level sections are present in the prescribed order, with the native table layout;
+- source understanding, objectives, questions, learner activities, evaluation, board, and homework form a specific and supported teaching line;
+- every major process block contains all six substantive items;
 - `教学重点` and `教学难点` each pass the 100-Chinese-character substantive-content check;
-- the visible-emphasis system is present in the two key sections, every major process block, and the final synthesis without over-highlighting;
-- the board passes the three-layer, lesson-specific relationship, process-mapping, generation-order, and classroom-readability checks;
-- no `成果证据`, total-duration statement, `课时`, or teaching-period variant appears;
-- the DOCX opens as a valid package; and
-- every rendered page passes visual inspection for hierarchy, emphasis visibility, tables, clipping, overflow, font substitution, blank pages, and page-order errors.
+- meaningful selective emphasis is present in both key subsections, every major process block, and the final synthesis;
+- the embedded board passes text accuracy, three-layer, relationship, process-mapping, generation-order, fit, and readability review;
+- there is no banned field, overall duration, or administrative teaching-period wording;
+- the DOCX is valid and every rendered page passes checks for hierarchy, emphasis, tables, clipping, overflow, font substitution, blank pages, and order.
+
+For a first lesson-plan approval handoff, evaluate this plan only; deliberately not-yet-produced page outlines and scripts are not missing deliverables for this phase. Wait for actual user approval before proceeding in that selected mode. In automatic mode, perform the plan review internally and continue without asking for approval.
+
+Before the final coordinated package, add and verify actual PPT ranges, check alignment with the finalized page-linked script and outline, and recheck changed pages and relationships. Respect the approved plan's substantive boundary; flag a material source conflict instead of silently rewriting it. Automated structure checks do not replace semantic, spoken-flow, or rendered-image review and do not justify a promise of zero errors.

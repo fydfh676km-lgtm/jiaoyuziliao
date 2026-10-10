@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 
 const DEFAULT_ASPECT_RATIO = '16:9';
 const DEFAULT_RESOLUTION = { width: 3840, height: 2160 };
+// Invalidate cached renders when the asset or rendering acceptance contract changes.
+const RENDER_CONTRACT_VERSION = 2;
 const REQUIRED_REVIEW_CHECKS = [
   'pseudo-text',
   'watermark',
@@ -78,6 +80,7 @@ function stable(value) {
 
 export function computeSlideInputHash(deck, slide) {
   const shared = {
+    renderContractVersion: RENDER_CONTRACT_VERSION,
     renderMode: deck.renderMode,
     aspectRatio: deck.aspectRatio,
     resolution: deck.resolution,
@@ -273,7 +276,7 @@ function validateCanonicalText(slide) {
   }
 }
 
-function validateGeneratedLayer(layer, page, renderMode = 'deterministic-text') {
+export function validateGeneratedLayer(layer, page, renderMode = 'deterministic-text') {
   const review = layer.visualReview;
   const requiredChecks = renderMode === 'commercial-whole-slide'
     ? WHOLE_SLIDE_REVIEW_CHECKS
@@ -305,7 +308,7 @@ function validateCommercialReview(layer, page) {
   const review = layer.visualReview;
   const ocr = review?.ocr;
   if (ocr?.titleExact !== true || ocr?.essentialTextExact !== true
-    || !Number.isFinite(ocr?.bodyMatchRatio) || ocr.bodyMatchRatio < 0.98) {
+    || !Number.isFinite(ocr?.bodyMatchRatio) || ocr.bodyMatchRatio < 0.98 || ocr.bodyMatchRatio > 1) {
     throw new ManifestError(
       'WHOLE_SLIDE_OCR_FAILED',
       `Commercial whole-slide page ${page} does not meet the text-fidelity threshold.`,
@@ -316,7 +319,7 @@ function validateCommercialReview(layer, page) {
   const scores = review?.commercialScores;
   const values = COMMERCIAL_SCORE_FIELDS.map((field) => scores?.[field]);
   const average = values.reduce((sum, value) => sum + value, 0) / values.length;
-  if (values.some((value) => !Number.isFinite(value) || value < 75) || average < 85) {
+  if (values.some((value) => !Number.isFinite(value) || value < 75 || value > 100) || average < 85) {
     throw new ManifestError(
       'COMMERCIAL_SCORE_FAILED',
       `Commercial whole-slide page ${page} does not meet the saleable-quality threshold.`,
@@ -324,15 +327,43 @@ function validateCommercialReview(layer, page) {
     );
   }
 
-  if (!Number.isInteger(review?.candidateCount) || review.candidateCount < 1) {
-    throw new ManifestError('MISSING_CANDIDATE_REVIEW', `Page ${page} lacks candidate-selection metadata.`, { page, layerId: layer.id });
+  if (!Number.isInteger(review?.candidateCount) || review.candidateCount < 1 || review.candidateCount > 3) {
+    throw new ManifestError('INVALID_CANDIDATE_BUDGET', `Page ${page} must record one to three full-page candidates.`, { page, layerId: layer.id, candidateCount: review?.candidateCount });
   }
+  validateCandidateHistory(review, page, layer.id);
   if (!Number.isFinite(review?.dominantPanelAreaRatio)
     || review.dominantPanelAreaRatio < 0 || review.dominantPanelAreaRatio > 1) {
     throw new ManifestError('INVALID_PANEL_RATIO', `Page ${page} lacks a valid dominant-panel ratio.`, { page, layerId: layer.id });
   }
   if (review.dominantPanelAreaRatio > 0.45 && !isPresentString(review.largePanelJustification)) {
     throw new ManifestError('UNJUSTIFIED_LARGE_PANEL', `Page ${page} uses a large panel without a content-based justification.`, { page, layerId: layer.id });
+  }
+}
+
+function validateCandidateHistory(review, page, layerId) {
+  const history = review.candidateHistory;
+  // Existing single-candidate records fully describe their only candidate.
+  if (history === undefined && review.candidateCount === 1) {
+    if (review.selectedCandidate !== undefined && review.selectedCandidate !== 1) {
+      throw new ManifestError('INVALID_SELECTED_CANDIDATE', `Page ${page} must select its sole candidate.`, { page, layerId });
+    }
+    return;
+  }
+  if (!Array.isArray(history) || history.length !== review.candidateCount) {
+    throw new ManifestError('MISSING_CANDIDATE_HISTORY', `Page ${page} must record every candidate's local repair budget.`, { page, layerId });
+  }
+  for (const [index, candidate] of history.entries()) {
+    if (!Number.isInteger(candidate?.repairRounds) || candidate.repairRounds < 0 || candidate.repairRounds > 2
+      || !Number.isInteger(candidate?.generationAttempts) || candidate.generationAttempts !== candidate.repairRounds + 1) {
+      throw new ManifestError('CANDIDATE_RETRY_LIMIT', `Candidate ${index + 1} on page ${page} exceeds or misstates its local repair budget.`, { page, layerId, candidate: index + 1 });
+    }
+  }
+  if (!Number.isInteger(review.selectedCandidate) || review.selectedCandidate < 1 || review.selectedCandidate > history.length) {
+    throw new ManifestError('INVALID_SELECTED_CANDIDATE', `Page ${page} must identify a candidate in its recorded history.`, { page, layerId });
+  }
+  const selected = history[review.selectedCandidate - 1];
+  if (selected.repairRounds !== review.repairRounds || selected.generationAttempts !== review.generationAttempts) {
+    throw new ManifestError('CANDIDATE_HISTORY_MISMATCH', `Page ${page} selected-candidate repair metadata does not match its history.`, { page, layerId });
   }
 }
 
@@ -357,16 +388,11 @@ function validateWholeSlideDeck(deck, slides) {
   if (!isPresentString(deck.styleBible)) {
     throw new ManifestError('MISSING_STYLE_BIBLE', 'Commercial whole-slide decks require a written deck style bible.', {});
   }
-  if (!Array.isArray(deck.anchorPages) || deck.anchorPages.length !== 3
-    || new Set(deck.anchorPages).size !== 3
+  const anchorCount = Math.min(3, slides.length);
+  if (!Array.isArray(deck.anchorPages) || deck.anchorPages.length !== anchorCount
+    || new Set(deck.anchorPages).size !== anchorCount
     || deck.anchorPages.some((page) => !Number.isInteger(page) || page < 1 || page > slides.length)) {
-    throw new ManifestError('INVALID_ANCHOR_PAGES', 'Commercial whole-slide decks require exactly three distinct valid anchor pages.', { anchorPages: deck.anchorPages });
-  }
-  for (const page of deck.anchorPages) {
-    const candidateCount = slides[page - 1].layers[0].visualReview.candidateCount;
-    if (candidateCount < 3) {
-      throw new ManifestError('INSUFFICIENT_ANCHOR_CANDIDATES', `Anchor page ${page} requires at least three generated candidates.`, { page, candidateCount });
-    }
+    throw new ManifestError('INVALID_ANCHOR_PAGES', `Commercial whole-slide decks require ${anchorCount} distinct valid anchor pages.`, { anchorPages: deck.anchorPages });
   }
   const archetypes = slides.map((slide) => slide.layoutArchetype);
   for (let index = 2; index < archetypes.length; index += 1) {

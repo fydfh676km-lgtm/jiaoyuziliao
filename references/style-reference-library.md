@@ -43,17 +43,19 @@ Select one master-style anchor and at most two supporting composition or element
 
 Ancient poetry and classical-literature work should search the library first for compatible landscape, classical, ink-wash, blue-green landscape, gongbi, or literary-illustration references, while still matching the actual poem's season, geography, viewpoint, imagery, and emotional tone.
 
-## Combine user references with Xiaohongshu
+## Combine user references with content-matched research
 
 The evidence order is fixed:
 
 1. textbook and source ledger control facts, sequence, scene meaning, and historical/cultural accuracy;
 2. the user's current explicit direction controls intentional overrides;
-3. the selected user-library anchor controls the primary aesthetic language;
-4. the selected supporting user references contribute compatible composition or element ideas; and
-5. the one Xiaohongshu first-viewport screenshot contributes only secondary trend, hierarchy, and market-presentation cues.
+3. compatible current-task user references establish the primary aesthetic direction;
+4. a compatible selected user-library anchor and supporting references contribute reusable aesthetic, composition, or element principles, subordinate to the current request; and
+5. actual inspected web/image research supplies scene, material and composition evidence matching both the established style and text. Without current-task user images, the direction may instead be derived from textual understanding and design judgment, with compatible authorized-library evidence where available; keep observed cues distinct from inferred choices.
 
-Always perform the Xiaohongshu search unless the user explicitly opts out. Current-task references and persistent-library matches do not replace the single standalone screenshot. Extract abstract principles from every source separately, test them for compatibility, and synthesize one independent master system; do not average conflicting styles or reproduce any source page, asset, text, logo, watermark, or protected composition.
+For a new blueprint, follow `visual-system.md`: understand supplied images first, then actively find same-style, content-compatible visual references. Without current-task images, independently select the permitted research or text-derived design route. A current explicit requirement for web research still controls. No dedicated Xiaohongshu search or standalone screenshot is required. A local revision that retains its direction reuses existing evidence, and a frozen image-rendering contract is not re-planned. Record the actual route truthfully; a library match or design inference must not be presented as a newly searched result.
+
+Extract abstract principles from every active source separately, record provenance and the adopted rules internally, and synthesize one independent master system; do not average conflicting styles or reproduce any source page, asset, text, logo, watermark, or protected composition. Current-task references and researched images are not automatically added to the persistent library. The research record is not a new deliverable or blueprint field.
 
 ## Variety without style drift
 

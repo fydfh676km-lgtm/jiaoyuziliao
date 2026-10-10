@@ -103,7 +103,7 @@ async function repairOverflow(page, round) {
   }, round);
 }
 
-function errorsFor(textChecks, assetChecks, layoutChecks) {
+function errorsFor(textChecks, assetChecks, layoutChecks, deck) {
   const errors = [];
   const mismatched = textChecks.filter((check) => !check.exactText);
   if (mismatched.length > 0) errors.push({ code: 'TEXT_MISMATCH', message: 'Rendered text differs from its source text.', layerIds: mismatched.map((check) => check.id) });
@@ -111,6 +111,16 @@ function errorsFor(textChecks, assetChecks, layoutChecks) {
   if (overflowing.length > 0) errors.push({ code: 'TEXT_OVERFLOW', message: 'Text remains outside deterministic layer bounds.', layerIds: overflowing.map((check) => check.id) });
   const failedAssets = assetChecks.filter((check) => !check.decoded);
   if (failedAssets.length > 0) errors.push({ code: 'ASSET_DECODE_FAILED', message: 'One or more raster images could not be decoded.', layerIds: failedAssets.map((check) => check.id) });
+  if (deck.renderMode === 'commercial-whole-slide') {
+    const mismatchedAssets = assetChecks.filter((check) => check.decoded
+      && check.naturalWidth * deck.resolution.height !== check.naturalHeight * deck.resolution.width);
+    if (mismatchedAssets.length > 0) errors.push({
+      code: 'WHOLE_SLIDE_ASPECT_RATIO_MISMATCH',
+      message: 'The reviewed whole-slide image must match the deck aspect ratio; cropping or stretching is not permitted.',
+      expected: { ...deck.resolution },
+      assets: mismatchedAssets.map(({ id, naturalWidth, naturalHeight }) => ({ id, naturalWidth, naturalHeight })),
+    });
+  }
   if (layoutChecks.collisions.length > 0) errors.push({ code: 'LAYER_COLLISION', message: 'Layers overlap without explicit authorization.', pairs: layoutChecks.collisions });
   if (layoutChecks.obscuredText.length > 0) errors.push({ code: 'TEXT_OBSCURED', message: 'A later layer obscures protected text.', layerIds: layoutChecks.obscuredText });
   return errors;
@@ -152,7 +162,7 @@ export async function renderSlide(options) {
       textChecks = await measureText(page, sourceTextById);
     }
     const [assetChecks, layoutChecks] = await Promise.all([measureAssets(page), measureLayout(page)]);
-    const errors = errorsFor(textChecks, assetChecks, layoutChecks);
+    const errors = errorsFor(textChecks, assetChecks, layoutChecks, deck);
     const result = {
       status: errors.length === 0 ? 'pass' : 'fail',
       attempts,

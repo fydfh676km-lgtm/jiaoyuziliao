@@ -21,78 +21,33 @@ Normalize conversation text and Markdown directly. Read Word with the bundled do
 
 Convert every accepted source to one page contract before rendering. Before the explicit start command, one blocking clarification may be requested only when page order is ambiguous, a critical file is unreadable, sources contradict the same page, or exact text cannot fit without changing a frozen constraint. After the start command, do not ask a mid-process question; use safe repair or report the unresolved blocker in the final verdict.
 
-For every page, first copy `title` and the ordered `content` array as immutable values. Only then author design-intent fields and render layers around those values. Each supplied content item remains one array item and later maps to one exact text layer.
+For every page, first copy `title` and the ordered `content` array as immutable values. Only then author design-intent fields and render layers around those values. Each supplied content item remains one array item. In deterministic-text mode it maps to one exact text layer; in commercial-whole-slide mode it is checked against the reviewed full-page raster.
 
 ## Canonical brief manifest
 
 Use one normalized JSON manifest as the sole rendering input. Its `deck` object fixes title, aspect ratio, resolution, reference image, global style, and reusable visual theme. Each `slides` record has an explicit `page`, frozen text/content, layout and element instructions, visual emphasis, and an ordered list of render layers. Preserve supplied page order and exact text unless the user authorizes a change.
 
-```json
-{
-  "deck": {
-    "title": "课件名称",
-    "renderMode": "commercial-whole-slide | deterministic-text",
-    "styleBible": "商业整页模式下必填的统一视觉世界、人物、材质、配色、字体行为与禁用规则",
-    "anchorPages": [1, 4, 12],
-    "aspectRatio": "16:9",
-    "resolution": { "width": 3840, "height": 2160 },
-    "referenceImage": "reference/style.png",
-    "globalStyle": "整套通用风格要求",
-    "visualTheme": {
-      "background": "#F7F4EE",
-      "title": "#16263D",
-      "body": "#334155",
-      "accent": "#E76F51",
-      "fontFamily": null,
-      "radius": 32,
-      "shadow": "0 20px 60px rgba(22,38,61,0.14)",
-      "illustrationLanguage": "原创几何教育插画",
-      "courseware": {
-        "topicFamily": "literary-humanities",
-        "visualWorld": "与课文主题相符的统一视觉世界",
-        "material": "纸张、水墨与克制的印章线条",
-        "imageryLanguage": "与每页教学内容直接相关的原创场景和图解；商业整页模式同时整合排版文字",
-        "recurringMotifs": ["远山", "水纹", "朱砂节点"],
-        "densitySequence": ["immersive", "standard", "light"]
-      }
-    }
-  },
-  "slides": [
-    {
-      "page": 1,
-      "title": "页面标题",
-      "content": ["必须原样呈现的文字"],
-      "layout": "页面布局和区域关系",
-      "elements": ["插画、图形、图标、装饰等"],
-      "elementStyle": "元素造型、材质、线条和配色",
-      "emphasis": "本页视觉重点",
-      "coursewareDesign": {
-        "pageRole": "本页教学角色",
-        "instructionalAction": "教师或学生在本页完成的动作",
-        "focalPoint": "第一视觉焦点",
-        "composition": "主要构图关系",
-        "textSafeZone": "准确文字区域与边界",
-        "readingPath": "观看顺序",
-        "density": "immersive | light | standard | dense",
-        "continuityCue": "与前后页相连的母题或变化"
-      },
-      "layers": [
-        {
-          "kind": "text",
-          "id": "title",
-          "source": "title",
-          "text": "页面标题",
-          "x": 240,
-          "y": 180,
-          "width": 1800,
-          "height": 240,
-          "style": { "fontSize": 96, "minFontSize": 64, "fontWeight": 700, "color": "#16263D", "lineHeight": 1.1, "align": "left" }
-        }
-      ]
-    }
-  ]
-}
-```
+For a minimal **one-page commercial deck**, use the following coherent schema. Alternatives are described in prose, never inserted as a pipe-separated string in JSON.
+
+| Record | Required values and relationships |
+|---|---|
+| `deck` | Nonempty `title` and `styleBible`; `renderMode: "commercial-whole-slide"`; `anchorPages: [1]`; `aspectRatio: "16:9"`; `resolution: {"width": 3840, "height": 2160}`; authorized `referenceImage`. |
+| `deck.visualTheme.courseware` | Nonempty `topicFamily`, `visualWorld`, `material`, `imageryLanguage`; two to four nonempty `recurringMotifs`; `densitySequence: ["standard"]`. Other valid densities are `immersive`, `light`, and `dense`; choose one actual value for each page. |
+| `slides` | An array containing exactly one page record with `page: 1`, frozen `title`, ordered `content` array, `layout`, `elements` array, `elementStyle`, `emphasis`, and nonempty `layoutArchetype`. |
+| `slides[0].coursewareDesign` | Nonempty `pageRole`, `instructionalAction`, `focalPoint`, `composition`, `textSafeZone`, `readingPath`, `continuityCue`, and `density: "standard"` matching the deck sequence. |
+| `slides[0].layers` | Exactly one image: `kind: "image"`, `id: "whole-slide"`, `generated: true`, authorized raster `src`, `x: 0`, `y: 0`, `width: 3840`, `height: 2160`, and its actual `visualReview`. There are no separate text layers in this mode. |
+
+Resolve relative asset paths from the **manifest file's directory**, not from the project root. For a manifest saved at `<project>/image-deck/render-manifest.json`, example project-local paths are `referenceImage: "../reference/style.png"` and layer `src: "assets/001-reviewed.png"`. These are illustrative filenames: supply existing authorized files, and ensure the reviewed page raster is 16:9.
+
+Build `visualReview` only after reviewing that actual raster. Do not copy passing flags or scores from an example or test fixture. Record all of the following:
+
+- `status: "pass"` only after real review; `checkedFor` must include `watermark`, `logo`, `reference-copying`, `ocr-text`, `commercial-quality`, `style-continuity`, and `page-specific-relevance`.
+- `ocr.titleExact` and `ocr.essentialTextExact` must be `true`; the measured `ocr.bodyMatchRatio` must be from 0.98 through 1, with no semantic change.
+- `commercialScores` contains the six measured 0–100 values `contentIntegration`, `visualHierarchy`, `pageSpecificity`, `styleContinuity`, `compositionQuality`, and `artifactCleanliness`; each is at least 75 and their mean is at least 85.
+- `candidateCount`, `generationAttempts`, and `repairRounds` reflect actual calls. A passing initial single candidate records `1`, `1`, and `0` respectively; multiple candidates need the complete history described below.
+- `dominantPanelAreaRatio` is a measured value from 0 through 1; values above 0.45 also need a nonempty, content-based `largePanelJustification`.
+
+The executable schema fixture is [`commercialManifest(1, options)`](../scripts/tests/helpers/image-deck-fixture.mjs), tested by [`render-review-contract.test.mjs`](../scripts/tests/render-review-contract.test.mjs) and [`candidate-budget.test.mjs`](../scripts/tests/candidate-budget.test.mjs). The fixture's synthetic images and passing review records are **test data, not production assets or review evidence**. [`render-assets.test.mjs`](../scripts/tests/render-assets.test.mjs) replaces the image with a local PNG, runs `normalizeManifest` with `projectRoot`, validates the schema, and checks actual Chromium decoding; it also rejects image-ratio mismatch and unauthorized file paths. Use this structure with the frozen page content, real project images, and genuine review records.
 
 For educational courseware, `visualTheme.courseware` and every slide's `coursewareDesign` are required planning records. Complete and review them before creating any generated asset or render layer. They remain part of the slide input hash and may be consumed as planning metadata even when the deterministic renderer does not draw them directly.
 
@@ -108,7 +63,9 @@ Analyze a reference image only for abstract, transferable rules: palette roles, 
 
 ### Commercial whole-slide mode
 
-Follow `commercial-whole-slide.md`. Each slide contains exactly one generated `image` layer named `whole-slide` at `x: 0`, `y: 0`, covering the exact deck resolution. The visible title and page copy are integrated into that reviewed raster. Record `layoutArchetype`, candidate count, OCR verdict, large-panel ratio/justification, commercial score, continuity review, and repair metadata. The renderer validates and packages these finished page images without adding generic text panels.
+Follow `commercial-whole-slide.md`. Each slide contains exactly one generated `image` layer named `whole-slide` at `x: 0`, `y: 0`, covering the exact deck resolution. The source raster must match the deck aspect ratio; the renderer rejects a mismatch instead of cropping or stretching the reviewed page. The visible title and page copy are integrated into that raster. Record `layoutArchetype`, candidate count/history, OCR verdict, large-panel ratio/justification, commercial score, continuity review, and repair metadata. The renderer validates and packages these finished page images without adding generic text panels.
+
+Use `min(3, slideCount)` distinct valid `deck.anchorPages`. Generate one candidate per anchor first and reuse it when it passes. For every page, `visualReview.candidateCount` is between 1 and 3, including all full-page regenerations. Each candidate allows at most two localized repairs. Multi-candidate reviews require `candidateHistory: [{"repairRounds": 0, "generationAttempts": 1}, ...]` covering every candidate in generation order and a 1-based `selectedCandidate`; the selected entry must match the review's top-level retry fields. Legacy single-candidate records may omit the history. Do not claim a bounded multi-candidate budget when the earlier candidate records are missing.
 
 ### Deterministic text mode
 
@@ -131,7 +88,7 @@ Before publishing any educational image-deck, scan all slide-visible strings for
 
 All layer rectangles are protected against accidental overlap. Declare an intentional overlap explicitly with `allowOverlapWith: ["other-layer-id"]` on either participating layer. The renderer rejects undeclared collisions and any later layer that obscures protected text. It also waits for every raster image to decode and verifies positive natural dimensions before publishing a screenshot.
 
-Every filesystem-backed `deck.referenceImage`, raster `src`, and SVG `src` must resolve lexically and physically inside `--project-root`, including after symbolic-link resolution, and must be an existing readable regular file. Data URLs remain subject to the renderer's local-data and SVG safety rules. Normalization records immutable SHA-256 fingerprints for authorized files; resume hashes include those fingerprints plus aspect ratio and resolution, so same-path file changes or geometry changes invalidate reuse.
+Every filesystem-backed `deck.referenceImage`, raster `src`, and SVG `src` must resolve lexically and physically inside `--project-root`, including after symbolic-link resolution, and must be an existing readable regular file. Data URLs remain subject to the renderer's local-data and SVG safety rules. After authorization, local raster bytes are embedded as data URLs for Chromium to decode without relaxing browser security. Normalization records immutable SHA-256 fingerprints for authorized files; resume hashes include those fingerprints, aspect ratio, resolution, and the renderer contract version, so asset, geometry, or acceptance-contract changes invalidate reuse.
 
 ## Stage ownership
 
@@ -146,12 +103,13 @@ Obtain the actual bundled runtime paths from `load_workspace_dependencies`; do n
 
 ```bash
 IMAGE_DECK_NODE="<Node executable returned by load_workspace_dependencies>"
-IMAGE_DECK_MODULES_ROOT="<node_modules directory returned by load_workspace_dependencies>"
+export IMAGE_DECK_MODULES_ROOT="<node_modules directory returned by load_workspace_dependencies>"
 IMAGE_DECK_PROJECT_ROOT="<current authorized project root>"
+IMAGE_DECK_SCRIPT="<absolute path to this skill>/scripts/render-image-deck.mjs"
 ```
 
 ```bash
-"$IMAGE_DECK_NODE" edu-ppt/scripts/render-image-deck.mjs \
+"$IMAGE_DECK_NODE" "$IMAGE_DECK_SCRIPT" \
   --project-root "$IMAGE_DECK_PROJECT_ROOT" \
   --manifest image-deck/render-manifest.json \
   --output-dir outputs/认识情绪_图片版 \
@@ -163,7 +121,7 @@ Set `IMAGE_DECK_MODULES_ROOT` as shown, or pass the same path explicitly with `-
 
 ## Generated-asset visual review
 
-Inspect every generated asset before it enters a slide. In `commercial-whole-slide`, apply the OCR, composition-diversity, style-continuity, page-specificity, and commercial-score checks in `commercial-whole-slide.md`. In `deterministic-text`, check pseudo-text, watermark, logo, reference-copying, and the safe text region. Record the review result in the associated generated image layer. If an asset fails, regenerate and re-review only that asset; leave passing pages and assets unchanged. Permit at most two automatic repair rounds for the affected asset/page, then surface the failure as a blocking question only before the start command or as a failed completion verdict after start.
+Inspect every generated asset before it enters a slide. In `commercial-whole-slide`, apply the OCR, composition-diversity, style-continuity, page-specificity, and commercial-score checks in `commercial-whole-slide.md`, with its total budget of three full-page candidates and two localized repairs per candidate. In `deterministic-text`, check pseudo-text, watermark, logo, reference-copying, and the safe text region, with at most two automatic repair rounds per affected asset. Record the review result in the associated generated image layer. Repair and re-review only the failed asset/page; leave passing pages and assets unchanged. After the relevant budget is exhausted, surface the failure as a blocking question only before the start command or as a failed completion verdict after start.
 
 ## Fatal preflight failures
 
