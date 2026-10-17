@@ -2,6 +2,10 @@
 
 Use this reference when the user explicitly supplies a batch of images for future reuse, or when a previously created user visual-reference library is available during courseware production. The library is a retrieval aid, not model training and not a set of slide templates to copy.
 
+## Available bundled library
+
+The user-supplied Chinese classical/ink-wash collection is bundled in `assets/style-references/chinese-ink-wash/`, with 20 unchanged originals and a per-image `index.json`. For requests for 古风水墨, 水墨山水 or a compatible text-derived direction, read `chinese-ink-wash.md` and retrieve the active subset from this index before the existing reference-analysis step. Do not reload every image, force this direction on unrelated lessons, or depend on the original desktop folder. Current-task user instructions and references still take precedence. Including an image in the reference library is not commercial-use permission or authorization to upload it to a public repository.
+
 ## One-time ingestion
 
 Explicit instructions such as `这些图以后自动调用`, `建立参考图库`, or an equivalent future-reuse request authorize persistent indexing of the supplied files. Create the library directory only on the first real import; do not create empty placeholders. Preserve the source images without editing them and create one metadata record per readable image. Deduplicate exact files and near-identical variants, while retaining provenance and the user's folder or group boundaries when they carry meaning.

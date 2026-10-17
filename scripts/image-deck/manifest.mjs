@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 const DEFAULT_ASPECT_RATIO = '16:9';
 const DEFAULT_RESOLUTION = { width: 3840, height: 2160 };
 // Invalidate cached renders when the asset or rendering acceptance contract changes.
-const RENDER_CONTRACT_VERSION = 2;
+const RENDER_CONTRACT_VERSION = 3;
 const REQUIRED_REVIEW_CHECKS = [
   'pseudo-text',
   'watermark',

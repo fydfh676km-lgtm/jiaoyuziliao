@@ -3,7 +3,23 @@ This is an opt-in prompt mode, not the default visual-blueprint contract. Activa
 
 When explicitly activated, this section constrains only the visual blueprint and the image-generation prompt derived from it. It does not change or add rules for OCR, PPT reconstruction, WPS verification, or any downstream conversion workflow.
 
+`classroom-readability.md` remains the shared baseline in ordinary and anti-garbled-text modes, including the cover. Its explicit size targets and text-first capacity rules apply without making the ordinary mode use this file's font/glyph restrictions. The cover exception below concerns stylistic anti-garbled restrictions, not a permission to make essential words too small.
+
 Treat page 1 as an explicit exception. The cover prioritizes maximum visual quality and may use immersive scenes, complex composition, integrated artistic typography, calligraphic treatment, and other high-impact devices. Do not simplify the cover into a generic blank background or apply the inner-page anti-garbled-text restrictions to it.
+
+## Font and glyph recipe for opted-in inner pages
+
+Apply this recipe only to page 2 onward while this mode is explicitly active. In `文字字体与重点标注`, name one deck-wide plan using one or two real font families as visual references and keep their roles stable. For Chinese classical/ink-wash courseware, default to `思源宋体` for inner-page titles and `思源黑体` for body copy; for other compatible courseware, one `思源黑体` family with distinct weights is sufficient. An explicit current-task font choice overrides these defaults. The official Source Han families use SIL OFL licensing: [Source Han Serif](https://github.com/adobe-fonts/source-han-serif/blob/master/LICENSE.txt), [Source Han Sans](https://github.com/adobe-fonts/source-han-sans/blob/master/LICENSE.txt). Do not download, install or bundle font files merely to write prompts.
+
+Required inner-page text uses standard simplified-Chinese glyphs with complete, separate strokes, horizontal alignment and regular spacing. Preserve source-required traditional, foreign-language or special characters accurately instead of silently converting the approved copy. Avoid connected handwriting, flying-white or distressed strokes, missing-stroke art lettering, decorative seal/clerical forms, invented variant glyphs, texture-filled characters and distortion. Emphasize one to three existing teaching priorities with weight, adequate size or a solid accent color, not another font family. Keep rich landscape, ink, paper and light treatment in the surrounding picture; do not remove scene richness to regularize the text.
+
+Write the selected font roles and glyph constraints into each inner page's existing `文字字体与重点标注` field, followed by that page's actual hierarchy and emphasis; do not add a font field, renumber fields, alter approved text or apply this recipe to the cover. Example for a classical-literature inner page:
+
+> 文字字体与重点标注：内页统一以思源宋体标题、思源黑体正文为字形参考；标准简体、笔画完整、水平排列，不连笔、不飞白、不缺笔、不使用变形艺术字。正文保持课堂投影可读大小，标题醒目；从本页已有文字中选择1—3处重点，用深红或加粗突出。
+
+A named font in an image prompt is a visual target, not proof that the image generator loaded that font file. Do not claim exact font identity, installed-font availability, actual rendering compliance or guaranteed error-free WPS conversion from the prompt alone. This recipe changes only prompt wording; it does not switch renderers, add post-processing or modify the downstream conversion workflow.
+
+## Existing inner-page visual constraints
 
 For page 2 onward, preserve commercial visual richness while making every required text area visually regular and easy to recognize:
 

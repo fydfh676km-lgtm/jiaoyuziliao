@@ -6,7 +6,7 @@ Use this contract whenever an educational image-only PPT is intended to look sal
 
 Every final PNG must already look like a finished commercial slide before it is placed in PPTX. The generated raster contains the complete composition: topic-specific illustration, title hierarchy, body copy, information modules, decorative details, page rhythm, and visual storytelling. Do not generate wallpaper and then cover it with a large generic text panel.
 
-The slide must communicate its teaching purpose at thumbnail size and remain readable at full-screen classroom size. Visual polish never permits invented textbook facts or reordered frozen content.
+The slide must communicate its teaching purpose at thumbnail size and remain readable at full-screen classroom size. Apply `classroom-readability.md` before prompting and when reviewing actual rasters: standard-widescreen-equivalent titles 40–48 pt, essential body/labels at least 32 pt, focal quotations/prompts/conclusions preferably 36–44 pt. Thumbnail comprehension, correct OCR and 4K resolution do not prove that projected body copy is large enough. Visual polish never permits invented textbook facts, reordered frozen content or shrinking essential words to preserve a large picture.
 
 ## Strategy selection
 

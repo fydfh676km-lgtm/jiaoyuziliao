@@ -3,9 +3,7 @@ import path from 'node:path';
 import { buildSlideHtml } from './html.mjs';
 import { launchBrowser, resolveRuntime } from './runtime.mjs';
 
-const MAX_REPAIR_ROUNDS = 2;
-
-async function measureText(page, sourceTextById) {
+async function measureText(page, sourceTextById, sourceTypeById, resolutionHeight) {
   const measurements = await page.locator('[data-text-layer]').evaluateAll((elements) => elements.map((element) => {
     const computed = getComputedStyle(element);
     const fontSize = Number.parseFloat(computed.fontSize);
@@ -21,11 +19,19 @@ async function measureText(page, sourceTextById) {
       minFontSize: Number.parseFloat(element.dataset.minFontSize),
     };
   }));
-  return measurements.map((check) => ({
-    ...check,
-    exactText: check.actualText === sourceTextById.get(check.id),
-    overflow: check.scrollWidth > check.clientWidth || check.scrollHeight > check.clientHeight,
-  }));
+  return measurements.map((check) => {
+    // Compare the projected proportion, not raw pixels (4K alone cannot enlarge type).
+    const fontSizePt = check.fontSize * 540 / resolutionHeight;
+    const minimumFontSizePt = sourceTypeById.get(check.id) === 'title' ? 40 : 32;
+    return {
+      ...check,
+      fontSizePt,
+      minimumFontSizePt,
+      tooSmall: fontSizePt + 0.001 < minimumFontSizePt,
+      exactText: check.actualText === sourceTextById.get(check.id),
+      overflow: check.scrollWidth > check.clientWidth || check.scrollHeight > check.clientHeight,
+    };
+  });
 }
 
 async function measureAssets(page) {
@@ -76,37 +82,17 @@ async function measureLayout(page) {
   });
 }
 
-async function repairOverflow(page, round) {
-  return page.locator('[data-text-layer]').evaluateAll((elements, currentRound) => {
-    let changed = false;
-    for (const element of elements) {
-      if (element.scrollWidth <= element.clientWidth && element.scrollHeight <= element.clientHeight) continue;
-      const computed = getComputedStyle(element);
-      const fontSize = Number.parseFloat(computed.fontSize);
-      const lineHeight = Number.parseFloat(computed.lineHeight) / fontSize;
-      const minFontSize = Number.parseFloat(element.dataset.minFontSize);
-      const remainingRounds = 3 - currentRound;
-      const nextFontSize = currentRound === 2
-        ? minFontSize
-        : Math.max(minFontSize, fontSize - ((fontSize - minFontSize) / remainingRounds));
-      const nextLineHeight = Math.max(1, lineHeight - 0.1);
-      if (nextFontSize < fontSize) {
-        element.style.fontSize = `${nextFontSize}px`;
-        changed = true;
-      }
-      if (nextLineHeight < lineHeight) {
-        element.style.lineHeight = String(nextLineHeight);
-        changed = true;
-      }
-    }
-    return changed;
-  }, round);
-}
-
 function errorsFor(textChecks, assetChecks, layoutChecks, deck) {
   const errors = [];
   const mismatched = textChecks.filter((check) => !check.exactText);
   if (mismatched.length > 0) errors.push({ code: 'TEXT_MISMATCH', message: 'Rendered text differs from its source text.', layerIds: mismatched.map((check) => check.id) });
+  const undersized = textChecks.filter((check) => check.tooSmall);
+  if (undersized.length > 0) errors.push({
+    code: 'TEXT_TOO_SMALL',
+    message: 'Classroom text is below the standard-widescreen-equivalent size floor; recompose without shrinking approved copy.',
+    layerIds: undersized.map((check) => check.id),
+    measurements: undersized.map(({ id, fontSizePt, minimumFontSizePt }) => ({ id, fontSizePt, minimumFontSizePt })),
+  });
   const overflowing = textChecks.filter((check) => check.overflow);
   if (overflowing.length > 0) errors.push({ code: 'TEXT_OVERFLOW', message: 'Text remains outside deterministic layer bounds.', layerIds: overflowing.map((check) => check.id) });
   const failedAssets = assetChecks.filter((check) => !check.decoded);
@@ -153,14 +139,12 @@ export async function renderSlide(options) {
     const sourceTextById = new Map(slide.layers
       .filter((layer) => layer.kind === 'text')
       .map((layer) => [String(layer.id), canonicalText(slide, layer.source)]));
-    let attempts = 0;
-    let textChecks = await measureText(page, sourceTextById);
-    while (attempts < MAX_REPAIR_ROUNDS && textChecks.some((check) => check.overflow)) {
-      const changed = await repairOverflow(page, attempts + 1);
-      if (!changed) break;
-      attempts += 1;
-      textChecks = await measureText(page, sourceTextById);
-    }
+    const sourceTypeById = new Map(slide.layers
+      .filter((layer) => layer.kind === 'text')
+      .map((layer) => [String(layer.id), layer.source]));
+    // A capacity conflict needs a new layout, not silent font or line-spacing edits.
+    const attempts = 0;
+    const textChecks = await measureText(page, sourceTextById, sourceTypeById, dimensions.height);
     const [assetChecks, layoutChecks] = await Promise.all([measureAssets(page), measureLayout(page)]);
     const errors = errorsFor(textChecks, assetChecks, layoutChecks, deck);
     const result = {

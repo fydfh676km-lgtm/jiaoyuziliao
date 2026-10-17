@@ -1,0 +1,1453 @@
+{
+  "schema_version": 1,
+  "library_id": "chinese-ink-wash",
+  "import_date": "2026-10-13",
+  "source_group": "用户提供：古风水墨",
+  "purpose": "按课文匹配古风水墨审美参考，不是模型训练或商用素材授权",
+  "path_base": "Skill根目录",
+  "image_count": 20,
+  "retrieval": "先按教材事实和当前要求筛选，再实际查看1个主参考与至多2个辅助参考；相似图组只取代表",
+  "records": [
+    {
+      "id": "INK-01",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-01.jpg",
+      "original_filename": "20241012-古风背景古风中国风水墨风水墨山-图1.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "15c9d0623fa2528e967509d174801d747fca2e0190462c057294943751a12dfa",
+      "pixel_dimensions": [
+        1923,
+        2560
+      ],
+      "subimage_count": 10,
+      "title": "淡墨留白背景合辑",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "淡墨留白背景合辑",
+        "多幅拼图参考"
+      ],
+      "palette_and_material": [
+        "灰白",
+        "墨黑",
+        "少量红色",
+        "淡青",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "十幅拼图",
+        "边角主体",
+        "大面积中部留白"
+      ],
+      "scene_traits": [
+        [
+          "多幅场景，近景枝叶与淡远山"
+        ],
+        "可见景物：山水",
+        "可见景物：竹",
+        "可见景物：梅枝",
+        "可见景物：船",
+        "可见景物：徽式墙线",
+        "可见景物：人物"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "比较候选方向",
+        "古诗文阅读布局"
+      ],
+      "avoid_for": [
+        "不能把十幅拼图当一张整页背景"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "拼图的子图细节需再次放大查看",
+        "含背景书法或装饰标记",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "pale-ink-overview",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-02",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-02.jpg",
+      "original_filename": "20241012-古风背景古风中国风水墨风水墨山-图2.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "43fc0807415c9372ea92f51ad6163fd2978fe4e013c8ce9da252ea94d1924df6",
+      "pixel_dimensions": [
+        5000,
+        2498
+      ],
+      "subimage_count": 1,
+      "title": "青绿淡墨竹景",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "青绿淡墨竹景",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "灰白",
+        "淡青绿",
+        "墨黑",
+        "米黄",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "两侧竹叶",
+        "中部山水留白"
+      ],
+      "scene_traits": [
+        [
+          "山体低对比，竹叶前景与远山形成深度"
+        ],
+        "可见景物：竹",
+        "可见景物：层叠远山",
+        "可见景物：水岸",
+        "可见景物：背景书法"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "有竹或山水意象的古诗文",
+        "低密度阅读页"
+      ],
+      "avoid_for": [
+        "不适用于无竹意象却需要事实图解的页面"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "背景书法不可照搬或遮挡正文",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "pale-ink-bamboo",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-03",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-03.jpg",
+      "original_filename": "20241012-古风背景古风中国风水墨风水墨山-图3.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "834ac06399cacee446b41abf736735eed12c288bb32b84bd4e7750ab8017ac71",
+      "pixel_dimensions": [
+        1920,
+        900
+      ],
+      "subimage_count": 1,
+      "title": "淡墨边框与梅枝",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "淡墨边框与梅枝",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "灰白",
+        "淡青灰",
+        "克制红色",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "双线细框",
+        "左侧枝条",
+        "中部留白"
+      ],
+      "scene_traits": [
+        [
+          "远山边界柔和，近处红点形成小焦点"
+        ],
+        "可见景物：梅枝",
+        "可见景物：层叠淡山",
+        "可见景物：边框",
+        "可见景物：装饰线"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "短标题或文学概念页",
+        "克制阅读区布局"
+      ],
+      "avoid_for": [
+        "梅枝与季节需原文支持"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "原边框与装饰线不能逐页照搬",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "pale-ink-framed",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-04",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-04.jpg",
+      "original_filename": "20241012-古风背景古风中国风水墨风水墨山-图4.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "076ec02a4f2d7f70c33d0bab661d419b5bdc809eaf9e0a041be2a6dfd5e7a576",
+      "pixel_dimensions": [
+        1920,
+        900
+      ],
+      "subimage_count": 1,
+      "title": "月色江山与舟影",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "月色江山与舟影",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "淡蓝灰",
+        "墨黑",
+        "梅红",
+        "月白",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "上角月与花枝",
+        "下方山水",
+        "中央淡雾"
+      ],
+      "scene_traits": [
+        [
+          "平视水域，近岸到远山层次"
+        ],
+        "可见景物：大圆月",
+        "可见景物：飞鹤",
+        "可见景物：梅枝",
+        "可见景物：山",
+        "可见景物：小舟",
+        "可见景物：岸树"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "月与舟相关诗文",
+        "夜景意境讨论"
+      ],
+      "avoid_for": [
+        "不能用于原文明确白昼且无月的事实场景"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "月亮与鹤数量不可自动搬用",
+        "布局需重新独立设计",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "pale-ink-moon",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-05",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-05.jpg",
+      "original_filename": "20241012-古风背景古风中国风水墨风水墨山-图5.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "c6f57cfd89d87a92cca71c894a0ef3be5c85b0f2ef1ffa9e2262ead94bf0a734",
+      "pixel_dimensions": [
+        1920,
+        888
+      ],
+      "subimage_count": 1,
+      "title": "竹影花瓣与纸感",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "竹影花瓣与纸感",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "米白",
+        "墨黑",
+        "灰绿",
+        "少量粉红",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "四角与下缘围合",
+        "中部大留白"
+      ],
+      "scene_traits": [
+        [
+          "景物沿边分布，纸感与淡山轻薄"
+        ],
+        "可见景物：竹",
+        "可见景物：松枝",
+        "可见景物：飞鸟",
+        "可见景物：散落花瓣",
+        "可见景物：底部淡山"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "文学阅读",
+        "短要点聚焦"
+      ],
+      "avoid_for": [
+        "花瓣季节不能凭图覆盖课文"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "花瓣不可压住必要文字笔画",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "pale-ink-petals",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-06",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-06.jpg",
+      "original_filename": "20241012-古风背景古风中国风水墨风水墨山-图6.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "f6f339d06d0b17d86c8e6ab633f9b1b7b7690defdefdbf67e2ba4871799a54e2",
+      "pixel_dimensions": [
+        1920,
+        861
+      ],
+      "subimage_count": 1,
+      "title": "乡野牛与淡墨山川",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "乡野牛与淡墨山川",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "白",
+        "墨灰",
+        "少量红色",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "下方乡野景",
+        "上中部留白"
+      ],
+      "scene_traits": [
+        [
+          "近牛与岩石，远处淡墨山川"
+        ],
+        "可见景物：牛",
+        "可见景物：山石",
+        "可见景物：松树",
+        "可见景物：梅枝",
+        "可见景物：飞鸟"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "有牛或乡野生活的内容",
+        "田园诗意象"
+      ],
+      "avoid_for": [
+        "不能把牛作为所有古风课题默认元素"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "动物比例及姿态需独立核对",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "pale-ink-rural",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-07",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-07.jpg",
+      "original_filename": "20241012-古风背景古风中国风水墨风水墨山-图7.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "cc0b59146798cad7386ffca80f467bc77ff95c226e1988e241f3a922eede0151",
+      "pixel_dimensions": [
+        6000,
+        3000
+      ],
+      "subimage_count": 1,
+      "title": "极淡山水与右侧竹影",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "极淡山水与右侧竹影",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "淡蓝灰",
+        "灰绿",
+        "白",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "右侧竹叶",
+        "低处淡山",
+        "左中部留白"
+      ],
+      "scene_traits": [
+        [
+          "薄雾与低对比远景"
+        ],
+        "可见景物：竹叶",
+        "可见景物：淡山",
+        "可见景物：小飞鸟"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "安静阅读页",
+        "浅淡古风内页"
+      ],
+      "avoid_for": [
+        "高信息密度时须建立清楚文字层级"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "正文对比不能随背景一起淡化",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "pale-ink-bamboo-open",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-08",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-08.jpg",
+      "original_filename": "20241217-夕阳无限好 浪漫美景 国画山水风景 水墨画-图1.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "512814fd1673b56cfe5494d62748c1476af69a648dce7b400247051f5bb26492",
+      "pixel_dimensions": [
+        1280,
+        717
+      ],
+      "subimage_count": 1,
+      "title": "夕照江峡与大瀑布",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "夕照江峡与大瀑布",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "暖橙",
+        "金黄",
+        "灰紫",
+        "墨蓝",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "河流纵深",
+        "右侧高峰瀑布",
+        "上方暖天空"
+      ],
+      "scene_traits": [
+        [
+          "前景树深色，中景水面，远山雾层"
+        ],
+        "可见景物：太阳",
+        "可见景物：群山",
+        "可见景物：河流",
+        "可见景物：瀑布",
+        "可见景物：树",
+        "可见景物：飞鸟"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "山水意境封面",
+        "文本支持的夕照或瀑布内容"
+      ],
+      "avoid_for": [
+        "事实性地图和大量材料正文"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "高细节景观占比强",
+        "夸张景物与鸟群需克制",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "warm-scenic",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-09",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-09.jpg",
+      "original_filename": "20241217-夕阳无限好 浪漫美景 国画山水风景 水墨画-图2.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "dfb54c13ef8c9fc3f48b6aceb514e1f161d974e981b363af9b50b2fadb17bd6c",
+      "pixel_dimensions": [
+        1280,
+        717
+      ],
+      "subimage_count": 1,
+      "title": "粉紫夕照与中央瀑布",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "粉紫夕照与中央瀑布",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "粉橙",
+        "暖黄",
+        "紫灰",
+        "墨蓝",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "中央瀑布",
+        "水面反光引导纵深"
+      ],
+      "scene_traits": [
+        [
+          "多层紫色山体与柔雾"
+        ],
+        "可见景物：太阳",
+        "可见景物：瀑布",
+        "可见景物：河流",
+        "可见景物：群山",
+        "可见景物：树",
+        "可见景物：飞鸟"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "暖色山水封面",
+        "情绪收束"
+      ],
+      "avoid_for": [
+        "冷峻主题或没有山水语境的图解"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "饱和度及瀑布尺度不机械复制",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "warm-scenic",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-10",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-10.jpg",
+      "original_filename": "20241217-夕阳无限好 浪漫美景 国画山水风景 水墨画-图3.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "78e07f2824e7fd43e93108582d8ec195d47594d644b32973175c990825846f1a",
+      "pixel_dimensions": [
+        1280,
+        717
+      ],
+      "subimage_count": 1,
+      "title": "橙色天光与曲折江峡",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "橙色天光与曲折江峡",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "暖橙",
+        "蓝灰",
+        "墨蓝",
+        "少量秋色红",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "S形水路",
+        "左近右远"
+      ],
+      "scene_traits": [
+        [
+          "暖天空与冷山体分离，雾带连接空间"
+        ],
+        "可见景物：太阳",
+        "可见景物：江流",
+        "可见景物：雾",
+        "可见景物：左侧瀑布",
+        "可见景物：树",
+        "可见景物：飞鸟"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "江行意象",
+        "暖光山水场景"
+      ],
+      "avoid_for": [
+        "未证实的具体峡谷或地名"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "不从秋色推定课文季节",
+        "密集鸟群不必保留",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "warm-scenic",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-11",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-11.jpg",
+      "original_filename": "20241217-夕阳无限好 浪漫美景 国画山水风景 水墨画-图4.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "3f797b3239c6dce57a75c058835962b55fd97fa1f3c5ea23c4d2dc36777def7f",
+      "pixel_dimensions": [
+        1280,
+        717
+      ],
+      "subimage_count": 1,
+      "title": "淡青层峦与橙日",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "淡青层峦与橙日",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "暖粉橙",
+        "青灰",
+        "墨蓝",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "层峦递进",
+        "中央河谷通道"
+      ],
+      "scene_traits": [
+        [
+          "近山较浓，远山较淡，山谷明亮"
+        ],
+        "可见景物：橙色太阳",
+        "可见景物：群山",
+        "可见景物：白雾",
+        "可见景物：左側瀑布",
+        "可见景物：飞鸟"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "远近关系教学",
+        "诗意山水封面"
+      ],
+      "avoid_for": [
+        "不适合作为含大量小字的纹理底图"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "巨日和密集鸟群可削弱自然感",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "warm-scenic",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-12",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-12.jpg",
+      "original_filename": "20241217-夕阳无限好 浪漫美景 国画山水风景 水墨画-图5.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "55d0a04b7e81d613a59334999eca843836fad9f3d1e7f57b9d1a3a5d1a3ddf2d",
+      "pixel_dimensions": [
+        1280,
+        717
+      ],
+      "subimage_count": 1,
+      "title": "紫色烟岚与江面微光",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "紫色烟岚与江面微光",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "紫灰",
+        "粉橙",
+        "淡黄",
+        "墨蓝",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "江面纵深",
+        "两侧山体围合"
+      ],
+      "scene_traits": [
+        [
+          "浓近景与朦胧远景，水上柔反光"
+        ],
+        "可见景物：太阳",
+        "可见景物：山",
+        "可见景物：多段瀑布",
+        "可见景物：江面",
+        "可见景物：树"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "抒情山水",
+        "静谧远景"
+      ],
+      "avoid_for": [
+        "不对应文本的瀑布和奇峰"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "防止泛化梦幻和过强紫色",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "warm-scenic",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-13",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-13.jpg",
+      "original_filename": "20241217-夕阳无限好 浪漫美景 国画山水风景 水墨画-图6.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "d885dad58b86a0cf7d98247592446c71de499bccc84472aa43a42a3797b95e02",
+      "pixel_dimensions": [
+        1280,
+        717
+      ],
+      "subimage_count": 1,
+      "title": "暖日与松树前景",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "暖日与松树前景",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "暖橙",
+        "灰紫",
+        "墨蓝",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "右侧松树前景",
+        "中央水路",
+        "远处暖日"
+      ],
+      "scene_traits": [
+        [
+          "前中远清楚，水面亮部与深色树呼应"
+        ],
+        "可见景物：太阳",
+        "可见景物：松树",
+        "可见景物：河流",
+        "可见景物：雾",
+        "可见景物：左侧瀑布",
+        "可见景物：飞鸟"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "有松或江行意象的内容",
+        "空间层次借鉴"
+      ],
+      "avoid_for": [
+        "现实史料图或精确地形"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "树木细节和山形只借鉴抽象规律",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "warm-scenic",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-14",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-14.jpg",
+      "original_filename": "20250130-PSD｜新中式古风山水背景图·国风水墨画2下-图1.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "e86c20df1e80ec3d3b1b5c625d5f642022cc58fd06515442d4831358f145c69f",
+      "pixel_dimensions": [
+        1920,
+        2560
+      ],
+      "subimage_count": 3,
+      "title": "淡墨浅彩山水三幅合辑",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "淡墨浅彩山水三幅合辑",
+        "多幅拼图参考"
+      ],
+      "palette_and_material": [
+        "白",
+        "墨灰",
+        "青灰",
+        "少量赭石",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "三幅横景纵向拼接",
+        "层峦与留白水面"
+      ],
+      "scene_traits": [
+        [
+          "不同子图有不同墨色与山体层次"
+        ],
+        "可见景物：山",
+        "可见景物：雾",
+        "可见景物：河水",
+        "可见景物：小舟",
+        "可见景物：飞鸟",
+        "可见景物：圆日"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "选择层峦水岸语言",
+        "古典文学意境"
+      ],
+      "avoid_for": [
+        "不能把不同子图机械混成一套"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "拼图需要选子图放大核对",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "layered-landscape",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-15",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-15.jpg",
+      "original_filename": "20250130-PSD｜新中式古风山水背景图·国风水墨画2下-图2.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "ab70a8b02ac428306c8a28c6e591e2da0bf01bc47f807ae9cd4898c0352a081e",
+      "pixel_dimensions": [
+        2923,
+        3898
+      ],
+      "subimage_count": 3,
+      "title": "烟岚与青绿山水三幅合辑",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "烟岚与青绿山水三幅合辑",
+        "多幅拼图参考"
+      ],
+      "palette_and_material": [
+        "白",
+        "墨灰",
+        "青绿",
+        "淡黄",
+        "少量粉红",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "三幅横景拼接",
+        "中央或下部水面"
+      ],
+      "scene_traits": [
+        [
+          "浓墨近山、虚远山与不同浅彩处理"
+        ],
+        "可见景物：层山",
+        "可见景物：水域",
+        "可见景物：雾",
+        "可见景物：树",
+        "可见景物：小舟"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "虚实关系",
+        "多首诗内同主世界的适度变化"
+      ],
+      "avoid_for": [
+        "不能一首诗一套完全无关主风格"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "子图有不同笔触与色温，不平均混合",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "layered-landscape",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-16",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-16.jpg",
+      "original_filename": "20250708-桃花映江山-图1.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "fedb40fb1b3bde703d2d65a941bf8f30c9d2f4669fc531f41adb808e69475f44",
+      "pixel_dimensions": [
+        3072,
+        4096
+      ],
+      "subimage_count": 3,
+      "title": "桃花浅彩山水三幅合辑",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "桃花浅彩山水三幅合辑",
+        "多幅拼图参考"
+      ],
+      "palette_and_material": [
+        "米白",
+        "淡粉",
+        "浅青绿",
+        "浅蓝",
+        "淡金",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "三幅拼图",
+        "花枝前景与空水远山"
+      ],
+      "scene_traits": [
+        [
+          "柔和漫光，远山边缘淡，近花相对清楚"
+        ],
+        "可见景物：桃花",
+        "可见景物：山",
+        "可见景物：水域",
+        "可见景物：圆日",
+        "可见景物：枝条"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "春景且有花意象的诗文",
+        "温柔文学场景"
+      ],
+      "avoid_for": [
+        "寒冬、荒漠或严肃史料场景"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "可见AI角标与红色印记",
+        "粉色与淡青不能削弱正文对比",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "peach-pastel",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-17",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-17.jpg",
+      "original_filename": "20260424-可商用素材分享No.320｜黑白微茫-图1.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "e8938d0f7d8aa71d599f1284c859e5ff63fc2b94bbb42fb240dce3261d757bdc",
+      "pixel_dimensions": [
+        1920,
+        2560
+      ],
+      "subimage_count": 3,
+      "title": "黑白微茫江岸三幅合辑",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "黑白微茫江岸三幅合辑",
+        "多幅拼图参考"
+      ],
+      "palette_and_material": [
+        "米灰",
+        "灰褐",
+        "墨黑",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "三幅横景拼接",
+        "浅水与雾气留白"
+      ],
+      "scene_traits": [
+        [
+          "淡远山与浓近岸对照，沉静纸感"
+        ],
+        "可见景物：层山",
+        "可见景物：江岸",
+        "可见景物：小舟",
+        "可见景物：树",
+        "可见景物：小屋"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "黑白水墨",
+        "淡远沉静的诗文"
+      ],
+      "avoid_for": [
+        "需要明艳生机或精确数据图"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "文件名含可商用但许可未核实",
+        "子图须按内容选用",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "monochrome-mist",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-18",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-18.jpg",
+      "original_filename": "20260707-烟销日出不见人，欸乃一声山水绿。-图1.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "2ae647146368ac2afc1fb408bd0b9d53723260475d866589c28f978744c9b4ad",
+      "pixel_dimensions": [
+        1402,
+        1122
+      ],
+      "subimage_count": 1,
+      "title": "青绿江行与暖光舟影",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "青绿江行与暖光舟影",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "柔绿",
+        "墨绿",
+        "米黄",
+        "暖橙",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "左前景树",
+        "右中景舟",
+        "江面横向展开"
+      ],
+      "scene_traits": [
+        [
+          "柔和低角度暖光，雾带与水纹构成深度"
+        ],
+        "可见景物：近岸柳",
+        "可见景物：中景小舟与人",
+        "可见景物：水纹",
+        "可见景物：远山",
+        "可见景物：雾",
+        "可见景物：低处太阳"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "江行、渔舟或晨雾意象",
+        "具体山水场景"
+      ],
+      "avoid_for": [
+        "不能由文件题名给不相干课文定时间和地点"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "晨昏仅凭图未定",
+        "舟与人物必须符合教材时代",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "green-river",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-19",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-19.jpg",
+      "original_filename": "20260916-山景-图3.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "d0460f96b0210661efdfd6fd7fe20fc3f529297926a16f813b0346d216e409b0",
+      "pixel_dimensions": [
+        3072,
+        4096
+      ],
+      "subimage_count": 1,
+      "title": "暖纸青绿山景与亭阁",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "暖纸青绿山景与亭阁",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "米黄",
+        "柔绿",
+        "淡赭",
+        "克制朱红",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "竖幅",
+        "上部大留白",
+        "下部山景"
+      ],
+      "scene_traits": [
+        [
+          "近草花与中景亭阁，远山逐渐变淡"
+        ],
+        "可见景物：层山",
+        "可见景物：雾",
+        "可见景物：亭阁",
+        "可见景物：松",
+        "可见景物：草花",
+        "可见景物：圆日",
+        "可见景物：细线云纹"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "暖纸青绿方向",
+        "阅读区留白比例"
+      ],
+      "avoid_for": [
+        "不能拉伸成横版或套用每页上字下山"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "竖幅转横版须重构场景",
+        "云纹不作为必备元素",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "warm-paper-green",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    },
+    {
+      "id": "INK-20",
+      "source_file": "assets/style-references/chinese-ink-wash/ink-20.jpg",
+      "original_filename": "20260916-山景-图7.jpg",
+      "provenance": "用户提供“古风水墨”文件夹，2026-10-13内置；原作者及商用许可未核实",
+      "sha256": "cea289188f4b145c7db088dde2fcc8e0273fd796f93c9d1c5dafea8934ea6a13",
+      "pixel_dimensions": [
+        1728,
+        2304
+      ],
+      "subimage_count": 1,
+      "title": "大留白青绿远山与小亭",
+      "subject_and_grade": [
+        "语文：小学至高中，须符合具体教材",
+        "历史文化：仅作审美参考，不作史实依据"
+      ],
+      "genre_and_topic": [
+        "古诗词",
+        "古典文学",
+        "文本相容的山水散文"
+      ],
+      "era_geography_season": [
+        "具体时代、地域与季节未知；以课文为准"
+      ],
+      "visual_language": [
+        "大留白青绿远山与小亭",
+        "单幅参考"
+      ],
+      "palette_and_material": [
+        "米白黄",
+        "柔绿",
+        "朱红",
+        "灰绿",
+        "笔触与纸感按可见图像借鉴，真实制作媒介未核实"
+      ],
+      "composition_archetypes": [
+        "竖幅",
+        "更大上部留白",
+        "低处视觉焦点"
+      ],
+      "scene_traits": [
+        [
+          "山景集中低处，淡雾隔开前中远"
+        ],
+        "可见景物：山",
+        "可见景物：雾",
+        "可见景物：小亭",
+        "可见景物：松",
+        "可见景物：草",
+        "可见景物：圆日"
+      ],
+      "typography_and_spacing": [
+        "无可供照搬的教学文字系统",
+        "仅借鉴留白、对比与画面层级；正文继续按Skill可读性规则"
+      ],
+      "suitable_for": [
+        "低密度聚焦阅读",
+        "统一暖纸与柔绿色彩"
+      ],
+      "avoid_for": [
+        "画面不适合直接裁成16:9"
+      ],
+      "copyright_sensitive_elements": [
+        "原画面、完整构图、印记及背景文字；仅借鉴抽象规律，不默认作为成品背景"
+      ],
+      "quality_risks": [
+        "留白借鉴而非整页照搬",
+        "不可把必要文字缩小",
+        "生成来源或AI痕迹不能仅凭观感确定；不得把审美参考当作教材事实"
+      ],
+      "similarity_group": "warm-paper-green",
+      "inspection": "2026-10-13逐图预览核对；INK-01、16、18、19另查看原图，其他细节按任务需要再打开原图",
+      "usage_rights": "reference-only; commercial-use-unverified"
+    }
+  ]
+}

@@ -51,6 +51,7 @@ In `plan-first`, the first handoff is only the complete, rendered/checked lesson
 - Page numbers, titles, page text, and blueprint pages correspond one-to-one and preserve the approved total and order.
 - The six visual fields appear exactly once in the fixed order, have no numeric/list prefix, and contain nonempty page-specific values. Do not add `页面标题：` or a seventh visual field such as teacher guidance, design intent, key-point labels, or notes.
 - No user-facing string in either section may contain `课时` or its period-label variants.
+- Apply `classroom-readability.md` while dividing the outline and authoring the blueprint: screen copy is the essential material, question and conclusion, not the complete lecture. Put explicit classroom size targets and text-first capacity decisions inside the existing six fields; preserve confirmed text and page count. These slide-size targets do not change the Word document's own paragraph sizes.
 
 ### Lesson plan Word — `<topic>-lesson-plan.docx`
 
@@ -83,7 +84,7 @@ Generate only when the user explicitly requests `单课习题`/`课后习题` or
 - When raster backgrounds or illustrations are needed, route them through `imagegen` using the highest available GPT image-generation model/configuration; keep generated artwork separate from editable text and teaching elements.
 - Preserve the approved page order, each page's approved goal, title, core content, activity or case, and timing.
 - Implement the approved visual system and every approved page-level visual blueprint (or its approved reusable layout family).
-- Maintain classroom readability: clear hierarchy, legible type and contrast, usable information density, and stable display at normal teaching distance.
+- Maintain classroom readability under `classroom-readability.md`: explicit size floors for student-essential copy and labels, clear contrast, text-first geometry and actual rendered inspection. Never auto-shrink or compress essential copy to solve overflow; preserve approved text/count and report unresolved page capacity conflicts.
 - Keep the user-facing page outline exactly `第X页 / 页面标题： / 页面文字：` and the user-facing visual blueprint exactly `第X页 / 画面风格： / 添加元素： / 文字字体与重点标注： / 布局排版： / 镜头与光影： / 画面去重与统一约束：`; do not add a seventh field or alter the approved page count/order.
 - Do not allow `课时` or variants such as `第一课时`, `第二课时`, `课时导入`, or `课时总结` in any PPT-visible title, body, activity label, footer, or transition. Scan before delivery and rewrite any match.
 - Pass the complete WPS-safe checklist in [`wps-safe.md`](wps-safe.md): open/render in WPS without repair, preserve fonts/layout/assets/editability, and compare the WPS render with the approved source.

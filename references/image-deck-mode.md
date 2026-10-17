@@ -69,6 +69,8 @@ Use `min(3, slideCount)` distinct valid `deck.anchorPages`. Generate one candida
 
 ### Deterministic text mode
 
+Apply `classroom-readability.md` to frozen text and layout capacity. In deck pixel coordinates, classroom-equivalent points are `fontSize * 540 / deck.resolution.height`: titles must be at least 40 pt and every canonical body string at least 32 pt. The renderer rejects undersized text and overflow without publishing a page; it does not auto-shrink text or compress line spacing. Recompose in orchestration without changing frozen copy/count. Whole-slide raster text requires actual visual review because those pixel text regions are not DOM text layers.
+
 Supported layer kinds are `text`, `image`, `shape`, and `svg`. Layers are deterministic records with an `id`, geometry in the deck's pixel coordinate space, and the content/style fields required by their kind. Text is rendered by the renderer, never by an image-generation model. An `image` layer with `generated: true` must contain:
 
 ```json
@@ -94,7 +96,7 @@ Every filesystem-backed `deck.referenceImage`, raster `src`, and SVG `src` must 
 
 ```text
 Skill orchestration: source extraction, reference analysis, page planning, imagegen calls, visual inspection, page-local retry decisions.
-Renderer script: schema validation, exact text/layout rendering, overflow repair, PNG metadata/hash checks, contact sheet, PPTX packaging, machine-readable report.
+Renderer script: schema validation, exact text/layout rendering, classroom text-size and overflow rejection, PNG metadata/hash checks, contact sheet, PPTX packaging, machine-readable report.
 ```
 
 In `commercial-whole-slide`, use the selected image-generation provider for reviewed complete-page rasters and use the bundled Node runtime and `scripts/render-image-deck.mjs` for 4K PNG verification, contact-sheet generation, and image-only PPTX packaging. In `deterministic-text`, use image generation only for original text-free raster assets and use the renderer for exact text. Keep runtime-generated inputs and outputs in the current project.
@@ -129,7 +131,7 @@ Do not render if page order is ambiguous, a critical source cannot be read, inpu
 
 ## Deterministic rendering and repair
 
-Validate the canonical manifest before rendering. In `commercial-whole-slide`, render the single reviewed complete-page image unchanged at the manifest resolution. In `deterministic-text`, render shapes, SVG, exact text, and reviewed image layers deterministically and attempt overflow repair without changing frozen text, page order, or approved constraints. Name default page images `001.png`, `002.png`, and so on in ascending page order and place them under `<outputDir>/pages/`. On a page-local repair, rerender and recheck only the failed page/asset, then rerun whole-deck count and order checks before the completion verdict.
+Validate the canonical manifest before rendering. In `commercial-whole-slide`, render the single reviewed complete-page image unchanged at the manifest resolution. In `deterministic-text`, render shapes, SVG, exact text, and reviewed image layers deterministically; reject undersized or overflowing text rather than repairing it by font reduction or compressed line spacing. Recompose only the affected layout in orchestration without changing frozen text, page order, or approved constraints. Name default page images `001.png`, `002.png`, and so on in ascending page order and place them under `<outputDir>/pages/`. On a page-local repair, rerender and recheck only the failed page/asset, then rerun whole-deck count and order checks before the completion verdict.
 
 ## Output contract
 
