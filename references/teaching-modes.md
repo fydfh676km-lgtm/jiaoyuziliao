@@ -1,6 +1,6 @@
 # Teaching modes and page-content blueprint
 
-Use this reference after source understanding and lesson-plan review, when drafting the lecture and deriving pages. First follow the text-specific teaching mainline in `workflow.md`; the modes below are functional aids, not a generic template to overwrite it. Their page types are candidates to use only when appropriate, not mandatory extra slides. Preserve supplied/approved structure and the section cap; merge functions where appropriate instead of manufacturing a checklist page for every type.
+Use this reference only after source understanding and explicit user approval of the current lesson-plan version, when drafting the lecture and deriving pages. First follow the text-specific teaching mainline in `workflow.md`; the modes below are functional aids, not a generic template to overwrite it. Their page types are candidates to use only when appropriate, not mandatory extra slides. Preserve supplied/approved structure and the section cap; merge functions where appropriate instead of manufacturing a checklist page for every type.
 
 | Lesson type | Possible instructional spine | Candidate page functions | Interaction pattern | Evidence or exercise needs | Closing behavior |
 |---|---|---|---|---|---|
@@ -12,7 +12,7 @@ Use this reference after source understanding and lesson-plan review, when draft
 
 ## Premium page-content blueprint
 
-First create the teacher's continuous oral draft from the checked/approved teaching blocks: actual spoken explanations, source-based questions, plausible response directions, guidance and transitions. Do not convert the plan into a list of lecture headings or derive this first draft by expanding an independently generated outline. Walk the draft as a teacher would, then choose slide breaks at genuine changes of teaching focus. Preserve source meaning while making the language natural and age-appropriate.
+First create the teacher's continuous oral draft from the user-approved teaching blocks: actual spoken explanations, source-based questions, plausible response directions, guidance and transitions. Do not convert the plan into a list of lecture headings or derive this first draft by expanding an independently generated outline. Walk the draft as a teacher would, then choose slide breaks at genuine changes of teaching focus. Preserve source meaning while making the language natural and age-appropriate.
 
 For every resulting Premium page, extend the shared record from `workflow.md` using the fields below. `role` uses one of the listed values. If duration was supplied, page estimates must fit it; otherwise use a clearly marked internal estimate or leave timing null. Do not request total duration after start, invent a confirmed value, or create a duplicate page plan.
 
@@ -34,9 +34,9 @@ evidence_or_example: "Case, source, exercise, or none"
 estimated_minutes: 2  # internal estimate; null when not used
 ```
 
-Finalize the five script fields against these pages, preserving the oral draft's logic instead of starting a separate script. Group each page's narration and questioning without duplicating the same spoken question in multiple fields; `预设回答` is anticipated student response, not teacher narration. Preserve meaningful pauses, reading/task instructions and response-sensitive guidance within the existing fields. End each page with a transition that actually prepares the next. Not every detail spoken by the teacher needs an on-screen counterpart, but every material/task the script asks learners to inspect must be available on the indicated page or clearly identified source.
+Finalize the spoken script against these pages using `speaker-script-standard.md`: `P1 页面标题` sections with black `师：` speech and separate red `【…】` non-spoken cues. Preserve the oral draft's logic, not a second independent script. The former five script fields are internal quality dimensions, not visible labels; anticipated responses belong to conditional cues, not invented actual student dialogue. Preserve meaningful pauses, reading/task instructions, response-sensitive guidance and natural transitions. Every material/task learners are asked to inspect must exist on the indicated page or clearly identified source.
 
-The selected mode cannot drop required content or silently change confirmed page order, goals, text or timing. Keep source/block/lecture IDs resolvable and backfill true teaching-plan page ranges only after this page split. Later visual decisions extend these same records. These records and the pre-pagination lecture draft are internal, not separate deliverables or extra outline fields.
+The selected mode cannot drop required content or silently change confirmed page order, goals, text or timing. Keep source/block/lecture IDs and true teaching-plan/page mappings resolvable internally after this page split. Do not put PPT total count, page numbers or correspondence into the teaching-plan Word. Multiple suggested sessions organize only its implementation times; produce the complete requested scope as one continuous page sequence, without repeated session covers or truncation to one session. Later visual decisions extend these same records. These records and the pre-pagination lecture draft are internal, not separate deliverables or extra outline fields.
 
 The YAML record above is an internal planning structure only. The user-facing PPT page outline must be rendered exactly as:
 

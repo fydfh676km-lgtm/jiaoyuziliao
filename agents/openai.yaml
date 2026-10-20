@@ -1,4 +1,4 @@
 interface:
   display_name: "AI 教育 PPT 商业化生产"
-  short_description: "先理解教材再设计与模拟讲授，支持教案先确认或自动校对，默认交付三个Word"
-  default_prompt: "使用 $edu-ppt，按我的教材与要求开始制作；先理解核查教材，再完成表格教案、模拟讲授与页纲，匹配视觉风格，自动校对并一起交付三个 Word。"
+  short_description: "先理解教材并交教学设计，确认后生成页纲、视觉蓝图和逐字稿，最终三个Word"
+  default_prompt: "使用 $edu-ppt，按我的教材与要求先制作段落式教学设计 Word，不写PPT页数、页码或页面对应；等我确认教案后，再生成完整PPT页纲、视觉蓝图和教师逐字稿。"

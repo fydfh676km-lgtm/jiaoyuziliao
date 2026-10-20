@@ -1,119 +1,50 @@
-# Teaching-plan Word standard
+# 教学设计标准 段落式优化版
 
-Read before authoring or verifying a teaching-plan Word. This is the owner of the seven-section template, teaching depth, visible emphasis, and embedded board-image requirements. Production mode and approval state are defined in `workflow.md`.
+用户2026-10-20确认：后续本Skill的教学设计按《限定提示词》和《修改教案模板_段落式排版版》执行。原样副本为 `../assets/teaching-plan-prompt.docx` 与 `../assets/teaching-plan-template.docx`，版式见 `teaching-plan-template.md`。本文件落实两份材料的规则；新标准替代2026-10-19的固定五环节、过程五字段、固定时间比例、正文回填PPT页码及内部自检附录交付要求，不改变其他课件产物；执行顺序按下文统一先确认教学设计的新规。
 
-## Understand the textbook before designing the lesson
+## 材料与真实理解
 
-Read and check the complete assigned textbook section, including relevant notes, illustrations, questions, and exercises. Establish the actual content structure, important evidence, relationships, emotional or reasoning progression, and likely learner obstacles before choosing activities. Distinguish what the text explicitly states from an interpretation; do not invent facts or assume that extracting text means understanding it.
+先读全范围教材正文、注释、插图、习题及相关教学设计/任务单，再理解、核查关键事实、结构、文本证据、学科方法和学生可能的障碍，确定本课专属教学主线。摘录或复述不等于理解，不能只换课题沿用他课问题。
 
-Then compare that understanding with all available official teaching designs and learning-task sheets. Use them to check emphasis, coverage, and workable tasks, not as a template to copy over a different lesson. Resolve source discrepancies against the original textbook and record material uncertainty rather than silently harmonizing it. The substantive reading/checking process lives in the shared internal record, not an additional delivered report.
+用户材料优先；优化既有教案时保留材料支持的有效主线、活动与意图，只调整有问题的逻辑、语言、时间或评价。课标/政策仅在可核实范围引用，标明正式名称及适用范围；不能编造版本年份、条款编号、教材页码、资源来源、班级人数、前测数据或课堂成效。未能核实的具体事实标注待核实；学情推断标为经验判断。一般非关键缺项不阻塞已启动任务，只有可能实质改变教材、课标定位或内容正确性且不能安全继续时才提出简短澄清。
 
-The resulting plan must be executable in class and specific to this lesson. Its objectives, questions, activities, evaluation, board, and homework must follow one teaching line supported by the sources. Preserve textbook order and any already approved content contract. A simulated teacher lecture is used later to test transitions and derive the page sequence; it must not silently change approved objectives, key points, core activities, or the main teaching line.
+设计遵循：课标教材依据 → 单元位置与核心内容 → 学情障碍 → 设计理念与主线 → 可观察目标 → 重难点与支架 → 学习任务和评价证据 → 连贯过程 → 板书作业 → 评价与改进。按学科和课型调整内部组织，不机械填栏目。
 
-## Seven-section template and Word layout
+## 十二个正式模块
 
-Place a centered document title above an editable Word table layout. Unless the user explicitly selects another template, use exactly these seven top-level sections in order:
+1. **课程基本信息**：课题；学科与学段/年级；教材依据（可靠的出版社、版本、册次、单元，页码按需）；课时安排；所属单元/主题及大概念；课型；授课对象；设计者/日期。未提供的真实个人/班情信息不补造，只保留相关信息并说明必要缺项。
+2. **设计依据**：课程标准依据、教材分析、学情分析；设计理论/教学模式按需，不强制堆模式名称。课标写直接相关的内容要求、学业要求/学业质量及按需的教学或评价建议，说明如何落实本课；不能只有“依据新课标”。教材分析解释单元位置、核心内容/方法及必要增删换合理由；学情交代已有基础、哪一步容易误解及原因、已知差异与支持、落实到具体环节的对策。
+3. **设计理念**：用完整一段写核心学习问题、内容/问题主线、关键学习活动、证据如何支持理解以及迁移方向，与目标活动评价一致。取消为凑篇幅而设的固定字数，不写口号或重复描述。
+4. **教学目标**：一般2—4条，用学生可观察、可评价的学习行为、完成条件/任务和质量标准表述，素养名称符合实际学科课标。每条至少有一项任务、产出和评价标准；不是教师活动或“提高能力、培养素养”等空泛句。
+5. **教学重点、难点与突破策略**：重点与难点通常各1—2条，分别充分阐明，保留用户已定的各至少100个中文字符与短语深红加粗要求，不靠套话凑数。重点来自教材/课标关键要求；难点指出学生在哪一步卡住及原因；策略逐一对应难点与实际落实环节，不把重点难点同义重写。
+6. **教学准备**：按需写具体教具/器材/场地、学具/学习单、数字资源用途/来源或制作方式/使用环节/操作方式/联网条件。实验、实践、户外活动必须写风险、防护与应急；不适用则如实说明，不能只写“多媒体课件”。
+7. **教—学—评一体化设计**：保留模板的简洁五列表：教学目标｜核心学习任务｜可观察的学习产出/证据｜评价方式与工具｜达标标准。只列实际目标，删除未使用的目标行。评价标准可直接判断达成，在过程和第十一模块沿用同一口径。
+8. **教学过程**：以真实学习逻辑组织分节段落，按下方规则写清学习如何推进，不套旧四列表格或五字段清单。
+9. **板书设计（文字描述）**：板书主线（标题、核心问题、层次及关系）、副板书（生成关键词、证据、易错点）、生成时机。简洁可读且随学习逐步形成，不仅列目录；默认不绘图/嵌图，另明确要求才追加。
+10. **作业设计**：明确基础必做、适当拓展/实践选做，写内容、建议用时、完成/成果方式、反馈；长期任务写节点。服务本课目标、负担合理，不与课堂机械重复，不布置未教/惩罚任务或要求家长批改。政策仅用核实的适用口径，不把各科总量当本学科额度；不会自动启用独立习题交付。
+11. **教学评价**：组合实际适用方式，至少含过程性评价，不为数量凑三种方式；沿用第七模块标准。量规按目标选择3—4维度，模板三级为待改进/达到要求/表现较好，每格写可观察行为；说明结果如何用于即时反馈、当堂补救、后续调整，不以家庭隐私、情绪强度或迎合教师观点评分。
+12. **教学反思预设与课后改进**：预判具体环节/步骤的困难及应对，列真实可收集的达成材料，说明课后如何依据实际证据改进。未上课不虚构已发生的效果、学生发言或统计；实际课后结果待教师据实填写。
 
-1. `课程信息` — concise subject, grade, textbook/edition, and topic information supported by the source; do not invent publication metadata.
-2. `教材与学情分析` — integrate content analysis, learner starting points and obstacles, design rationale, and the lesson's main teaching logic. Explain why this lesson needs these particular questions and activities rather than reusing generic subject descriptions.
-3. `教学目标` — concrete, checkable learning outcomes grounded in the text and learner needs.
-4. `教学重难点` — separate `教学重点` and `教学难点` within this section; apply the depth requirement below.
-5. `教学过程` — the two-column, content-led process defined below.
-6. `板书设计` — a complete embedded board image plus concise generation order.
-7. `作业设计` — source-backed consolidation or transfer that follows the lesson.
+## 段落式教学过程
 
-Use native Word text and tables, not a screenshot of the whole lesson plan. Section-header rows span the content width with a light-gray fill and black text; body cells stay white, with clear restrained borders and comfortable cell padding. Course metadata may use compact paired cells; longer analysis and objectives use full-width cells. Keep text readable, with natural paragraph spacing rather than dense prose walls.
+环节数量由学科、课型和实际任务决定。常见导入—主体学习（通常2—4个环节）—归纳评价—迁移/延伸只是参考，不是所有课型的硬框架；延伸按需合并。取消“一级环节最多5个”、固定功能标题及固定时间比例。只有独立任务才拆环节，不拼活动、不把多个目标压进一个过长环节。
 
-Use automatic row height, not a fixed height that clips text. Repeat applicable table-header rows over page breaks; keep a section label with its following content and avoid stranded headings. Long process rows may continue across pages when necessary; do not force a whole oversized row onto one page or shrink all text to make it fit. Verify actual renders, including cell margins, split rows, empty space, and pagination.
+每个环节用内容性编号标题并写具体分钟数，下面用连贯段落交代教师关键材料/引导/核心问题、学生行动与阶段成果、环节的前后逻辑关系、关键评价证据以及必要的支架和即时应对。可按需用简短标签帮助阅读，但不要求逐环节机械重复教师活动/学生活动/设计意图/评价证据/预设与应对，也不把缺少这些固定标签本身判为缺项。内容是否齐全须语义核对。
 
-Do not restore `设计说明`, separate `教材分析`/`学情分析`, `教学准备`, `整体教学逻辑`, `课堂评价`, or `教学实施提醒` as extra top-level sections. Their useful substance is integrated above or into the relevant process block. `教学反思建议` is optional only when the user requests it, not a mandatory eighth section.
+教案写教学行为，不写成完整口播逐字稿；只具体呈现必要关键指令、问题和示范。避免同一理念、目标、设计意图或评分标准反复复制，正式正文优先自然表达，不机械标“指向目标1”。评价标准在统一表完整定义，过程写当前收集什么证据、如何判断和调整。文学/历史等观点须有材料依据，不压成唯一结论；科学/数学核准概念、数据、单位、步骤和结论。
 
-Never add `成果证据` or a renamed equivalent field, print an overall duration statement, or expose `课时` or administrative teaching-period variants. Use content-based titles. Internal estimates are not visible course metadata.
+## 课时建议、用时与完整课件的边界
 
-## Detailed teaching-process table
+- 用户明确课时/时间时遵从；仅官方来源有建议时保留来源身份；未指定时依据**完整指定教材范围**给合理建议，明确标为建议/估算，不能冒充已确认条件，也不新增常规确认关卡。
+- 教学设计写明建议共几课时、每课时几分钟、合计几分钟；教学过程按需要标示各课时安排，写全所有课时，核算各课时环节之和及全篇总和，计入切换、阅读、思考和反馈，不能在总和外另加弹性时间。活动量不适合时调整、合并并说明必要取舍，不虚造已测讲授速度。
+- 课时建议是**教学设计Word的实施安排**，不改变课件范围。下游仍从全部教学内容模拟连贯讲授、据实际需要出一整套完整连续PPT页纲、对应逐字稿与视觉蓝图，不只做“本课时”，不拆成多套，不为每课时重复封面/导入/总结。课件可见内容仍禁用“课时”等授课分段词，页纲/蓝图不加时间或安排字段；逐字稿可以有原先允许的微观活动提示用时。
+- 原页数上限不变；**模型建议3课时不等于官方资料确认3分段**，不能借此启动30—35页例外。页数按完整内容、大字容量和既定来源条件确定，而非按课时机械乘页数。
+- 各环节/讲授片段与页面映射仅保留内部共同记录。教学设计全文（含正文、表格、页眉页脚、附注）不得出现PPT总页数、页码、对应页面、页码范围或“如附件所示”“AI生成提示词”等制作说明，不以备课备注绕过；不禁止确有教学用途的PPT资源名称或真实教材页码。
 
-Use two columns headed `教学环节` and `具体教学安排`. The left cell contains a meaningful content-block title; the right cell contains the following items in order:
+## 版式、语言与交稿自检
 
-```text
-对应PPT第X—X页
-教学目标：
-教师组织：
-学生学习：
-关键问题：
-评价要点：
-承接推进：
-```
+按 `teaching-plan-template.md` 保留新模板的段落层级与两张功能表，不恢复旧整篇表格。实质重难点、关键问题、支架和结论少量深红加粗，不整段染红。写完整、自然、术语统一的句子，删空话、含混指代、机械重复和无依据结论。
 
-The page-range line is **stage-dependent**:
+交稿前内部核对完整性、真实性、逻辑性、一致性、可实施性、语言、学习切口、模板合规和事实边界；修订后再交。删除填空线、填写提示、未用行、通用适用说明及附录自检痕迹。附录是内部工具，不默认附自检报告/行为动词教程。仍需核实的事实按实际必要性简短列明，不以占位符交不完整稿。
 
-- Before page planning, including the first delivery in lesson-plan approval mode, omit the line entirely. Map blocks with stable internal identifiers, never fictitious page ranges, `待定` page placeholders, or leaked internal IDs.
-- In the final coordinated package, add real ranges after lecture-led page splitting is complete. This is a mapping/formatting update, not permission to rewrite an approved plan. Cover the actual pages and make any deliberate revisits explicit.
-
-Every major block keeps all six substantive items:
-
-- `教学目标`: the concrete understanding or action completed here.
-- `教师组织`: actual material, prompts, demonstrations, comparison, feedback, or scaffolding. Integrate necessary preparation and implementation cautions here; “教师讲解” or “组织讨论” alone is insufficient.
-- `学生学习`: observable reading, marking, discussion, writing, comparison, explanation, performance, or revision.
-- `关键问题`: normally two to four connected questions advancing from evidence to interpretation or application, not unrelated prompts.
-- `评价要点`: acceptable-response criteria and the relevant reasoning, accuracy, or performance threshold. Integrate classroom assessment here; use a compact rubric only when useful.
-- `承接推进`: the content-based reason for moving from this block to the next, with a usable transition rather than an administrative label.
-
-Each block contributes to at least one objective, key point, or difficulty. Vary activities according to the actual reading or reasoning demands. Retain practical teaching detail while reducing headings; do not reduce the process to one generic sentence per cell. In final review, match the plan's block order and questions to the spoken script, then check that each PPT page presents the material when the teacher needs it, without premature answer reveals or missing visual support.
-
-## Teaching key points and difficulties
-
-Within `教学重难点`, write `教学重点` and `教学难点` separately, each with at least 100 Chinese characters of substantive explanation. Each must identify the textbook or learning-task basis, what students need to understand or do, the likely obstacle, and how the process addresses it. The two must describe different instructional problems, not paraphrase the same paragraph. Do not fill the count with repeated labels, slogans, or unrelated theory.
-
-## Visible emphasis system
-
-- Default substantive emphasis is dark red `#C00000` plus bold; color alone is insufficient. If the user's style disallows red, use one consistent high-contrast accent plus bold or restrained highlighting.
-- Mark short semantic phrases, not entire paragraphs. Field labels alone do not count as substantive emphasis.
-- Visibly mark the central claim in `教学重点`, the obstacle or breakthrough in `教学难点`, and one to three lesson-specific phrases in every major process block. At least one emphasized phrase per block must be inside the substantive `关键问题` or `评价要点` text. Also mark the final synthesis or transfer conclusion.
-- Suitable targets include decisive text evidence, key concepts, reasoning pivots, misconceptions, response criteria, and conclusions. Normally keep no more than three short emphasized phrases per process block and about 15 percent of visible text per page.
-- Headings remain black. Inspect the final renders to ensure emphasis identifies real priorities, remains visible, and does not turn the page into a red wall.
-
-## Board-design image contract
-
-`板书设计` compresses the lesson's reasoning into a board usable during class, not a table of contents. Include these two subsections:
-
-1. `板书成品示意` — an actual complete PNG or JPEG image embedded in the Word, not a text-only placeholder, ASCII diagram, or link to an external image.
-2. `板书生成顺序` — concise text beneath the image showing how the teacher adds, connects, revises, or boxes its parts.
-
-Default visual treatment follows the user's example: dark-green blackboard background, clear white lettering, and restrained yellow key terms and relationship arrows. Transfer the layout principles, not the example lesson's wording. Prefer rendering verified real text and simple diagram lines into the image for accurate Chinese text. This embedded board image is part of the lesson-plan Word, not a new default delivery, a call to generate all PPT images, or a requirement to use AI image generation. The rest of the document remains editable native text/tables.
-
-The finished board must contain three logical layers:
-
-- a lesson title and a central question or actionable organizing focus;
-- the content/evidence path with lesson-specific terms, quotations, events, examples, or comparison nodes;
-- meaningful relationships and synthesis, such as progression, contrast, cause/effect, evidence-to-conclusion, method, principle, or transfer.
-
-Make at least two important relationships clear through arrows, brackets, grouping, alignment, or comparison axes. Label a relationship if its meaning is not self-evident. Preserve text/case boundaries in multi-text units before adding a shared conclusion. The board must contain enough specific content that it cannot be reused unchanged for another lesson, but must remain writable and readable in real classroom use.
-
-`板书生成顺序` describes at least three distinct additions, connections, or revisions, mapped to real teaching blocks; add page ranges only once they exist. The board normally grows with student inquiry and supports final review. Do not reveal the entire conclusion at the opening unless the plan deliberately uses an advance organizer.
-
-Fit the image within the **actual usable Word cell/page width and available height**, preserving aspect ratio. Do not crop edges, stretch the board, or shrink lettering until unreadable. Shorten unnecessary wording or improve the arrangement when crowded; a dedicated page is allowed if needed. Inspect the embedded image at its final rendered size, not only the full-resolution source, and check every word, punctuation mark, arrow endpoint, and relationship. Image-presence checks cannot establish text accuracy or readability.
-
-Reject a board that has only generic steps or disconnected keywords, lacks specific evidence/relationships or generation order, conflicts with the teaching process, has missing/garbled text, or overflows/is too dense at its actual Word size.
-
-## Homework and integrated supporting content
-
-`作业设计` follows the lesson's understanding and skills. Differentiated consolidation, deepening, transfer, or extension is appropriate only where supported by the source; do not force several levels into every lesson. Ordinary homework in the plan does not enable a separately delivered exercise package.
-
-Put likely misconceptions, source boundaries, necessary preparations, safety/sensitivity issues, and implementation choices in the process block they affect. If reflection is explicitly requested, use concrete post-lesson questions about student explanations, activity effectiveness, and needed follow-up rather than generic advice.
-
-## Stage-aware verification
-
-Before any lesson-plan handoff, check:
-
-- the seven top-level sections are present in the prescribed order, with the native table layout;
-- source understanding, objectives, questions, learner activities, evaluation, board, and homework form a specific and supported teaching line;
-- every major process block contains all six substantive items;
-- `教学重点` and `教学难点` each pass the 100-Chinese-character substantive-content check;
-- meaningful selective emphasis is present in both key subsections, every major process block, and the final synthesis;
-- the embedded board passes text accuracy, three-layer, relationship, process-mapping, generation-order, fit, and readability review;
-- there is no banned field, overall duration, or administrative teaching-period wording;
-- the DOCX is valid and every rendered page passes checks for hierarchy, emphasis, tables, clipping, overflow, font substitution, blank pages, and order.
-
-For a first lesson-plan approval handoff, evaluate this plan only; deliberately not-yet-produced page outlines and scripts are not missing deliverables for this phase. Wait for actual user approval before proceeding in that selected mode. In automatic mode, perform the plan review internally and continue without asking for approval.
-
-Before the final coordinated package, add and verify actual PPT ranges, check alignment with the finalized page-linked script and outline, and recheck changed pages and relationships. Respect the approved plan's substantive boundary; flag a material source conflict instead of silently rewriting it. Automated structure checks do not replace semantic, spoken-flow, or rendered-image review and do not justify a promise of zero errors.
+后续统一 `plan-first`：先交已检查教学设计Word，结束该阶段并等待用户确认具体版本；确认前不制作PPT页纲、视觉蓝图或逐字稿。确认后沿同一主线继续，不再次例行询问页数、风格等。十二模块、时间、原生Word/渲染检查与跨文件语义检查均针对实际产物；脚本不证明课标真实、过程通顺、教学有效或WPS兼容。

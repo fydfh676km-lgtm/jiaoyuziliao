@@ -1,6 +1,6 @@
 # Execution contract
 
-This file owns intake, textbook understanding, execution modes, shared teaching records, source provenance, and bounded recovery. `SKILL.md` owns visible formats, output scope, page cap, and topic-matched style research. Artifact standards own acceptance. Only the selected `plan-first` mode creates a human lesson-plan approval checkpoint; other “approved” state names are internal checks.
+This file owns intake, textbook understanding, the staged execution flow, shared teaching records, source provenance, and bounded recovery. `SKILL.md` owns visible formats, output scope, page cap, and topic-matched style research. Artifact standards own acceptance. Every complete-courseware run uses the required `plan-first` lesson-plan approval checkpoint; other “approved” state names are internal checks.
 
 ## Select once and reuse
 
@@ -13,12 +13,13 @@ task:
   audience: ""
   product_mode: premium
   review_mode: professional-advisor
-  execution_mode: auto  # auto | plan-first; distinct from review_mode
+  execution_mode: plan-first  # required lesson-plan approval before downstream work; distinct from review_mode
   mode_source: default
   page_count: null
   source_period_count: null
   duration_minutes: null
   duration_source: unspecified  # user | source | estimate | unspecified
+  lesson_sessions: []  # internal session/block times; not slide divisions or page-cap evidence
   anti_garbled_text: false
   requested_extras: []
 sources: []
@@ -50,7 +51,7 @@ checks: []
 
 Record the explicit request that enabled each optional output or prompt mode. “按流程开始制作” starts the existing scope; it does not enable PPTX, exercises, marketing, or anti-garbled text. Current explicit user changes supersede older task decisions; identify and rebuild only their affected dependencies.
 
-For duration, preserve a user/source value when supplied. Otherwise use a marked internal teaching estimate if pacing is useful, or leave it unspecified when it is not. Never invent a “confirmed” duration or pause after start to ask for one. Internal timing lives in the page records, not in the fixed user-facing page-outline Word; do not print an overall total in the teaching-plan Word.
+For duration, preserve a user/source value when supplied; otherwise state proposed session count, minutes per session and overall total in the teaching-plan Word, without routine confirmation. Check each session's block sum and the overall sum against the shared pacing record, including transitions, thought and feedback. Never present estimates as confirmed. These session decisions are teaching-plan implementation advice only: simulate and paginate the full requested textbook scope into one continuous complete outline, blueprint and script, not one selected session or multiple decks. No timing fields or period labels enter the fixed outline/blueprint or script section titles. A model-recommended three-session plan is not source_period_count evidence and does not enable the 30–35-page exception.
 
 ## Source intake
 
@@ -90,51 +91,51 @@ Do not stop at text extraction or a paraphrased summary. Read the original lesso
 
 Only then compare all official teaching designs and task sheets: retain useful prompts, scaffolds and tasks, merge duplicated source segments, and reconcile differences against the original textbook. Official plans are teaching references, not text to paste wholesale; do not invent facts to resolve a conflict. Check quotations, names, factual/interpretive boundaries, sequencing and required coverage once before drafting the lesson plan. Mark missing evidence rather than claiming complete understanding. Reuse this checked synthesis downstream; do not reread unchanged inputs for each document.
 
-## Two execution modes
+## Required lesson-plan-first workflow
 
 | Current user instruction | Mode and handoff |
 |---|---|
-| “先出教学设计，我确认后继续” or equivalent | `plan-first`: understand sources, draft and internally check the complete seven-section table lesson plan with embedded board image; render/verify this Word and hand it off. Set `awaiting-user` and end the turn. Do not generate the outline, final script or visual blueprint before actual approval of this plan version. |
-| “自动校对，一起出” or an ordinary start without a plan-approval request | `auto` (default): internally check the lesson plan, simulate teaching, derive the pages and complete all requested outputs without interim approval. Deliver the default three Word files together. |
+| Ordinary start, “先出教学设计”, “按流程制作”, or “一起出” | `plan-first`: understand sources and verify relevant curriculum standards; draft/check the twelve-module paragraph-template lesson plan with a content-led, flexibly organized process, aligned evaluation and text-only board description; render/verify this Word and hand it off. Set `awaiting-user` and end the turn. Do not generate the outline, final script or visual blueprint before actual approval of this plan version. |
+| User supplies a specific already-approved plan | Read it, record the user’s explicit approval evidence/version, then continue downstream without requesting the same approval again. |
 
 This selection does not change the four logical outputs, extras, formats or page cap. “教学设计、PPT大纲、逐字稿一起出” retains the default visual blueprint inside the combined Word unless explicitly omitted; “PPT大纲” does not request a PPTX.
 
-Choose the default only for a new task with no selected mode. On an existing task, retain its recorded mode; a generic “开始/继续” or a page-count answer does not silently switch an awaiting-approval task to `auto`. Interpret confirmation against the immediately identified plan version, not an unrelated earlier choice.
+Use plan-first for all subsequent production. The 2026-10-20 instruction supersedes prior automatic-package defaults. When resuming an unapproved legacy auto task, preserve completed files/source evidence but stop downstream generation until its current teaching plan is explicitly confirmed. Do not delete or remake already valid outputs simply to migrate modes. A generic start, page-count answer or request to receive everything is not a waiver; interpret an actual confirmation against the immediately presented plan version. A later explicit user change to this approval policy may supersede it, but never infer such a change.
 
-For `plan-first`, record the exact approved version and the user's confirming message. A page-count confirmation, generic earlier start, or an internal PASS is not plan approval. If the user requests changes at this checkpoint, update and recheck the plan, then present the revised version for confirmation; do not proceed on the superseded approval. If the user explicitly switches to automatic production, remove this waiting checkpoint and continue the scoped work.
+For `plan-first`, record the exact approved version and the user's confirming message. A page-count confirmation, generic earlier start, or an internal PASS is not plan approval. If the user requests changes at this checkpoint, update and recheck the plan, then present the revised version for confirmation; do not proceed on the superseded approval.
 
-A supplied plan explicitly identified as already approved counts as the baseline once its actual content is read. Preserve its goals, key/difficult points, core activities and teaching mainline. Source checks still apply: approval is not proof of factual accuracy. Do not silently replace a material source conflict in an approved plan or ignore it; report the narrow conflict when user direction is genuinely required. After approval, page-range backfill, layout repairs and meaning-preserving language polish are routine; changing the pedagogical baseline requires the user's authorization. No repeated approval for pages, style or ordinary downstream repairs.
+A supplied plan explicitly identified as already approved counts as the baseline once its actual content is read. Preserve its goals, key/difficult points, core activities and teaching mainline. Source checks still apply: approval is not proof of factual accuracy. Do not silently replace a material source conflict in an approved plan or ignore it; report the narrow conflict when user direction is genuinely required. After approval, internal page mapping, layout repairs and meaning-preserving language polish are routine; changing the pedagogical baseline requires the user's authorization. No repeated approval for pages, style or ordinary downstream repairs.
 
 ## One teaching record, then page mapping
 
-Before page division, maintain ordered `teaching_blocks` with stable IDs, source anchors, objectives, teacher/student actions, core questions, anticipated answers/misconceptions, evaluation and transitions. These are the shared lesson-plan decisions, not a second deliverable. In `plan-first`, these blocks make a complete teachable plan before PPT page numbers exist. Omit page ranges in that first Word; never insert guessed numbers, empty range fields or “待定” placeholders merely to satisfy a checker.
+Before page division, maintain ordered `teaching_blocks` with stable IDs, source anchors, objectives, teacher/student actions, core questions, anticipated answers/misconceptions, evaluation and transitions. These are the shared lesson-plan decisions, not a second deliverable. In `plan-first`, these blocks make a complete teachable plan before PPT page numbers exist. Keep page mappings internal in both initial and final teaching-plan Words; no PPT total count, page numbers or page correspondence may appear anywhere in the teaching-plan content, headers, footers or notes; never insert guessed numbers, empty range fields or “待定” placeholders merely to satisfy a checker.
 
-After internal approval (`auto`) or actual user approval (`plan-first`), simulate the teacher's talk through these blocks in sequence. Write a coherent oral draft including opening, reading/observation/task instructions, purposeful questions, anticipated learner responses, responsive explanation, synthesis and natural transitions. Anticipated responses are possible directions, not claimed real student dialogue. Check that each new idea is prepared by the preceding talk and each activity has usable instructions and a follow-up.
+Only after actual user approval of the current teaching plan, simulate the teacher's talk through these blocks in sequence. Write a coherent oral draft including opening, reading/observation/task instructions, purposeful questions, anticipated learner responses, responsive explanation, synthesis and natural transitions. Anticipated responses are possible directions, not claimed real student dialogue. Check that each new idea is prepared by the preceding talk and each activity has usable instructions and a follow-up.
 
-Derive the PPT outline from that lecture flow: decide what must be visible at each teaching moment (material, question, task, key evidence, diagram or conclusion) and what remains oral. Do not paste the entire transcript onto slides. Divide into legible pages within the cap, then align the oral draft to those pages and finalize the five script fields. Keep before/after display cues inside the existing script fields and visual layout, not extra outline fields or an automatic animation/PPTX requirement. Do not reveal an answer before the intended inquiry; when needed use compliant page allocation or leave explanation oral.
+Derive the PPT outline from that lecture flow: decide what must be visible at each teaching moment and what remains oral. Do not paste the entire transcript onto slides. Divide into legible pages within the cap, then finalize `P1 页面标题` script sections under `speaker-script-standard.md`: black `师：` speech and red `【…】` non-spoken display/activity/pause/conditional-response cues. The old five script fields remain internal quality dimensions only. No extra outline fields or automatic animations/PPTX; do not reveal answers before inquiry.
 
-Extend the per-page record in `teaching-modes.md` with its teaching-block/lecture links, six visual decisions, final script fields and check status. Backfill actual page ranges into the same lesson plan and board-generation sequence. The plan's substantive sequence controls downstream production; page split does not authorize rewriting approved goals/mainline. An explicitly preserved existing outline is also binding: fit the lecture to its page sequence or report a material conflict rather than silently restructuring it.
+Extend the per-page record in `teaching-modes.md` with teaching-block/lecture links, six visual decisions, page-linked spoken paragraphs/non-spoken cues and check status. Keep actual block/lecture/page mappings in these internal records; the teaching-plan body follows the paragraph template with no PPT total count, page numbers or correspondence notes. Link board generation to teaching events, not visible page numbers. The plan's substantive sequence controls downstream production; splitting pages does not authorize rewriting approved goals/mainline. Preserve an explicitly frozen outline or report a material conflict.
 
 Derive outline, blueprint, script and lesson-plan mappings from this one record. Repeated facts, titles and page numbers are not reinvented independently. Optional image-deck rendering adapts these frozen decisions into its manifest without replanning the lesson.
 
 ## Internal sequence
 
-`intake → text_understood → lesson_plan_checked → [awaiting_plan_approval only in plan-first] → lecture_drafted → scale_approved → content_approved → visual_approved → production_approved → verified`
+`intake → text_understood → lesson_plan_checked → awaiting_plan_approval → user_approved_plan → lecture_drafted → scale_approved → content_approved → visual_approved → production_approved → verified`
 
 | Stage | Before an explicit start | After an explicit start |
 |---|---|---|
 | Topic/intake | Resolve only consequential missing inputs; preserve supplied facts and preferences. | Read, understand and verify scoped sources; record unrecoverable gaps. |
-| Teaching design | Discuss or draft only what was requested. | Produce the seven-section, text-specific plan; check objectives, key/difficult points, activities and transitions. `plan-first` hands off this checked Word and waits at its one selected checkpoint. `auto` continues. |
-| Lecture | Do not infer permission to start downstream production. | Simulate the teaching sequence from the current approved/checked plan; internally read through the spoken flow before deciding slide breaks. |
+| Teaching design | Discuss or draft only what was requested. | Produce the text-specific twelve-module curriculum-standard plan in `teaching-plan-standard.md`; check verified standards, objectives, key/difficult points, activities, design intent, assessment, text-board and time consistency. Hand off only this checked Word and end the turn awaiting confirmation. Internal PASS is not user approval. |
+| Lecture | Do not infer permission to start downstream production. | After recorded user approval, simulate the teaching sequence from that plan; internally read through the spoken flow before deciding slide breaks. |
 | Scale | Honor confirmed page count; offer options only when the user is still choosing a plan. | Reuse confirmed count or select a source-supported count within the cap. No page-count choice or duration question. |
-| Content | Produce requested planning material only. | Derive page records/outline from the lecture, finalize page-aligned script and backfill plan ranges. Check source coverage, order, spoken continuity, display timing and readability together. |
+| Content | Produce requested planning material only. | Derive page records/outline from the lecture, finalize the page-aligned script and internal cross-file mapping. Check source coverage, order, spoken continuity, display timing and readability together. |
 | Visual | Offer alternatives only if requested or a consequential conflict remains during planning. | Follow the reference route below: inspect supplied images and actively search matching references; without images, independently search or derive concrete design decisions from the text. Select one compatible direction, complete every six-field page blueprint and check unity/variation internally. |
 | Production | An approved page count alone is not a start. | Freeze the current file list, generate the required documents and explicitly requested extras. |
 | Verification | Inspect only what the current request asks to inspect. | Apply `quality-gates.md`; record actual evidence and deliver once required checks pass. |
 
-In `plan-first`, a checked first-stage lesson plan is a legitimate partial handoff, not a completed package. Use the plan-review validation phase; the not-yet-created documents and page mapping are outside this stage, not failed or invented. Resume from the approved plan instead of redoing source intake. Final handoff includes the three current Word files (the approved plan with true page references and routine formatting updates), unless explicitly excluded.
+In `plan-first`, a checked first-stage lesson plan is a legitimate partial handoff, not a completed package. Use the plan-review validation phase; the not-yet-created documents and page mapping are outside this stage, not failed or invented. Resume from the approved plan instead of redoing source intake. Final handoff includes the three current Word files (the approved plan with routine formatting updates, no visible PPT page references), unless explicitly excluded.
 
-For either mode, automatically read through the final script while walking the actual page order: compare plan intention → spoken instruction/question → currently visible material → anticipated response/teacher feedback → transition. Check omissions, contradictions, duplicated talk, abrupt pronouns/transitions, premature answers and mismatched page cues. Fix the responsible draft/page and recheck the affected links. This reduces inconsistency but is not a guarantee of a flawless real classroom; do not claim automatic checks prove perfect understanding or teaching effectiveness.
+After plan approval, automatically read through the final script while walking the actual page order: compare plan intention → spoken instruction/question → currently visible material → anticipated response/teacher feedback → transition. Check omissions, contradictions, duplicated talk, abrupt pronouns/transitions, premature answers and mismatched page cues. Fix the responsible draft/page and recheck the affected links. This reduces inconsistency but is not a guarantee of a flawless real classroom; do not claim automatic checks prove perfect understanding or teaching effectiveness.
 
 If a requested page count conflicts with the single-section cap, do not silently exceed it. During planning give a compliant option. After start apply the established cap when ordinary scope permits and state the adjustment at handoff; if the user also made the conflicting count an immutable requirement, report that unresolved conflict rather than fabricating compliance.
 

@@ -29,27 +29,19 @@ CONTENT = "http://schemas.openxmlformats.org/package/2006/content-types"
 WORD_NAMESPACES = {W, WS}
 OUTLINE_FIELDS = ("页面标题", "页面文字")
 VISUAL_FIELDS = ("画面风格", "添加元素", "文字字体与重点标注", "布局排版", "镜头与光影", "画面去重与统一约束")
-SCRIPT_FIELDS = ("教师逐字讲述", "课堂提问", "预设回答", "教师点拨", "过渡语")
-PROCESS_FIELDS = ("教学目标", "教师组织", "学生学习", "关键问题", "评价要点", "承接推进")
-LESSON_SECTIONS = ("课程信息", "教材与学情分析", "教学目标", "教学重难点", "教学过程", "板书设计", "作业设计")
+LESSON_SECTIONS = ("课程基本信息", "设计依据", "设计理念", "教学目标", "教学重点、难点与突破策略", "教学准备", "教-学-评一体化设计", "教学过程", "板书设计", "作业设计", "教学评价", "教学反思预设与课后改进")
+METADATA_FIELDS = ("课题", "学科与学段/年级", "教材依据", "课时安排", "所属单元/主题及大概念", "课型", "授课对象", "设计者/日期")
+SCRIPT_PAGE = re.compile(r"^P([0-9]+)\s+(.+)$", re.ASCII)
 SECTION_PREFIX = re.compile(r"^(?:(?:第[一二三四五六七八九十百\d]+[部分章节])|(?:[（(]?[一二三四五六七八九十百\d]+[）).、．]))\s*")
 PAGE = re.compile(r"^第\s*([0-9]+)\s*页\s*[:：]?$", re.ASCII)
 PAGE_LIKE = re.compile(r"^第\s*[0-9一二三四五六七八九十]+\s*页")
-PAGE_RANGE = re.compile(r"^对应\s*PPT\s*第\s*([0-9]+)\s*(?:[—–\-～~至]\s*(?:第\s*)?([0-9]+)\s*)?页\s*[:：]?$", re.I)
 EXTRA_OUTLINE_FIELDS = ("教师指导", "教师引导", "教学指导", "设计意图", "设计说明", "重点标注", "备注")
 EXTRA_VISUAL_FIELDS = ("页面标题", "页面文字", "教师指导", "教师引导", "教学指导", "设计意图", "设计说明", "重点标注", "备注", "说明")
-DURATION_NUMBER = r"(?:\d+(?:[.．]\d+)?|[零〇一二两三四五六七八九十百半]+)"
-TOTAL_DURATION = re.compile(
-    r"总\s*(?:时长|时间)|时长\s*(?:合计|总计)|"
-    r"(?:全课|整课|本课|全程|课程|本节课)\s*"
-    r"(?:共(?:计|需|用|安排)?|合计|总计|总共|历时|时长|用时)\s*[:：]?\s*"
-    r"(?:约为|大约|约|预计|不超过|为)?\s*" + DURATION_NUMBER
-    + r"(?:\s*[—–\-～~至]\s*" + DURATION_NUMBER + r")?\s*(?:分钟|小时)"
-)
 MANUAL_CHECKS = [
     {"id": "source_and_cross_file_semantics", "status": "not_assessed", "required": "逐项核对冻结教材、来源台账与三 Word 的课题、对象、目标、术语、事实、引文、活动、时间和来源覆盖；机械页序一致不代表语义一致。"},
-    {"id": "teaching_and_field_quality", "status": "not_assessed", "required": "检查字段值的实质性、逐页专属性、额外字段的语义、逐字稿可讲授性，以及重点难点各自的依据、障碍与教学回应；字符数不能证明质量。"},
-    {"id": "board_quality", "status": "not_assessed", "required": "实际查看板书图片，核对文字无误、至少三层、至少两条明确关系、课题专属性、至少三步生成及教学过程映射；确认缩放至 Word 可用宽高后清晰、无裁切/拉伸。图片头检查不证明能完整解码或内容正确。"},
+    {"id": "teaching_and_field_quality", "status": "not_assessed", "required": "核实具体课标条款及政策来源，检查2—4条目标与活动/评价/量规对齐、重难点的依据和突破路径、段落式过程的学习推进、学生行动、评价证据及支架、时间估算与分配及反思预判；字符数、标签和时间加总不能证明真实或有效。"},
+    {"id": "board_quality", "status": "not_assessed", "required": "检查文字板书的板书主线、副板书、生成时机及课题专属性，层级和关系可在黑板一屏呈现、随教学逐步生成；默认不以板书图片代替。"},
+    {"id": "script_color_and_delivery", "status": "not_assessed", "required": "检查逐字稿实际DOCX口播黑色、提示红色且单独【】标记；P页标题对应页纲，问题后有合理回应空间，条件式应对不冒充实际学生发言，反馈和过渡连贯。结构脚本不验证字体颜色或真实讲授节奏。"},
     {"id": "rendered_word_pages", "status": "not_assessed", "required": "渲染三份 Word 并逐页检查空白/缺页、裁切、溢出、表格、字体、页序、对比度及正文重点强调；本脚本不渲染，也不验证 Office/WPS 打开效果。"},
     {"id": "full_verification_verdict", "status": "not_assessed", "required": "依照 deliverables.md 完成全部格式与跨文件矩阵判定后才能进入 verified；本 JSON 只提供部分机械检查结果。可选 PPTX 的 WPS 检查须另行执行。"},
 ]
@@ -101,10 +93,11 @@ class Report:
     def output(self):
         manual = [dict(check) for check in MANUAL_CHECKS]
         if self.phase == "plan-review":
+            manual = [check for check in manual if check["id"] != "script_color_and_delivery"]
             replacements = {
                 "source_and_cross_file_semantics": "核对冻结教材、来源台账与待确认教学设计的理解、目标、事实、活动及来源覆盖；本阶段不检查或声称已生成 PPT 页纲和逐字稿。",
-                "teaching_and_field_quality": "检查教学设计各栏的实质性、课文专属性、重点难点的依据与教学回应，以及模拟讲授可行性；字符数不能证明质量。",
-                "rendered_word_pages": "渲染本阶段唯一的教学设计 Word，逐页检查表格、灰底栏目标题、重点强调、板书图片、页序、裁切和溢出；本脚本不渲染或验证 Office/WPS。",
+                "teaching_and_field_quality": "核实教案具体课标、课文专属性、重难点突破、目标与任务/活动/评价对齐、时间分配及反思预判真实性；字符数和时间相加不证明教学有效。",
+                "rendered_word_pages": "渲染本阶段唯一教学设计Word，逐页检查十二模块模板分级标题、深红重点、连贯段落式过程、文字板书、量规、页序、裁切与溢出；脚本不渲染或验证 Office/WPS。",
                 "full_verification_verdict": "仅判定教学设计待确认稿的适用检查；未制作的页纲、视觉蓝图和逐字稿不纳入此阶段，也不能声称全套交付完成。",
             }
             for check in manual:
@@ -318,12 +311,14 @@ def load_docx(path, key, report):
 
 
 def banned_words(scan, key, report):
-    patterns = [("banned_teaching_period", re.compile(r"课\s*时"), "出现禁用的教学时段词语（课时及其变体）")]
+    patterns = [] if key == "lesson_plan" else [("banned_teaching_period", re.compile(r"课\s*时"), "出现禁用的教学时段词语（课时及其变体）")]
     if key == "lesson_plan":
-        patterns.extend([
-            ("banned_outcome_evidence", re.compile(r"(?:成果|学习结果|学习成效|学习产出)\s*(?:的\s*)?证据"), "出现禁用的成果证据措辞"),
-            ("banned_total_duration", TOTAL_DURATION, "出现禁用的总体时长说明"),
-        ])
+        slide = r"(?:P\s*P\s*T(?:X)?|PowerPoint|幻灯片|课件)"
+        page_number = r"[\d一二三四五六七八九十百XxNn]+\s*(?:[—–\-～~至]\s*[\d一二三四五六七八九十百XxNn]+\s*)?页"
+        patterns.append(("production_note_in_plan", re.compile(
+            slide + r"[^\n。；;]{0,24}?(?:" + page_number + r"|页数|页码|页序|对应页面)"
+            + r"|对应\s*" + slide + r"\s*第|对应页(?:面|码)\s*[:：]|AI生成提示词", re.I),
+            "教学设计不得出现PPT总页数、页码、页面对应或制作提示信息；映射只存内部记录"))
     for line in scan:
         for code, pattern, message in patterns:
             found = pattern.search(line.text)
@@ -376,14 +371,14 @@ def validate_fields(lines, fields, key, report, context, no_prefix=False, extra_
             report.fail(key, "empty_field", f"{context}：{name} 为空", line)
 
 
-def page_blocks(lines, key, report, context):
+def page_blocks(lines, key, report, context, pattern=PAGE):
     blocks = []
     for line in lines:
-        match = PAGE.fullmatch(line.text)
+        match = pattern.fullmatch(line.text)
         if match:
             blocks.append((int(match.group(1)), line, []))
-        elif PAGE_LIKE.match(line.text):
-            report.fail(key, "page_heading", f"{context}：页标题须单独使用 第X页（X 为阿拉伯数字）", line)
+        elif PAGE_LIKE.match(line.text) or (key == "speaker_script" and re.match(r"^P[0-9]+(?:\s|$)", line.text)):
+            report.fail(key, "page_heading", f"{context}：须用P1 页面标题" if key == "speaker_script" else f"{context}：页标题须单独使用 第X页（X 为阿拉伯数字）", line)
         elif blocks:
             blocks[-1][2].append(line)
         else:
@@ -421,10 +416,19 @@ def outline_visual(lines, report, expected):
 
 def speaker_script(lines, report, approved, expected):
     # A cover/title before the first page is allowed in a standalone script.
-    start = next((i for i, line in enumerate(lines) if PAGE.fullmatch(line.text) or PAGE_LIKE.match(line.text)), len(lines))
-    blocks = page_blocks(lines[start:], "speaker_script", report, "逐字稿")
+    start = next((i for i, line in enumerate(lines) if re.match(r"^P[0-9]+(?:\s|$)", line.text) or PAGE_LIKE.match(line.text)), len(lines))
+    blocks = page_blocks(lines[start:], "speaker_script", report, "逐字稿", SCRIPT_PAGE)
     for number, _, content in blocks:
-        validate_fields(content, SCRIPT_FIELDS, "speaker_script", report, f"逐字稿/第{number}页")
+        speech = []
+        for line in content:
+            if re.match(r"^师\s*[:：]\s*\S", line.text):
+                speech.append(line)
+            elif re.fullmatch(r"【\s*\S.*】", line.text):
+                continue
+            else:
+                report.fail("speaker_script", "script_paragraph_type", "逐字稿用师：口播或【非口播提示】段落，不沿用旧五字段或无标记说明", line)
+        if not speech:
+            report.fail("speaker_script", "missing_teacher_speech", f"P{number}缺少可讲的师：口播", content[0] if content else None)
     sequence = [x[0] for x in blocks]
     report.page_counts["speaker_script"] = len(sequence)
     if approved is not None and sequence != approved:
@@ -437,113 +441,193 @@ def chinese_count(text):
     return sum(1 for char in text if 0x3400 <= ord(char) <= 0x9FFF or 0xF900 <= ord(char) <= 0xFAFF or 0x20000 <= ord(char) <= 0x2FA1F)
 
 
+def lesson_heading(text):
+    text = SECTION_PREFIX.sub("", text.strip())
+    text = re.sub(r"教[—–－-]学[—–－-]评", "教-学-评", text)
+    text = text.replace("教学重点与难点", "教学重点、难点与突破策略")
+    if text.startswith("教学反思预设") and not text.startswith("教学反思预设与课后改进"):
+        text = text.replace("教学反思预设", "教学反思预设与课后改进", 1)
+    return next((label for label in LESSON_SECTIONS
+                 if text == label or re.fullmatch(re.escape(label) + r"\s*[（(].*[）)]", text)), None)
+
+
+def named_sections(lines, labels, report, context, optional=()):
+    """Split native subsection labels without treating their body text as labels."""
+    found = []
+    for index, line in enumerate(lines):
+        # The template annotates labels with parenthetical filling instructions.
+        text = re.sub(r"[（(][^（）()]*[）)](?=\s*[:：]|$)", "", line.text)
+        text = SECTION_PREFIX.sub("", text)
+        if text.startswith("重点"):
+            text = "教学" + text
+        elif text.startswith("难点") and not text.startswith(("难点一", "难点二")):
+            text = "教学" + text
+        for label in labels:
+            value = heading_value(text, label)
+            if value is not None:
+                found.append((index, label, value))
+    if [label for _, label, _ in found if label not in optional] != [label for label in labels if label not in optional] or len({label for _, label, _ in found}) != len(found):
+        report.fail("lesson_plan", "lesson_subsections", f"{context}须依次有 {[label for label in labels if label not in optional]}，可选{list(optional)}，各一次",
+                    lines[0] if lines else None)
+    result = {}
+    for number, (index, label, value) in enumerate(found):
+        stop = found[number + 1][0] if number + 1 < len(found) else len(lines)
+        body = ([replace(lines[index], text=value)] if value else []) + lines[index + 1:stop]
+        result[label] = (lines[index], body)
+        if not any(line.text.strip() for line in body):
+            report.fail("lesson_plan", "empty_lesson_subsection", f"{context}/{label}没有实质文字", lines[index])
+    return result
+
+
 def lesson_plan(lines, report, total):
     key = "lesson_plan"
-    process_start = next((i for i, line in enumerate(lines) if heading_value(line.text, "教学过程") is not None), len(lines))
-    found = []
-    for i, line in enumerate(lines):
-        for label in LESSON_SECTIONS:
-            # 教学目标 is also a required process field, not a repeated top section.
-            if label == "教学目标" and i > process_start:
-                continue
-            value = heading_value(line.text, label)
-            if value is not None:
-                found.append((i, label, value))
-    sequence = [label for _, label, _ in found]
-    if sequence != list(LESSON_SECTIONS):
-        report.fail(key, "lesson_sections", f"规定章节须各出现一次且按序排列；应为 {list(LESSON_SECTIONS)}，实际为 {sequence}", lines[found[0][0]] if found else None)
+    lines = [replace(line, text=line.text.replace("／", "/")) for line in lines]
+    found = [(i, lesson_heading(line.text)) for i, line in enumerate(lines) if lesson_heading(line.text)]
+    if [label for _, label in found] != list(LESSON_SECTIONS):
+        report.fail(key, "lesson_sections", f"规定十二模块须各一次按序排列：{list(LESSON_SECTIONS)}",
+                    lines[found[0][0]] if found else None)
     sections = {}
-    for n, (index, label, inline) in enumerate(found):
-        stop = found[n + 1][0] if n + 1 < len(found) else len(lines)
-        sections.setdefault(label, (lines[index], [replace(lines[index], text=inline)] if inline else []))
-        sections[label][1].extend(lines[index + 1:stop])
-    for label, (heading, content) in sections.items():
-        for line in [heading] + content:
-            if (line.text or line.images) and not line.table:
-                report.fail(key, "lesson_table_layout", f"{label} 的栏目标题和内容须位于可编辑的原生 Word 表格内；其他位置存在表格不能代替本栏目表格排版", line)
-        if not content:
-            report.fail(key, "empty_lesson_section", f"{label} 没有内容", heading)
-    if "教学重难点" in sections:
-        heading, content = sections["教学重难点"]
-        labels = ("教学重点", "教学难点")
-        sub = [(i, label, heading_value(line.text, label))
-               for i, line in enumerate(content) for label in labels
-               if heading_value(line.text, label) is not None]
-        if [label for _, label, _ in sub] != list(labels):
-            report.fail(key, "lesson_difficulty_subsections", "教学重难点内须依次包含一次 教学重点、教学难点", heading)
-        for n, (index, label, inline) in enumerate(sub):
-            stop = sub[n + 1][0] if n + 1 < len(sub) else len(content)
-            count = chinese_count((inline or "") + "\n" + "\n".join(x.text for x in content[index + 1:stop]))
-            report.documents[key][label + "_chinese_characters"] = count
-            if count < 100:
-                report.fail(key, "insufficient_chinese_characters", f"{label}正文须至少 100 个中文字符；实际为 {count}（不计字段标题、标点、数字和拉丁字母）", content[index])
+    for number, (index, label) in enumerate(found):
+        stop = found[number + 1][0] if number + 1 < len(found) else len(lines)
+        heading, body = lines[index], lines[index + 1:stop]
+        sections.setdefault(label, (heading, body))
+        if heading.table:
+            report.fail(key, "lesson_heading_layout", f"{label}须是原生独立标题，不套整篇外表格", heading)
+        if not any(line.text.strip() or line.images for line in body):
+            report.fail(key, "empty_lesson_section", f"{label}没有内容", heading)
+
+    if "课程基本信息" in sections:
+        heading, body = sections["课程基本信息"]
+        metadata = []
+        aliases = {"学科与学段": "学科与学段/年级", "课时与时长": "课时安排", "所属单元/主题": "所属单元/主题及大概念"}
+        for line in body:
+            text = SECTION_PREFIX.sub("", line.text)
+            for old_label, new_label in aliases.items():
+                text = re.sub(r"^" + re.escape(old_label) + r"(?=\s*[:：])", new_label, text)
+            metadata.append(replace(line, text=text))
+        validate_fields(metadata, METADATA_FIELDS, key, report, "课程基本信息")
+
+    if "设计依据" in sections:
+        _, body = sections["设计依据"]
+        body = [replace(line, text=line.text.replace("设计理论/教学模式", "设计理论与教学模式")) for line in body]
+        basis = named_sections(body, ("课程标准依据", "教材分析", "学情分析", "设计理论与教学模式"), report, "设计依据", optional=("设计理论与教学模式",))
+        if "课程标准依据" in basis:
+            heading, content = basis["课程标准依据"]
+            evidence = set()
+            for line in content:
+                text = line.text.replace("（水平）", "").replace("(水平)", "")
+                match = field_match(text, ("内容要求", "学业要求/学业质量", "学业要求", "学业质量", "教学提示/评价建议"))
+                if match and match[2].strip():
+                    evidence.add(match[0])
+            if len(evidence) < 2:
+                report.fail(key, "curriculum_basis", "课程标准依据至少两项具体内容，不能只有通用说明或空字段", heading)
+
+    if "教学目标" in sections:
+        heading, body = sections["教学目标"]
+        goals = [int(match.group(1)) for line in body
+                 if (match := re.match(r"^目标\s*([0-9]+)\s*(?:【|\[|[:：])", line.text))]
+        if not 2 <= len(goals) <= 4 or goals != list(range(1, len(goals) + 1)):
+            report.fail(key, "lesson_objectives", "教学目标须有连续编号的2—4条可观察目标", heading)
+
+    if "教学重点、难点与突破策略" in sections:
+        _, body = sections["教学重点、难点与突破策略"]
+        parts = named_sections(body, ("教学重点", "教学难点", "突破策略"), report, "教学重点与难点")
+        for label in ("教学重点", "教学难点"):
+            if label in parts:
+                heading, content = parts[label]
+                count = chinese_count("\n".join(line.text for line in content))
+                report.documents[key][label + "_chinese_characters"] = count
+                if count < 100:
+                    report.fail(key, "insufficient_chinese_characters", f"{label}正文须至少100个中文字符，实际{count}", heading)
+
     if "板书设计" in sections:
-        heading, content = sections["板书设计"]
-        board_labels = ("板书成品示意", "板书生成顺序")
-        board_headings = [(i, label, heading_value(line.text, label))
-                          for i, line in enumerate(content) for label in board_labels
-                          if heading_value(line.text, label) is not None]
-        if [label for _, label, _ in board_headings] != list(board_labels):
-            report.fail(key, "board_subsection_order", "板书设计须先为 板书成品示意，再为 板书生成顺序", heading)
-        for label in board_labels:
-            matches = [(i, value) for i, name, value in board_headings if name == label]
-            if len(matches) != 1:
-                report.fail(key, "board_subsection", f"板书设计须包含一次 {label}；实际为 {len(matches)} 次", heading)
-                continue
-            index, inline = matches[0]
-            stop = next((i for i, _, _ in board_headings if i > index), len(content))
-            if label == "板书成品示意":
-                images = [rid for line in content[index:stop] for rid in line.images]
-                if not images:
-                    report.fail(key, "board_embedded_image", "板书成品示意中须实际嵌入 PNG/JPEG 图片，不能仅有文字、占位符或其他栏目中的图片", content[index])
-                for rid in images:
-                    if not report.documents[key].get("embedded_image_headers", {}).get(rid):
-                        report.fail(key, "board_image_invalid", f"板书图片 {rid!r} 缺少有效的内部图片关系或 PNG/JPEG 签名与非零尺寸", content[index])
-            elif not inline and not any(line.text.strip() for line in content[index + 1:stop]):
-                report.fail(key, "empty_board_subsection", f"{label} 没有内容", content[index])
+        heading, body = sections["板书设计"]
+        named_sections(body, ("板书主线", "副板书", "生成时机"), report, "文字板书")
+        if any(line.images for line in body):
+            report.fail(key, "board_text_only", "新标准板书默认文字描述结构，不以图片代替；图片须另行明确请求并按对应范围检查", heading)
+
     if "教学过程" not in sections:
         return
-    heading, content = sections["教学过程"]
-    rows = []
-    for line in content:
-        if not line.row:
-            report.fail(key, "process_table_layout", "教学过程必须为 教学环节 | 具体教学安排 两列表格", line)
-            continue
-        if not rows or rows[-1][0].row != line.row:
-            rows.append([])
-        rows[-1].append(line)
-    if not rows:
-        report.fail(key, "missing_process_blocks", "教学过程缺少两列表格和详细过程块", heading)
-        return
-    header = rows[0]
-    if [line.text for line in header] != ["教学环节", "具体教学安排"] or [line.cell for line in header] != [1, 2] or any(line.row_cells != 2 for line in header):
-        report.fail(key, "process_table_header", "教学过程表格的首行必须恰为 教学环节 | 具体教学安排 两列", header[0])
-    if len(rows) < 2:
-        report.fail(key, "missing_process_blocks", "教学过程表格没有具体教学安排", heading)
-    covered = set()
-    for n, row in enumerate(rows[1:], 1):
-        if any(line.row_cells != 2 or line.table != header[0].table for line in row):
-            report.fail(key, "process_table_layout", "每个教学过程块须在同一原生表格的独立两列行内，不得将多个块打散或合并", row[0])
-        titles = [line for line in row if line.cell == 1 and line.text]
-        body = [line for line in row if line.cell == 2]
-        if len(titles) != 1 or field_match(titles[0].text, PROCESS_FIELDS) or PAGE_RANGE.fullmatch(titles[0].text):
-            report.fail(key, "process_block_title", "教学环节列须有一个独立的内容性板块标题", row[0])
-        ranges = [(i, PAGE_RANGE.fullmatch(line.text)) for i, line in enumerate(body) if PAGE_RANGE.fullmatch(line.text)]
-        if report.phase == "plan-review":
-            if ranges:
-                report.fail(key, "premature_process_page_range", "教学设计待确认阶段尚未编排最终 PPT，过程块不得填写对应 PPT 页码", body[ranges[0][0]])
-        elif len(ranges) != 1 or ranges[0][0] != 0:
-            report.fail(key, "process_page_mapping", "最终教学过程每行的具体教学安排须先有一个 对应PPT第X—X页，再有六个过程字段", row[0])
-        for index, match in ranges:
-            start, end = int(match.group(1)), int(match.group(2) or match.group(1))
-            if start < 1 or end < start or (total is not None and end > total):
-                report.fail(key, "process_page_range", f"教学过程页范围 {start}—{end} 不在批准的 1—{total} 页内或范围倒置", body[index])
+    heading, body = sections["教学过程"]
+    meta = sections.get("课程基本信息", (None, []))[1]
+    timing_text = "\n".join(line.text for line in meta)
+    # Time may be declared in metadata or the process heading, not only one slot.
+    declared = re.findall(r"总时长\s*[:：]?\s*([0-9]+(?:\.[0-9]+)?)\s*分钟", timing_text + "\n" + heading.text)
+    totals = [float(value) for value in declared]
+    if len(set(totals)) > 1:
+        report.fail(key, "lesson_duration_consistency", "基本信息与教学过程的总时长不一致", heading)
+    count_match = re.search(r"(?:建议|共)\s*([0-9]+)\s*课时", timing_text)
+    if not count_match:
+        count_match = re.search(r"(?<!第)([0-9]+)\s*课时", timing_text)
+    session_count = int(count_match.group(1)) if count_match else 1
+    each_match = re.search(r"(?:每课时|本课时)\s*[:：]?\s*([0-9]+(?:\.[0-9]+)?)\s*分钟", timing_text)
+    if each_match and ("每课时" in each_match.group(0) or session_count == 1):
+        inferred = session_count * float(each_match.group(1))
+        if totals and abs(totals[0] - inferred) > 0.001:
+            report.fail(key, "lesson_duration_consistency", "课时数乘每课时分钟数须等于总时长", heading)
+        if not totals:
+            totals = [inferred]
+    if not totals and session_count == 1:
+        single = re.search(r"课时\s*[,，;；：:]\s*([0-9]+(?:\.[0-9]+)?)\s*分钟", timing_text)
+        if single:
+            totals = [float(single.group(1))]
+    if not totals or totals[0] <= 0:
+        report.fail(key, "lesson_duration", "教案须写明正数总时长或可核算的课时数与每课时时间；建议/估算须明确标记", heading)
+
+    blocks, sessions, session_ids = [], [], []
+    active_session = None
+    for line in body:
+        session = re.fullmatch(r"第([0-9一二三四五六七八九十]+)课时(?:\s*[:：].+?)?\s*[（(]([0-9]+(?:\.[0-9]+)?)\s*分钟[）)]", line.text)
+        block = re.fullmatch(r"(?:[（(][一二三四五六七八九十0-9]+[）)]|[0-9]+[.、．])\s*(.+?)\s*[（(]([0-9]+(?:\.[0-9]+)?)\s*分钟[）)]", line.text)
+        if session:
+            ordinal = session.group(1)
+            numerals = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
+            if ordinal.isascii():
+                session_ids.append(int(ordinal))
+            elif "十" in ordinal and ordinal != "十":
+                tens, units = ordinal.split("十", 1)
+                session_ids.append(numerals.get(tens, 1) * 10 + numerals.get(units, 0))
             else:
-                covered.update(range(start, end + 1))
-        body = [line for line in body if not PAGE_RANGE.fullmatch(line.text)]
-        validate_fields(body, PROCESS_FIELDS, key, report, f"教学过程/第{n}个板块")
-    if report.phase == "final" and total is not None and covered != set(range(1, total + 1)):
-        report.fail(key, "process_page_coverage", f"教学过程尚未覆盖全部 PPT 页；缺少 {sorted(set(range(1, total + 1)) - covered)}", heading)
+                session_ids.append(numerals.get(ordinal, -1))
+            active_session = (line, float(session.group(2)), [])
+            sessions.append(active_session)
+        elif block:
+            item = (line, float(block.group(2)), [])
+            blocks.append(item)
+            if active_session is not None:
+                active_session[2].append(item)
+        elif re.match(r"时间核对\s*[:：]", line.text):
+            # The arithmetic line is not an extra teaching block or body content.
+            continue
+        elif re.match(r"(?:[（(][一二三四五六七八九十0-9]+[）)]|[0-9]+[.、．])", line.text) and ("分钟" in line.text or "待定" in line.text):
+            report.fail(key, "process_block_heading", "环节标题须填具体正数分钟数", line)
+        elif blocks and (active_session is None or active_session[2]):
+            blocks[-1][2].append(line)
+        elif line.text.strip():
+            report.fail(key, "process_block_heading", "教学过程应从有具体分钟数的环节或课时标题开始", line)
+    if not blocks:
+        report.fail(key, "process_block_count", "教学过程须有实际学习环节及具体分钟数，不限定统一环节数量或名称", heading)
+    if totals and abs(sum(minutes for _, minutes, _ in blocks) - totals[0]) > 0.001:
+        report.fail(key, "process_time_total", "所有环节分钟数之和须等于教案总时长，含转换、思考与反馈时间", heading)
+    if (session_count > 1 or sessions) and len(sessions) != session_count:
+        report.fail(key, "lesson_sessions", "多课时教案须写全各课时安排和用时，不能只交其中一段", heading)
+    if sessions:
+        if session_ids != list(range(1, len(sessions) + 1)):
+            report.fail(key, "lesson_sessions", "教案课时须连续编号，不能重复或缺段", heading)
+        if totals and abs(sum(minutes for _, minutes, _ in sessions) - totals[0]) > 0.001:
+            report.fail(key, "session_time_total", "各课时分钟数合计须等于教案总时长", heading)
+        if sum(len(items) for _, _, items in sessions) != len(blocks):
+            report.fail(key, "lesson_sessions", "多课时教案的所有环节须归入相应课时", heading)
+        for session_heading, minutes, items in sessions:
+            if minutes <= 0 or not items or abs(sum(item[1] for item in items) - minutes) > 0.001:
+                report.fail(key, "session_time_total", "每课时环节时间之和须等于该课时时长且为正数", session_heading)
+    for block_heading, minutes, content in blocks:
+        if minutes <= 0:
+            report.fail(key, "process_block_duration", "环节时间须为正数", block_heading)
+        if not any(line.text.strip() for line in content):
+            report.fail(key, "empty_process_block", "环节须有实质教学段落，不能只有标题和分钟数", block_heading)
+    # Student actions, evidence, scaffolds, transitions and cross-file coverage
+    # require semantic review; visible repeated labels/page ranges are not proof.
 
 
 def validate(outline_path=None, lesson_path=None, script_path=None, expected_pages=None, *, phase="final"):

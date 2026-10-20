@@ -61,13 +61,13 @@ def outline():
 
 def script():
     return "".join([
-        p("教师逐字稿"), p("第1页"), p("教师逐字讲述：请先读材料，再说出你的判断。"),
-        p("课堂提问：你从哪里得出这个判断？"), p("预设回答：指出材料中的语句。"),
-        p("教师点拨：将判断与证据连起来。"), p("过渡语：接下来比较第二则材料。"),
-        p("第2页"),
-        table([["教师逐字讲述：", "先比较，再解释共同点。"], ["课堂提问：", "哪些证据支持共同点？"],
-               ["预设回答：", "列举相同特征与对应证据。"], ["教师点拨：", "共同点不是复述。"],
-               ["过渡语：", "带着这一方法完成练习。"]]),
+        p("教师逐字稿"), p("黑色为教师口播；红色为操作提示，不朗读。"),
+        p("P1 材料阅读"), p("师：请先读材料，再说出你的判断。"),
+        p("师：你从哪里得出这个判断？"), p("【留白5秒，听学生结合原文回答。】"),
+        p("师：我们要把判断与证据连起来。接下来比较第二则材料。"),
+        p("P2 比较表达"), p("师：先比较，再解释共同点。哪些证据支持共同点？"),
+        p("【若学生只复述，追问两则材料的共同特征。】"),
+        p("师：共同点不是复述。带着这一方法完成练习。"),
     ])
 
 
@@ -84,32 +84,53 @@ DIFFICULTY = (
 )
 
 
-def process_table(review=False):
-    first = "".join([
-        "" if review else p("对应PPT第1页"),
-        p("教学目标：建立判断与依据的联系。"), p("教师组织：呈现两种答案，追问各自依据。"),
-        p("学生学习：圈画、讨论并修改解释。"), p("关键问题：哪一句支持你的解释？"),
-        p("评价要点：证据准确且与判断有关。"), p("承接推进：比较另一则材料。"),
-    ])
-    second = "".join([
-        "" if review else p("对应PPT第2—2页"),
-        p("教学目标：解释两则材料的共同特征。"), p("教师组织：出示对照表并组织质疑。"),
-        p("学生学习：比较材料并修正结论。"), p("关键问题：共同点能得到两则材料支持吗？"),
-        p("评价要点：归类准确，理由完整。"), p("承接推进：将方法用于新的材料。"),
-    ])
-    return table([["教学环节", "具体教学安排"], ["从材料寻找依据（5分钟）", first], ["跨材料比较（8分钟）", second]])
+def process_blocks(review=False):
+    blocks = []
+    for name, minutes, page in (("导入：比较两种答案", 4, "1"), ("主体：依据核验", 30, "1—2"),
+                                ("评价总结：回看解释", 4, "2—2"), ("课堂延伸：迁移方法", 2, "2—2")):
+        blocks.extend([p(f"（{len(blocks)//2+1}）{name}（{minutes}分钟）"),
+                       p("教师呈现两种答案，追问哪一句支持解释。学生圈画、讨论并修改判断，继而比较两则材料。教师观察所引语句是否支持判断；若只抄原文，则追问语句与判断的联系。")])
+    return "".join(blocks)
+
+
+def metadata():
+    return "".join(p(text) for text in (
+        "课题：材料阅读", "学科与学段：初中语文七年级", "教材依据：用户提供版本及阅读单元。",
+        "课时安排：建议1课时，40分钟，总时长40分钟（非已确认）。", "所属单元/主题及大概念：阅读与解释。",
+        "课型：新授", "授课对象：七年级，班级与人数未提供。", "设计者/日期：未提供。"))
 
 
 def lesson(review=False):
-    # Editable native cells with section titles, nested process table, real image.
-    return p("材料阅读教学设计") + table([
-        ["课程信息"], [p("课题：材料阅读") + p("对象：学习者")],
-        ["教材与学情分析"], [p("包含两则可比较材料；学习者需要从复述发展到解释。")],
-        ["教学目标"], [p("能用材料证据解释判断。")],
-        ["教学重难点"], [p("教学重点") + p(KEY_POINT) + p("教学难点") + p(DIFFICULTY)],
-        ["教学过程"], [process_table(review) + p("")],
-        ["板书设计"], [p("板书成品示意") + board_picture() + p("板书生成顺序") + p("阅读时写证据，讨论时连判断，比较时补共同点。")],
-        ["作业设计"], [p("比较一组新材料。")],
+    return p("材料阅读教学设计") + "".join([
+        p("一、课程基本信息"), metadata(),
+        p("二、设计依据"), p("（一）课程标准依据"),
+        p("内容要求：课程内容中关于阅读材料、形成解释的要求。"),
+        p("学业要求：能引用材料依据解释自己的判断。"),
+        p("（二）教材分析"), p("包含两则可比较材料，训练依据与判断的联系。"),
+        p("（三）学情分析"), p("经验判断：学生易将复述当解释，以对照表支架回应。"),
+        p("（四）设计理论与教学模式"), p("任务驱动，以真实比较任务连接依据和解释。"),
+        p("三、设计理念"), p("以依据和解释的联系贯穿材料比较和迁移。"),
+        p("四、教学目标"),
+        p("目标1【素养落点：思维能力】学生通过材料圈画，能引用一句语句说明判断，依据与判断相符。"),
+        p("目标2【素养落点：思维能力】学生通过双栏比较，能解释两则材料的共同点，同时获得两则支持。"),
+        p("五、教学重点、难点与突破策略"), p("教学重点"), p(KEY_POINT), p("教学难点"), p(DIFFICULTY),
+        p("突破策略：难点一通过双栏比较与反例追问，在主体活动中核验。"),
+        p("六、教学准备"), p("教材原文和两种答案的对照材料。"),
+        p("七、教-学-评一体化设计（三线对齐）"),
+        p("目标1—评价任务1：圈画依据；对应导入及主体，用语句与判断的关联判定。"),
+        p("目标2—评价任务2：完成双栏比较；对应主体与总结，用两则材料同时支持判定。"),
+        p("八、教学过程（总时长40分钟）"), process_blocks(review),
+        p("九、板书设计（文字描述结构，不画图）"),
+        p("板书主线：材料一、材料二并列，下连依据与解释，再汇聚共同特征。"),
+        p("副板书：暂存两种待检验答案。"), p("生成时机：阅读时写证据，讨论时连判断，比较时补共同点。"),
+        p("十、作业设计（分层）"), p("基础作业：比较一组新材料。拓展作业：口头解释一次修改；教师反馈。"),
+        p("十一、教学评价（本课评价方案）"), p("评价方式：观察、自评、教师反馈。"),
+        table([["维度", "待达标", "达标", "优秀"], ["依据关联", "有提示仍不对应", "独立对应", "可用反例检验"],
+               ["比较准确", "只比词语", "比较材料关系", "能解释语境差别"], ["解释完整", "只有结论", "有结论和依据", "能回应不同判断"]]),
+        p("评价结果的使用：即时反馈并用反例补救。"),
+        p("十二、教学反思预设与课后改进"),
+        p("预判问题1：可能只复述，追问判断依据。预判问题2：可能过度概括，增加反例核验。"),
+        p("目标达成的证据形式：比较表与修改说明；未达标时增加成对示例支架。"),
     ])
 
 
@@ -191,8 +212,8 @@ class DocumentChecks(unittest.TestCase):
         self.assert_failure(self.check(), "banned_teaching_period", "speaker_script", "word/header1.xml")
 
     def test_forbidden_term_in_footer(self):
-        self.options[1]["footer"] = p("第二课时")
-        self.assert_failure(self.check(), "banned_teaching_period", "lesson_plan", "word/footer1.xml")
+        self.options[0]["footer"] = p("第二课时")
+        self.assert_failure(self.check(), "banned_teaching_period", "outline_visual", "word/footer1.xml")
 
     def test_textbox_is_scanned_without_repeating_anchoring_paragraph(self):
         textbox = '<w:p><w:r><w:pict><v:shape xmlns:v="urn:schemas-microsoft-com:vml" id="TextBox1" style="width:180pt;height:40pt"><v:textbox><w:txbxContent>' + p("课", "时导入") + "</w:txbxContent></v:textbox></v:shape></w:pict></w:r></w:p>"
@@ -206,7 +227,7 @@ class DocumentChecks(unittest.TestCase):
         self.assert_failure(self.check(), "page_sequence", "outline_visual")
 
     def test_missing_page_and_cross_file_disagreement(self):
-        self.bodies[2] = self.bodies[2].split(p("第2页"))[0]
+        self.bodies[2] = self.bodies[2].split(p("P2 比较表达"))[0]
         result = self.check()
         self.assert_failure(result, "page_correspondence", "speaker_script")
         self.assert_failure(result, "expected_page_count", "speaker_script")
@@ -220,7 +241,7 @@ class DocumentChecks(unittest.TestCase):
 
     def test_no_expected_count_still_checks_internal_agreement(self):
         self.assertTrue(self.check(expected=None)["automatic_checks_pass"])
-        self.bodies[2] = self.bodies[2].split(p("第2页"))[0]
+        self.bodies[2] = self.bodies[2].split(p("P2 比较表达"))[0]
         self.assert_failure(self.check(expected=None), "page_correspondence")
 
     def test_visual_section_order_and_duplicates(self):
@@ -283,148 +304,149 @@ class DocumentChecks(unittest.TestCase):
         result = self.check()
         self.assertTrue(result["automatic_checks_pass"], result["errors"])
 
-    def test_script_requires_five_ordered_nonempty_fields(self):
-        self.bodies[2] = self.bodies[2].replace(p("教师点拨：将判断与证据连起来。"), p("教师点拨："))
-        self.assert_failure(self.check(), "empty_field", "speaker_script")
-        self.bodies[2] = script().replace(p("课堂提问：你从哪里得出这个判断？"), "")
-        self.assert_failure(self.check(), "field_sequence", "speaker_script")
+    def test_script_rejects_legacy_printed_fields(self):
+        self.bodies[2] = script().replace(p("师：你从哪里得出这个判断？"), p("课堂提问：你从哪里得出这个判断？"))
+        self.assert_failure(self.check(), "script_paragraph_type", "speaker_script")
+
+    def test_script_requires_a_page_title_after_p_number(self):
+        self.bodies[2] = script().replace(p("P1 材料阅读"), p("P1"))
+        self.assert_failure(self.check(), "page_heading", "speaker_script")
+
+    def test_script_page_must_contain_spoken_teacher_text(self):
+        self.bodies[2] = script().split(p("P2 比较表达"))[0] + p("P2 比较表达") + p("【出示材料。】")
+        self.assert_failure(self.check(), "missing_teacher_speech", "speaker_script")
+
+    def test_script_numbering_cannot_duplicate_or_skip(self):
+        for heading in ("P1 比较表达", "P3 比较表达"):
+            with self.subTest(heading=heading):
+                self.bodies[2] = script().replace(p("P2 比较表达"), p(heading))
+                self.assert_failure(self.check(), "page_sequence", "speaker_script")
 
     def test_lesson_sections_missing_and_out_of_order(self):
-        self.bodies[1] = self.bodies[1].replace(p("教材与学情分析"), p("课程信息")).replace(p("教学重难点"), "")
+        self.bodies[1] = lesson().replace(p("三、设计理念"), "")
         self.assert_failure(self.check(), "lesson_sections", "lesson_plan")
 
-    def test_chinese_minimum_does_not_count_latin_punctuation_or_section_label(self):
-        self.bodies[1] = self.bodies[1].replace(p(KEY_POINT), p("汉" * 99 + " A lesson, 1234!" * 100))
+    def test_chinese_minimum_does_not_count_latin_or_labels(self):
+        self.bodies[1] = lesson().replace(p(KEY_POINT), p("汉" * 99 + " 1234! A lesson" * 100))
         self.assert_failure(self.check(), "insufficient_chinese_characters", "lesson_plan")
-        self.bodies[1] = self.bodies[1].replace(p("汉" * 99 + " A lesson, 1234!" * 100), p("汉" * 100))
+        self.bodies[1] = lesson().replace(p(KEY_POINT), p("汉" * 100))
         self.assertTrue(self.check()["automatic_checks_pass"])
 
     def test_both_key_point_and_difficulty_are_independently_counted(self):
-        self.bodies[1] = self.bodies[1].replace(p(DIFFICULTY), p("只是简短描述。"))
-        result = self.check()
-        self.assert_failure(result, "insufficient_chinese_characters", "lesson_plan")
-        self.assertTrue(any("教学难点" in e["message"] for e in result["errors"]))
+        self.bodies[1] = lesson().replace(p(DIFFICULTY), p("只是简短描述。"))
+        self.assert_failure(self.check(), "insufficient_chinese_characters", "lesson_plan")
 
-    def test_outcome_evidence_and_total_duration_forbidden_in_auxiliary_parts(self):
+    def test_new_plan_allows_period_time_and_evaluation_evidence(self):
+        self.options[1]["header"] = p("课时安排与建议总时长40分钟")
+        result = self.check()
+        self.assertTrue(result["automatic_checks_pass"], result["errors"])
+
+    def test_new_template_allows_learning_output_evidence(self):
         self.options[1]["header"] = p("学习成果", "证据")
-        self.options[1]["footer"] = p("全课共", "40分钟")
-        result = self.check()
-        self.assert_failure(result, "banned_outcome_evidence", "lesson_plan", "word/header1.xml")
-        self.assert_failure(result, "banned_total_duration", "lesson_plan", "word/footer1.xml")
+        self.assertTrue(self.check()["automatic_checks_pass"])
 
-    def test_total_duration_does_not_match_ordinary_joint_learning_sentences(self):
-        for text in ("本课共同探究两则材料。", "本课共同探究，先阅读5分钟。", "本课共安排三个活动，每个活动5分钟。"):
-            with self.subTest(text=text):
-                self.bodies[1] = lesson().replace(p("比较一组新材料。"), p("比较一组新材料。") + p(text))
-                result = self.check()
-                self.assertTrue(result["automatic_checks_pass"], result["errors"])
-
-    def test_total_duration_requires_quantity_and_unit_or_explicit_total_label(self):
-        for text in ("总时长：", "课程总时长：四十分钟", "全课共40分钟", "本课共约四十分钟", "本课用时：1.5小时", "全程历时45—50分钟", "课程时长为四十五分钟"):
-            with self.subTest(text=text):
-                self.bodies[1] = lesson() + p(text)
-                self.assert_failure(self.check(), "banned_total_duration", "lesson_plan")
-
-    def test_board_subitems_are_required_and_nonempty(self):
-        self.bodies[1] = self.bodies[1].replace(p("板书生成顺序"), p("操作提示"))
-        self.assert_failure(self.check(), "board_subsection", "lesson_plan")
-        self.bodies[1] = lesson().replace(p("阅读时写证据，讨论时连判断，比较时补共同点。"), "")
-        self.assert_failure(self.check(), "empty_board_subsection", "lesson_plan")
-
-    def test_process_fields_and_page_ranges(self):
-        self.bodies[1] = self.bodies[1].replace(p("评价要点：证据准确且与判断有关。"), "")
-        self.assert_failure(self.check(), "field_sequence", "lesson_plan")
-        self.bodies[1] = lesson().replace(p("对应PPT第2—2页"), p("对应PPT第3—3页"))
-        self.assert_failure(self.check(), "process_page_range", "lesson_plan")
-
-    def test_exactly_seven_lesson_sections(self):
-        self.assertEqual(CHECKER.LESSON_SECTIONS, ("课程信息", "教材与学情分析", "教学目标", "教学重难点", "教学过程", "板书设计", "作业设计"))
-        self.bodies[1] = self.bodies[1].replace(p("作业设计"), p("作业设计") + p("课程信息"))
+    def test_duplicate_top_module_rejected(self):
+        self.bodies[1] = lesson().replace(p("三、设计理念"), p("三、设计理念") * 2)
         self.assert_failure(self.check(), "lesson_sections", "lesson_plan")
 
-    def test_lesson_not_accepted_as_prose_plus_unrelated_table(self):
-        # Removing the table around all sections must not be hidden by process table.
-        body = lesson()
-        for tag in ('<w:tbl>', '</w:tbl>', '<w:tblPr/>', '<w:tblGrid/>', '<w:tr>', '</w:tr>', '<w:tc>', '</w:tc>', '<w:tcPr/>'):
-            body = body.replace(tag, '')
-        self.bodies[1] = body + table([["无关表格", "不能证明教案已表格排版"]])
-        self.assert_failure(self.check(), "lesson_table_layout", "lesson_plan")
+    def test_metadata_value_must_not_be_empty(self):
+        self.bodies[1] = lesson().replace(p("课型：新授"), p("课型："))
+        self.assert_failure(self.check(), "empty_field", "lesson_plan")
 
-    def test_one_section_outside_native_table_is_not_accepted(self):
-        original = '<w:tr><w:tc><w:tcPr/>' + p("作业设计") + '</w:tc></w:tr><w:tr><w:tc><w:tcPr/>' + p("比较一组新材料。") + '</w:tc></w:tr>'
-        self.bodies[1] = self.bodies[1].replace(original, '') + p("作业设计") + p("比较一组新材料。")
-        self.assert_failure(self.check(), "lesson_table_layout", "lesson_plan")
-
-    def test_keypoint_and_difficulty_must_be_separate_subsections(self):
-        self.bodies[1] = self.bodies[1].replace(p("教学难点"), p("合并说明"))
-        self.assert_failure(self.check(), "lesson_difficulty_subsections", "lesson_plan")
-
-    def test_process_requires_exact_two_column_header(self):
-        self.bodies[1] = self.bodies[1].replace(p("教学环节"), p("教师活动"))
-        self.assert_failure(self.check(), "process_table_header", "lesson_plan")
-
-    def test_process_fields_cannot_be_recovered_across_different_rows(self):
-        split = p("关键问题：哪一句支持你的解释？")
-        self.bodies[1] = self.bodies[1].replace(split, '</w:tc></w:tr><w:tr><w:tc><w:tcPr/>' + p("拆开的其他环节") + '</w:tc><w:tc><w:tcPr/>' + split)
+    def test_metadata_missing_label_rejected(self):
+        self.bodies[1] = lesson().replace(p("课型：新授"), "")
         self.assert_failure(self.check(), "field_sequence", "lesson_plan")
 
-    def test_process_fields_cannot_be_in_title_column(self):
-        field = p("教师组织：呈现两种答案，追问各自依据。")
-        self.bodies[1] = self.bodies[1].replace(field, '').replace(p("从材料寻找依据（5分钟）"), p("从材料寻找依据（5分钟）") + field)
-        result = self.check()
-        self.assert_failure(result, "process_block_title", "lesson_plan")
-        self.assert_failure(result, "field_sequence", "lesson_plan")
+    def test_reference_headings_are_native_paragraphs_not_outer_table(self):
+        self.bodies[1] = table([[lesson()]])
+        self.assert_failure(self.check(), "lesson_heading_layout", "lesson_plan")
 
-    def test_process_third_empty_cell_does_not_pass_two_column_check(self):
-        ending = p("承接推进：比较另一则材料。") + '</w:tc></w:tr>'
-        self.bodies[1] = self.bodies[1].replace(ending, p("承接推进：比较另一则材料。") + '</w:tc><w:tc><w:tcPr/>' + p("") + '</w:tc></w:tr>')
-        self.assert_failure(self.check(), "process_table_layout", "lesson_plan")
+    def test_basis_requires_four_subsections(self):
+        self.bodies[1] = lesson().replace(p("（三）学情分析"), p("其他说明"))
+        self.assert_failure(self.check(), "lesson_subsections", "lesson_plan")
 
-    def test_final_requires_real_page_mapping_in_each_process_row(self):
-        self.bodies[1] = lesson(review=True)
-        self.assert_failure(self.check(), "process_page_mapping", "lesson_plan")
+    def test_curriculum_basis_requires_two_nonempty_items(self):
+        self.bodies[1] = lesson().replace(p("学业要求：能引用材料依据解释自己的判断。"), p("学业要求："))
+        self.assert_failure(self.check(), "curriculum_basis", "lesson_plan")
 
-    def test_board_requires_picture_inside_correct_subsection(self):
-        for replacement in ("", p("此处放板书图片")):
-            with self.subTest(replacement=replacement):
-                self.bodies[1] = lesson().replace(board_picture(), replacement)
-                self.assert_failure(self.check(), "board_embedded_image", "lesson_plan")
-        self.bodies[1] = lesson().replace(board_picture(), '').replace(p("比较一组新材料。"), board_picture() + p("比较一组新材料。"))
-        self.assert_failure(self.check(), "board_embedded_image", "lesson_plan")
+    def test_curriculum_placeholder_paragraph_is_not_specific_basis(self):
+        self.bodies[1] = lesson().replace(p("内容要求：课程内容中关于阅读材料、形成解释的要求。"), p("依据新课标要求。"))
+        self.assert_failure(self.check(), "curriculum_basis", "lesson_plan")
 
-    def test_board_image_after_generation_order_is_not_example(self):
-        self.bodies[1] = lesson().replace(board_picture(), '').replace(p("板书生成顺序"), p("板书生成顺序") + board_picture())
-        self.assert_failure(self.check(), "board_embedded_image", "lesson_plan")
+    def test_two_to_four_objectives_required(self):
+        self.bodies[1] = lesson().replace(p("目标2【素养落点：思维能力】学生通过双栏比较，能解释两则材料的共同点，同时获得两则支持。"), "")
+        self.assert_failure(self.check(), "lesson_objectives", "lesson_plan")
 
-    def test_board_image_broken_reference(self):
-        self.options[1]["board_relationship"] = False
-        self.assert_failure(self.check(), "board_image_invalid", "lesson_plan")
+    def test_objective_numbers_cannot_skip(self):
+        self.bodies[1] = lesson().replace("目标2【", "目标3【")
+        self.assert_failure(self.check(), "lesson_objectives", "lesson_plan")
 
-    def test_board_external_image_link_is_not_embedded(self):
-        self.options[1]["external_board"] = True
-        self.assert_failure(self.check(), "board_image_invalid", "lesson_plan")
+    def test_breakthrough_strategy_required(self):
+        self.bodies[1] = lesson().replace(p("突破策略：难点一通过双栏比较与反例追问，在主体活动中核验。"), "")
+        self.assert_failure(self.check(), "lesson_subsections", "lesson_plan")
 
-    def test_board_image_signature_and_nonzero_dimensions(self):
-        for data in (b"not an image", BOARD_PNG[:24], BOARD_PNG[:16] + b'\0' * 8 + BOARD_PNG[24:]):
-            with self.subTest(data=data):
-                self.options[1]["board_data"] = data
-                self.assert_failure(self.check(), "board_image_invalid", "lesson_plan")
+    def test_process_uses_connected_paragraphs_without_fixed_fields(self):
+        self.assertTrue(self.check()["automatic_checks_pass"])
 
-    def test_board_image_relationship_must_be_image_type(self):
-        self.check()
-        with zipfile.ZipFile(self.paths[1]) as source:
-            parts = {name: source.read(name) for name in source.namelist()}
-        parts["word/_rels/document.xml.rels"] = parts["word/_rels/document.xml.rels"].replace((R + '/image').encode(), (R + '/hyperlink').encode())
-        with zipfile.ZipFile(self.paths[1], "w") as package:
-            for name, content in parts.items():
-                package.writestr(name, content)
-        self.assert_failure(CHECKER.validate(*self.paths, 2), "board_image_invalid", "lesson_plan")
+    def test_process_block_cannot_be_empty(self):
+        self.bodies[1] = lesson().replace(p("教师呈现两种答案，追问哪一句支持解释。学生圈画、讨论并修改判断，继而比较两则材料。教师观察所引语句是否支持判断；若只抄原文，则追问语句与判断的联系。"), "", 1)
+        self.assert_failure(self.check(), "empty_process_block", "lesson_plan")
 
-    def test_jpeg_image_header_recognized_and_truncated_rejected(self):
-        # Tiny SOF segment is only a header fixture; this script never claims decoding.
-        header = b'\xff\xd8\xff\xc0\x00\x0b\x08\x01\x00\x02\x00\x01\x01\x11\x00\xff\xd9'
-        self.assertEqual(CHECKER.image_header(header), {"format": "JPEG", "width": 512, "height": 256})
-        self.assertIsNone(CHECKER.image_header(header[:10]))
+    def test_process_time_sum_must_match_total(self):
+        self.bodies[1] = lesson().replace("总时长40分钟", "总时长41分钟")
+        self.assert_failure(self.check(), "process_time_total", "lesson_plan")
+
+    def test_process_requires_numeric_positive_total(self):
+        self.bodies[1] = lesson().replace("总时长40分钟", "总时长待定").replace("建议1课时，40分钟", "建议课时待定")
+        self.assert_failure(self.check(), "lesson_duration", "lesson_plan")
+
+    def test_more_than_five_process_blocks_can_fit_actual_logic(self):
+        self.bodies[1] = lesson().replace(process_blocks(), process_blocks() * 2).replace("总时长40分钟", "总时长80分钟").replace("建议1课时，40分钟", "建议1课时，80分钟")
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_content_titles_do_not_need_fixed_function_words(self):
+        self.bodies[1] = lesson().replace("课堂延伸：迁移方法", "试用新方法")
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_process_block_time_must_be_positive(self):
+        self.bodies[1] = lesson().replace("比较两种答案（4分钟）", "比较两种答案（0分钟）")
+        self.assert_failure(self.check(), "process_block_duration", "lesson_plan")
+
+    def test_final_requires_no_visible_page_mapping(self):
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_mapping_does_not_replace_teaching_content(self):
+        self.bodies[1] = lesson().replace(p("（1）导入：比较两种答案（4分钟）"), p("（1）导入：比较两种答案（4分钟）") + p("对应PPT第1—2页"))
+        self.assert_failure(self.check(), "production_note_in_plan", "lesson_plan")
+
+    def test_lesson_plan_bans_slide_count_and_mapping_in_all_parts(self):
+        for note in ("全套PPT共30页", "ppt页码：P3—P5", "幻灯片第5页", "对应页面：P1—P3", "课件建议制作二十八页", "PowerPoint共30页", "P P T 页数：30", "本环节对应PPT第1—2页"):
+            for part in ("body", "header", "footer"):
+                with self.subTest(note=note, part=part):
+                    self.bodies[1] = lesson()
+                    self.options[1] = {}
+                    if part == "body":
+                        self.bodies[1] += p(note)
+                    else:
+                        self.options[1][part] = p(note)
+                    self.assert_failure(self.check(), "production_note_in_plan", "lesson_plan")
+
+    def test_teaching_preparation_can_name_ppt_without_page_production_notes(self):
+        self.bodies[1] += p("教学资源：PPT展示教材材料，引导比较。教材依据可核查第12页原文。")
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_text_board_has_three_required_subsections(self):
+        self.bodies[1] = lesson().replace(p("副板书：暂存两种待检验答案。"), "")
+        self.assert_failure(self.check(), "lesson_subsections", "lesson_plan")
+
+    def test_text_board_cannot_be_an_empty_label(self):
+        self.bodies[1] = lesson().replace(p("副板书：暂存两种待检验答案。"), p("副板书："))
+        self.assert_failure(self.check(), "empty_lesson_subsection", "lesson_plan")
+
+    def test_default_board_does_not_require_or_allow_an_image_instead(self):
+        self.assertTrue(self.check()["automatic_checks_pass"])
+        self.bodies[1] = lesson().replace(p("副板书：暂存两种待检验答案。"), p("副板书：暂存两种待检验答案。") + board_picture())
+        self.assert_failure(self.check(), "board_text_only", "lesson_plan")
 
     def test_plan_review_only_checks_lesson_without_page_numbers(self):
         write_docx(self.paths[1], lesson(review=True))
@@ -433,14 +455,69 @@ class DocumentChecks(unittest.TestCase):
         self.assertEqual(result["phase"], "plan-review")
         self.assertEqual(set(result["documents"]), {"lesson_plan"})
         self.assertEqual(result["page_counts"], {})
+        self.assertNotIn("script_color_and_delivery", {check["id"] for check in result["manual_checks_required"]})
         self.assertIn("lesson-plan review only", result["scope"])
         self.assertNotIn("verified", result)
         self.assertTrue(all(x["status"] == "not_assessed" for x in result["manual_checks_required"]))
 
     def test_plan_review_rejects_premature_page_mapping(self):
-        write_docx(self.paths[1], lesson())
+        write_docx(self.paths[1], lesson() + p("对应PPT第1—2页"))
         result = CHECKER.validate(lesson_path=self.paths[1], phase="plan-review")
-        self.assert_failure(result, "premature_process_page_range", "lesson_plan")
+        self.assert_failure(result, "production_note_in_plan", "lesson_plan")
+
+
+    def test_theory_subsection_is_optional(self):
+        self.bodies[1] = lesson().replace(p("（四）设计理论与教学模式") + p("任务驱动，以真实比较任务连接依据和解释。"), "")
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_combined_curriculum_label_is_accepted(self):
+        self.bodies[1] = lesson().replace("学业要求：能引用", "学业要求／学业质量：能引用")
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_total_can_be_in_metadata_not_process_title(self):
+        self.bodies[1] = lesson().replace("八、教学过程（总时长40分钟）", "八、教学过程")
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_numbered_metadata_matches_supplied_template(self):
+        self.bodies[1] = lesson().replace("课题：材料阅读", "1. 课题：材料阅读").replace("学科与学段：", "2. 学科与学段／年级：")
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def multi_session(self, first=None, second=None):
+        body = lesson().replace("建议1课时，40分钟，总时长40分钟", "建议2课时，每课时40分钟，总时长80分钟")
+        body = body.replace("八、教学过程（总时长40分钟）", "八、教学过程（总时长80分钟）")
+        return body.replace(process_blocks(), p("第1课时（40分钟）") + (first or process_blocks()) + p("第2课时（40分钟）") + (second or process_blocks()))
+
+    def test_two_session_plan_does_not_split_or_shorten_outline(self):
+        self.bodies[1] = self.multi_session()
+        result = self.check()
+        self.assertTrue(result["automatic_checks_pass"], result["errors"])
+        self.assertEqual(result["page_counts"], {"outline": 2, "visual_blueprint": 2, "speaker_script": 2})
+
+    def test_each_session_time_is_checked_not_only_overall_sum(self):
+        self.bodies[1] = self.multi_session(
+            process_blocks().replace("比较两种答案（4分钟）", "比较两种答案（5分钟）"),
+            process_blocks().replace("比较两种答案（4分钟）", "比较两种答案（3分钟）"))
+        self.assert_failure(self.check(), "session_time_total", "lesson_plan")
+
+    def test_template_current_session_field_does_not_override_total_count(self):
+        self.bodies[1] = self.multi_session().replace("建议2课时，每课时40分钟", "第1课时／共2课时；每课时40分钟")
+        self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_session_count_must_match_declared_count(self):
+        self.bodies[1] = self.multi_session().replace("建议2课时，每课时40分钟", "建议1课时，每课时80分钟")
+        self.assert_failure(self.check(), "lesson_sessions", "lesson_plan")
+
+    def test_session_ids_cannot_repeat_or_skip(self):
+        for replacement in ("第1课时（40分钟）", "第3课时（40分钟）"):
+            with self.subTest(replacement=replacement):
+                self.bodies[1] = self.multi_session().replace("第2课时（40分钟）", replacement)
+                self.assert_failure(self.check(), "lesson_sessions", "lesson_plan")
+
+    def test_different_session_durations_are_supported(self):
+        self.bodies[1] = self.multi_session().replace("建议2课时，每课时40分钟，总时长80分钟", "建议2课时，分别40和45分钟，总时长85分钟")
+        self.bodies[1] = self.bodies[1].replace("八、教学过程（总时长80分钟）", "八、教学过程（总时长85分钟）")
+        self.bodies[1] = self.bodies[1].replace(p("第2课时（40分钟）") + process_blocks(), p("第2课时（45分钟）") + process_blocks().replace("主体：依据核验（30分钟）", "主体：依据核验（35分钟）"))
+        self.assertTrue(self.check()["automatic_checks_pass"])
 
     def test_invalid_phase_or_incomplete_scope_rejected_at_api_boundary(self):
         for arguments in ({"lesson_path": self.paths[1]}, {"phase": "other", "lesson_path": self.paths[1]},

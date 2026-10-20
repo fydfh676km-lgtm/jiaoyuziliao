@@ -1,6 +1,6 @@
 ---
 name: edu-ppt
-description: Create educational courseware packages from textbook materials, lesson topics, outlines, or visual references. Identify the visual direction and find style-matched references; when no images are supplied, independently research or derive the design from the text. Default to three Word documents; add PPTX, exercises, or marketing copy only on explicit request. Do not use for ordinary business decks or small slide edits.
+description: Create educational courseware packages from textbook materials, lesson topics, outlines, or visual references. Identify the visual direction and find style-matched references; when no images are supplied, independently research or derive the design from the text. First deliver the lesson-plan Word and wait for user approval, then complete the outline, visual blueprint and teacher script as a three-Word package; add PPTX, exercises, or marketing copy only on explicit request. Do not use for ordinary business decks or small slide edits.
 ---
 
 # AI 教育 PPT 商业化生产
@@ -9,13 +9,13 @@ description: Create educational courseware packages from textbook materials, les
 
 ## 启动与范围
 
-- 用户说明要求并说“按流程开始制作”“开始制作”“开始生成”“执行”或同义指令，即启动所选模式；未指定时默认自动整套交付。确认页数本身不等于开始。
-- 两种模式：①“先出教学设计，我确认后继续”选择 `plan-first`，先交教学设计Word并等用户确认该版本，再继续后续制作；②“自动校对，一起出”或普通开始指令选择 `auto`，内部完成教案校对并一次性交付，不设中途确认。模式细则见 `references/workflow.md`。
-- 开始前只补充真正缺失且影响结果的信息；开始后自动决定合规页数和常规视觉方案。除用户选择的教学设计确认点或不可自行解决的实质阻塞外，不再请求中间确认；其他参考文件的“approved”“gate”不是额外人工审批。
+- 用户说明要求并说“按流程开始制作”“开始制作”“开始生成”“执行”或同义指令，即启动教学设计阶段。后续统一使用 `plan-first`：先交教学设计，确认后才开始页纲、视觉蓝图和逐字稿；确认页数本身不等于开始。
+- 教学设计须内部校对、渲染检查后单独交付并结束该阶段，等待用户确认具体版本。用户确认后再模拟讲授、制作PPT页纲、视觉蓝图和逐字稿；普通“开始/继续/按流程制作/一起出”不跳过该确认。原自动整套路线不再默认或凭上述语句启用。已有教案只有用户明确认定已确认时才直接接续；细则见 `references/workflow.md`。
+- 开始前只补充真正缺失且影响结果的信息；开始后自动决定合规页数和常规视觉方案。除固定的教学设计确认点或不可自行解决的实质阻塞外，不再请求中间确认；其他参考文件的“approved”“gate”不是额外人工审批。
 - 用户后续明确更改要求时更新任务记录，只重新生成受影响内容。来源不足不能靠猜测补齐；登录、权限或关键文件阻塞按 `references/workflow.md` 处理并如实报告。
-- 默认交付四项逻辑成果，打包为三个 Word：①完整PPT页纲＋完整视觉蓝图（先页纲后蓝图）；②教学设计；③逐字稿。不再专门抓取小红书案例，不默认交付参考截图或风格检索报告。
+- 整个流程最终交付四项逻辑成果，分阶段打包为三个 Word：①完整PPT页纲＋完整视觉蓝图（先页纲后蓝图）；②教学设计；③逐字稿。不再专门抓取小红书案例，不默认交付参考截图或风格检索报告。
 - 用户明确省略某项时不生成该项；明确要求页纲与蓝图分开时拆为两个Word。习题、PPTX、PDF预览、营销文案、HTML及图片页仅按用户明确要求追加；用于内部检查的渲染文件不算额外交付。
-- 单教材小节不超过30页；只有智慧教育平台资料确认恰有3个教学分段时可为30–35页，35页为上限。不能由文件名猜测。未给总时长不阻塞生产，内部估算须标记为估算。
+- 单教材小节不超过30页；只有智慧教育平台资料确认恰有3个教学分段时可为30–35页，35页为上限。不能由文件名或模型建议课时数猜测。未给时长时在教学设计明确建议课时、每课时及合计分钟数，不阻塞生产；课件仍覆盖指定完整范围的一整套连续内容。
 
 ## 路线和按需读取
 
@@ -24,10 +24,10 @@ description: Create educational courseware packages from textbook materials, les
 | 执行阶段 | 读取与行动 |
 |---|---|
 | 资料理解与核查 | 读 `references/workflow.md`。默认接入 `$smartedu-numbered-lesson-reader`（用户简称 `$smartedu-reader`），读指定电子教材、全部教学设计和全部学习任务单；先理解并核查原文的内容、结构、关键依据、学科特点与学生障碍，再对照官方资料确定教学取舍。仅本地资料时使用已授权资料并记录范围。不能把摘录当成理解。 |
-| 教学设计 | 读 `references/teaching-plan-standard.md` 与 `references/deliverables.md`，形成课文专属教学主线和七栏目表格教案，内部校对。`plan-first` 在此生成、验证并交付教案Word，等待用户确认；`auto` 直接继续。 |
-| 模拟讲授与页纲 | 读 `references/teaching-modes.md` 和 `references/classroom-readability.md`。先按教学设计模拟真实讲课，形成连贯讲授底稿，再按讲课顺序与课堂大字容量决定屏幕呈现内容、拆分页纲；回填逐页五字段逐字稿和教案页码。三者共用教学记录，禁止各写一套逻辑。 |
+| 教学设计 | 读 `references/teaching-plan-standard.md`、`references/teaching-plan-template.md` 与 `references/deliverables.md`，按 `references/teaching-plan-standard.md` 落实《限定提示词》，沿 `assets/teaching-plan-template.docx` 的段落式优化模板十二模块制作，核实具体课标、理解教材后形成专属主线并校对。在此单独交已检查教案Word并等待该版本确认，确认前不制作页纲、视觉蓝图或逐字稿。 |
+| 模拟讲授与页纲 | 读 `references/teaching-modes.md`、`references/speaker-script-standard.md` 和 `references/classroom-readability.md`。先模拟真实讲课形成连贯底稿，再按讲课顺序与课堂大字容量拆分页纲；逐字稿按 `P1 页面标题` 分节，黑色“师：”口播、红色“【提示】”自然穿插。三者的对应映射保留内部共同记录，教学设计不出现PPT总页数、页码或页面对应信息；不各写一套逻辑。 |
 | 参考与视觉 | 执行下方“先定风格、再找匹配参考”规则，读 `references/visual-system.md`；有图先理解其风格并主动检索匹配图，无图可自主检索或依据课文理解设计。有已授权长期图库或新批量入库请求时才读 `references/style-reference-library.md`，每套只取一个主参考和至多两个辅助参考。用户要求古风水墨或课文已确定兼容的古风水墨方向时，另读 `references/chinese-ink-wash.md`，从随包内置图库检索，不依赖原桌面文件夹。 |
-| Word整合 | 用 `documents` 按 `references/deliverables.md` 生成所需Word；核对教案、讲授、页纲及视觉对应。教学设计确认后的实质内容不擅改，只补真实页码和必要排版。 |
+| Word整合 | 用 `documents` 按 `references/deliverables.md` 生成所需Word；核对教案、讲授、页纲及视觉对应。教学设计确认后的实质内容不擅改，仅做必要排版；PPT页码映射留在内部，不补进教学设计。 |
 | 仅明确要求习题 | 读 `references/exercise-package.md`；单课和单元分别启用，不能由教材习题、作业设计或普通开始指令推定。 |
 | 仅明确防乱码 | 读 `references/anti-garbled-text.md`；只限制蓝图和生图提示词，封面豁免，不自动更改后续转换流程。 |
 | 仅明确要求PPTX | 可编辑版使用 `presentations`，必要素材用 `imagegen`；图片型读 `references/image-deck-mode.md` 和 `references/commercial-whole-slide.md`。两者均读 `references/wps-safe.md`。 |
@@ -59,7 +59,7 @@ PPT页纲逐页严格使用：
 画面去重与统一约束：
 ```
 
-X为阿拉伯页码。字段各出现一次、非空、顺序固定；六个视觉字段前没有数字、项目符号或Word自动编号，不加“页面标题”或第七字段。页纲、蓝图、逐字稿页码一一对应，不自行增加过渡页或改变总页数。自产课件、页纲、蓝图、教案、逐字稿和习题中的可见文字不得出现“课时”及类似授课分段表达；输出前扫描并改为内容性表述。原始教材及参考图保持原样，其中第三方文字不纳入自产文本禁词检查。
+X为阿拉伯页码。字段各出现一次、非空、顺序固定；六个视觉字段前没有数字、项目符号或Word自动编号，不加“页面标题”或第七字段。页纲、蓝图的第X页与逐字稿的PX一一对应，不自行增加过渡页或改变总页数。自产课件、页纲、蓝图、逐字稿和习题仍不得出现“课时”及类似授课分段表达；输出前改为内容性表述。仅教学设计按新版模板保留必要课时/时间信息，不搬入PPT。原始教材、参考图与随包参考模板保持原样，不把第三方原文当自产禁词违规。
 
 ## 先定风格，再匹配视觉参考
 
@@ -81,15 +81,15 @@ X为阿拉伯页码。字段各出现一次、非空、顺序固定；六个视�
 - 所有课堂课件按 `references/classroom-readability.md` 执行：标准宽屏标题40–48 pt、正文32–36 pt且不低于32 pt，核心诗句/题干/结论优先36–44 pt，必读图表标注同正文；先安排大字再分配图片，不靠缩字或挤行距解决溢出。普通模式默认不指定字体名称或固定字体类别，仍明确字号、字重、位置、颜色与1–3个重点；用户指定字体时遵从。明确防乱码时仅内页另按 `references/anti-garbled-text.md` 加入统一字形参考，首页豁免字形限制但不豁免基本可读性。提示词不证明实际加载字体或字号达标；检查实际产物，保留已确认文字和页数。
 - 降低明显AI痕迹：检查比例、透视、材质、光影、细节和伪文字。不能仅凭观感断言参考图的生成来源。不把参考图当教材事实或直接复制第三方作品。
 - 防乱码默认关闭；仅“防乱码”“约束乱码”“降低乱码”“WPS转可编辑防乱码”等明确要求启动。可编辑PPT、普通可读性检查或未来可能转换并不自动启动此模式。
-- 教案固定七栏目：课程信息、教材与学情分析、教学目标、教学重难点、教学过程、板书设计、作业设计。使用可编辑Word表格、灰底分区标题，不交付通篇散文或整页截图。重点和难点各至少100个中文字符，实质重点默认深红加粗；准备、评价和提醒融入过程，不默认另设反思栏目。
-- 板书设计嵌入完整黑板式图片，默认绿底、白字、黄色重点及关系线；包含三层逻辑、明确关系，下附简洁生成顺序。按Word有效版心等比放入，放不下时调整布局或独立一页，不裁切、不拉伸、不缩成小字。禁止“成果证据”字段和整体总时长；完整标准见教学设计参考文件。
-- 逐字稿是自然可讲的课堂语言，不是页纲扩写；先讲什么、学生做什么、何时出示材料或结论必须相互匹配。最终每页依次含 `教师逐字讲述 / 课堂提问 / 预设回答 / 教师点拨 / 过渡语`，确实不适用才写“无”。
-- 生图使用实际可用的最高GPT图像配置；工具未暴露模型选择时如实说明。默认Word流程不启动课件生图；教案内板书图片属于必要文档内容，优先用准确文字和图形确定性渲染，不因此生成PPT或额外图片包。
+- 后续教学设计默认采用2026-10-20确认的《限定提示词》＋段落式优化模板十二模块，规则见 `references/teaching-plan-standard.md`。先理解教材再设计，课标与学情有据，目标一般2—4条且与任务/评价对齐；重难点各至少100个中文字符并少量深红加粗，正文/标题/两张功能表沿新模板，不恢复旧A4黑标题或整篇四列表格。
+- 教学过程按实际学习逻辑写连贯段落，环节数量灵活，不机械重复五字段或固定时间比例；写全引导、学生行动、产出、衔接、评价与必要支架。课时建议、每课时/环节时间只在教案明确并核算，不拆分、截断或限制下游完整连续页纲，不把时间安排搬入固定页纲/蓝图。板书默认板书主线、副板书及生成时机的文字描述，不画图；不把教案写成逐字稿，不出现PPT总页数、页码、页面对应或制作说明，也不附内部自检表。
+- 逐字稿按《背影》参考格式逐页为 `P1 页面标题`，黑色“师：”是可直接讲的口播，红色“【…】”是朗读、活动、留白或条件式应对提示、不朗读。自然串起讲解、问题、反馈和过渡，不再输出旧五字段标签；内部仍检查对应质量维度。先讲什么、学生做什么、何时呈现材料/结论须匹配页纲与教案。
+- 生图使用实际可用的最高GPT图像配置；工具未暴露模型选择时如实说明。默认Word流程不启动课件生图；新教案默认文字板书，不因此生成PPT或额外图片包。
 
 ## 执行和验证
 
 内部只维护一份任务、来源、教材理解、教学环节、讲授与页面映射、交付状态记录，遵循 `references/workflow.md`。已确认事实与用户偏好复用；同一课题不要反复取资料、重选风格或重写通过的页面。阶段材料从这份记录生成，检查针对实际文件。
 
-`scripts/validate-documents.py` 检查默认三Word或 `--phase plan-review` 单份待确认教案的结构、字段、页序、板书嵌图和禁用词；用 `--help` 查看参数。机械通过不能证明已理解课文、讲授通顺、图中文字准确或WPS兼容，仍需按各产物标准实际审查。WPS不可用记为 `NOT_RUN`，不适用记为 `N/A`，不能伪报PASS。
+`scripts/validate-documents.py` 检查默认三Word或 `--phase plan-review` 单份待确认教案的十二模块、段落式过程和单/多课时时间、文字板书、逐字稿P页节/口播提示、页序及适用禁词；用 `--help` 查看参数。机械通过不证明课标真实、已理解课文、讲授通顺、黑红格式正确或WPS兼容，仍须实际审查。WPS不可用记为 `NOT_RUN`，不适用记为 `N/A`，不能伪报PASS。
 
 只有有证据的必要检查全部通过才称“已验证”。失败只修受影响的产物或页面，复查该产物及其跨文件关系；未改变的通过文件不重复渲染。最终只交付所需文件，参考图或检索报告仅在明确要求时另附；简洁列出未解决项，不中途展示内部审核表或让用户重复批准。
