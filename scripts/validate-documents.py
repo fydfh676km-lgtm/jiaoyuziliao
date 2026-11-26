@@ -39,8 +39,10 @@ EXTRA_OUTLINE_FIELDS = ("教师指导", "教师引导", "教学指导", "设计�
 EXTRA_VISUAL_FIELDS = ("页面标题", "页面文字", "教师指导", "教师引导", "教学指导", "设计意图", "设计说明", "重点标注", "备注", "说明")
 MANUAL_CHECKS = [
     {"id": "source_and_cross_file_semantics", "status": "not_assessed", "required": "逐项核对冻结教材、来源台账与三 Word 的课题、对象、目标、术语、事实、引文、活动、时间和来源覆盖；机械页序一致不代表语义一致。"},
-    {"id": "teaching_and_field_quality", "status": "not_assessed", "required": "核实具体课标条款及政策来源，检查2—4条目标与活动/评价/量规对齐、重难点的依据和突破路径、段落式过程的学习推进、学生行动、评价证据及支架、时间估算与分配及反思预判；字符数、标签和时间加总不能证明真实或有效。"},
-    {"id": "board_quality", "status": "not_assessed", "required": "检查文字板书的板书主线、副板书、生成时机及课题专属性，层级和关系可在黑板一屏呈现、随教学逐步生成；默认不以板书图片代替。"},
+    {"id": "teaching_and_field_quality", "status": "not_assessed", "required": "核实具体课标条款及政策来源，检查2—4条目标与活动/评价/量规对齐、重难点的依据和突破路径、段落式过程的学习推进、学生行动、评价证据及支架、时间估算与分配；另审日常授课语体、课标两条有据短句、通篇重复解释，以及约五方面的本课反思是否写清观察、问题及可能原因、调整和再检查，区分预设与实际结果；字符数、标签和时间加总不能证明真实或有效。"},
+    {"id": "classroom_interaction_quality", "status": "not_assessed", "required": "按真实授课顺序审查互动是否因当前理解、辨析、表达、应用或误解诊断需要自然嵌入，是否有用且衔接顺畅；保留必要讲解/示范，删减重复、突兀或凑数量的安排，不在末尾追加问题、不逐环节强套完整互动链。需要探究/交流时再检查具体问题、独立准备、实质参与及适切反馈/改进，实际用时纳入原环节。仅在已确认教案的下游阶段核对页纲和逐字稿的同一教学顺序，不新增字段或提前显示探究结论；本阶段未生成的文件不要求补做。本脚本不验证互动语义、真实参与率或实际教学效果。"},
+    {"id": "lesson_scope_quality", "status": "not_assessed", "required": "对照用户指定课文/小节逐项审查教案全篇的目标、准备、问题、活动、作业（含选做）、评价和反思中的学习对象/专题；未明确要求时不得加入其他课文/小节、下一课预习或未指定写作/语法专题，同册/同单元/参考教案不等于授权。保留必要背景解释与本课巩固，没有必要就不设拓展；跨课整合须有明确要求及范围。按学生实际学习任务判断，不用课名或拓展关键词黑名单替代语义审查；修订后复核用时及相关目标/评价，下游已生成文件沿用同一范围。本脚本不判断任务是否越界，机械通过不能证明范围合规。"},
+    {"id": "board_quality", "status": "not_assessed", "required": "检查板书是否直接呈现本课课题、核心关键词及必要层次/关系，简洁清楚、教师可照写且一块黑板放得下；不分主/副板书、不写生成时机或长篇实施说明，默认不用图片代替。机械非空或字段检查不能证明内容准确、重点清楚或版面合适。"},
     {"id": "script_color_and_delivery", "status": "not_assessed", "required": "检查逐字稿实际DOCX口播黑色、提示红色且单独【】标记；P页标题对应页纲，问题后有合理回应空间，条件式应对不冒充实际学生发言，反馈和过渡连贯。结构脚本不验证字体颜色或真实讲授节奏。"},
     {"id": "rendered_word_pages", "status": "not_assessed", "required": "渲染三份 Word 并逐页检查空白/缺页、裁切、溢出、表格、字体、页序、对比度及正文重点强调；本脚本不渲染，也不验证 Office/WPS 打开效果。"},
     {"id": "full_verification_verdict", "status": "not_assessed", "required": "依照 deliverables.md 完成全部格式与跨文件矩阵判定后才能进入 verified；本 JSON 只提供部分机械检查结果。可选 PPTX 的 WPS 检查须另行执行。"},
@@ -96,7 +98,7 @@ class Report:
             manual = [check for check in manual if check["id"] != "script_color_and_delivery"]
             replacements = {
                 "source_and_cross_file_semantics": "核对冻结教材、来源台账与待确认教学设计的理解、目标、事实、活动及来源覆盖；本阶段不检查或声称已生成 PPT 页纲和逐字稿。",
-                "teaching_and_field_quality": "核实教案具体课标、课文专属性、重难点突破、目标与任务/活动/评价对齐、时间分配及反思预判真实性；字符数和时间相加不证明教学有效。",
+                "teaching_and_field_quality": "核实教案具体课标、课文专属性、重难点突破、目标与任务/活动/评价对齐及时间分配；另审日常授课语体、课标两条有据短句、通篇重复解释，以及约五方面的本课反思是否写清观察、问题及可能原因、调整和再检查，区分预设与实际结果；字符数和时间相加不证明教学有效。",
                 "rendered_word_pages": "渲染本阶段唯一教学设计Word，逐页检查十二模块模板分级标题、深红重点、连贯段落式过程、文字板书、量规、页序、裁切与溢出；脚本不渲染或验证 Office/WPS。",
                 "full_verification_verdict": "仅判定教学设计待确认稿的适用检查；未制作的页纲、视觉蓝图和逐字稿不纳入此阶段，也不能声称全套交付完成。",
             }
@@ -342,7 +344,7 @@ def field_match(text, labels):
     return None
 
 
-def validate_fields(lines, fields, key, report, context, no_prefix=False, extra_fields=()):
+def validate_fields(lines, fields, key, report, context, no_prefix=False, extra_fields=(), blank_fields=()):
     found, active, values = [], None, {}
     for line in lines:
         match = field_match(line.text, fields)
@@ -367,7 +369,10 @@ def validate_fields(lines, fields, key, report, context, no_prefix=False, extra_
     if sequence != list(fields):
         report.fail(key, "field_sequence", f"{context}：字段须各一次并依次为 {list(fields)}；实际为 {sequence}", found[0][1] if found else (lines[0] if lines else None))
     for name, line in found:
-        if any(not value.strip() for value in values[name]):
+        if name in blank_fields:
+            if any(value.strip() for value in values[name]):
+                report.fail(key, "field_must_be_blank", f"{context}：{name}须统一留空，不填姓名、日期、未提供或占位文字", line)
+        elif any(not value.strip() for value in values[name]):
             report.fail(key, "empty_field", f"{context}：{name} 为空", line)
 
 
@@ -505,7 +510,7 @@ def lesson_plan(lines, report, total):
             for old_label, new_label in aliases.items():
                 text = re.sub(r"^" + re.escape(old_label) + r"(?=\s*[:：])", new_label, text)
             metadata.append(replace(line, text=text))
-        validate_fields(metadata, METADATA_FIELDS, key, report, "课程基本信息")
+        validate_fields(metadata, METADATA_FIELDS, key, report, "课程基本信息", blank_fields=("设计者/日期",))
 
     if "设计依据" in sections:
         _, body = sections["设计依据"]
@@ -542,9 +547,12 @@ def lesson_plan(lines, report, total):
 
     if "板书设计" in sections:
         heading, body = sections["板书设计"]
-        named_sections(body, ("板书主线", "副板书", "生成时机"), report, "文字板书")
+        for line in body:
+            if any(heading_value(line.text, label) is not None
+                   for label in ("板书主线", "主板书", "副板书", "生成时机")):
+                report.fail(key, "legacy_board_field", "板书直接呈现简洁的课题、关键词和关系，不使用主/副板书或生成时机分栏", line)
         if any(line.images for line in body):
-            report.fail(key, "board_text_only", "新标准板书默认文字描述结构，不以图片代替；图片须另行明确请求并按对应范围检查", heading)
+            report.fail(key, "board_text_only", "板书默认原生文字简洁排布，不以图片代替；图片须另行明确请求并按对应范围检查", heading)
 
     if "教学过程" not in sections:
         return

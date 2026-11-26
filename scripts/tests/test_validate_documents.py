@@ -83,6 +83,8 @@ DIFFICULTY = (
     "教师利用同伴质疑与反例追问促使学生修正过度概括，最终检查结论能否同时得到两则材料的支持。"
 )
 
+BOARD_TEXT = p("材料阅读") + p("具体语句 → 依据 → 解释") + p("两则材料 → 比较 → 共同特征")
+
 
 def process_blocks(review=False):
     blocks = []
@@ -97,7 +99,7 @@ def metadata():
     return "".join(p(text) for text in (
         "课题：材料阅读", "学科与学段：初中语文七年级", "教材依据：用户提供版本及阅读单元。",
         "课时安排：建议1课时，40分钟，总时长40分钟（非已确认）。", "所属单元/主题及大概念：阅读与解释。",
-        "课型：新授", "授课对象：七年级，班级与人数未提供。", "设计者/日期：未提供。"))
+        "课型：新授", "授课对象：七年级，班级与人数未提供。", "设计者/日期："))
 
 
 def lesson(review=False):
@@ -120,9 +122,7 @@ def lesson(review=False):
         p("目标1—评价任务1：圈画依据；对应导入及主体，用语句与判断的关联判定。"),
         p("目标2—评价任务2：完成双栏比较；对应主体与总结，用两则材料同时支持判定。"),
         p("八、教学过程（总时长40分钟）"), process_blocks(review),
-        p("九、板书设计（文字描述结构，不画图）"),
-        p("板书主线：材料一、材料二并列，下连依据与解释，再汇聚共同特征。"),
-        p("副板书：暂存两种待检验答案。"), p("生成时机：阅读时写证据，讨论时连判断，比较时补共同点。"),
+        p("九、板书设计"), BOARD_TEXT,
         p("十、作业设计（分层）"), p("基础作业：比较一组新材料。拓展作业：口头解释一次修改；教师反馈。"),
         p("十一、教学评价（本课评价方案）"), p("评价方式：观察、自评、教师反馈。"),
         table([["维度", "待达标", "达标", "优秀"], ["依据关联", "有提示仍不对应", "独立对应", "可用反例检验"],
@@ -199,9 +199,60 @@ class DocumentChecks(unittest.TestCase):
         self.bodies[1] = self.bodies[1].replace(p("教学难点"), p("7. 教学难点"))
         self.assertTrue(self.check()["automatic_checks_pass"])
 
+    def test_mechanical_success_keeps_interaction_quality_unassessed_in_both_phases(self):
+        final_result = self.check()
+        write_docx(self.paths[1], lesson(review=True))
+        review_result = CHECKER.validate(lesson_path=self.paths[1], phase="plan-review")
+        for result in (final_result, review_result):
+            with self.subTest(phase=result["phase"]):
+                self.assertTrue(result["automatic_checks_pass"], result["errors"])
+                interaction = [item for item in result["manual_checks_required"]
+                               if item["id"] == "classroom_interaction_quality"]
+                self.assertEqual(len(interaction), 1)
+                self.assertEqual(interaction[0]["status"], "not_assessed")
+                self.assertNotIn("verified", result)
+
+    def test_mechanical_success_keeps_lesson_scope_unassessed_in_both_phases(self):
+        final_result = self.check()
+        write_docx(self.paths[1], lesson(review=True))
+        review_result = CHECKER.validate(lesson_path=self.paths[1], phase="plan-review")
+        for result in (final_result, review_result):
+            with self.subTest(phase=result["phase"]):
+                self.assertTrue(result["automatic_checks_pass"], result["errors"])
+                scope_checks = [item for item in result["manual_checks_required"]
+                                if item["id"] == "lesson_scope_quality"]
+                self.assertEqual(len(scope_checks), 1)
+                self.assertEqual(scope_checks[0]["status"], "not_assessed")
+                self.assertNotIn("verified", result)
+
     def test_inline_section_content_counts(self):
         self.bodies[1] = self.bodies[1].replace(p("教学重点") + p(KEY_POINT), p("教学重点：" + KEY_POINT))
         self.assertTrue(self.check()["automatic_checks_pass"])
+
+    def test_designer_date_stays_blank_in_both_phases(self):
+        for suffix in ("", "   ", "\u3000"):
+            with self.subTest(suffix=repr(suffix)):
+                body = lesson().replace(p("设计者/日期："), p("设计者／日期：" + suffix))
+                self.bodies[1] = body
+                final_result = self.check()
+                write_docx(self.paths[1], body)
+                review_result = CHECKER.validate(lesson_path=self.paths[1], phase="plan-review")
+                for result in (final_result, review_result):
+                    self.assertTrue(result["automatic_checks_pass"], result["errors"])
+
+    def test_designer_date_rejects_names_dates_and_placeholders(self):
+        for value in ("未提供。", "待填写", "____", "2026-10-21", "张老师 / 2026-10-21"):
+            with self.subTest(value=value):
+                self.bodies[1] = lesson().replace(p("设计者/日期："), p("设计者/日期：" + value))
+                self.assert_failure(self.check(), "field_must_be_blank", "lesson_plan")
+
+    def test_other_metadata_fields_still_require_content(self):
+        self.bodies[1] = lesson().replace(p("课型：新授"), p("课型："))
+        self.assert_failure(self.check(), "empty_field", "lesson_plan")
+
+    def test_blank_designer_date_label_is_still_required(self):
+        self.bodies[1] = lesson().replace(p("设计者/日期："), "")
+        self.assert_failure(self.check(), "field_sequence", "lesson_plan")
 
     def test_forbidden_term_in_body_table_across_runs(self):
         self.bodies[0] += table([[p("第一课", "时总结")]])
@@ -435,17 +486,32 @@ class DocumentChecks(unittest.TestCase):
         self.bodies[1] += p("教学资源：PPT展示教材材料，引导比较。教材依据可核查第12页原文。")
         self.assertTrue(self.check()["automatic_checks_pass"])
 
-    def test_text_board_has_three_required_subsections(self):
-        self.bodies[1] = lesson().replace(p("副板书：暂存两种待检验答案。"), "")
-        self.assert_failure(self.check(), "lesson_subsections", "lesson_plan")
+    def test_text_board_cannot_be_empty(self):
+        self.bodies[1] = lesson().replace(BOARD_TEXT, "")
+        self.assert_failure(self.check(), "empty_lesson_section", "lesson_plan")
 
-    def test_text_board_cannot_be_an_empty_label(self):
-        self.bodies[1] = lesson().replace(p("副板书：暂存两种待检验答案。"), p("副板书："))
-        self.assert_failure(self.check(), "empty_lesson_subsection", "lesson_plan")
+    def test_simple_board_passes_without_auxiliary_or_generation_fields(self):
+        body = lesson().replace(BOARD_TEXT,
+            p("本课材料") + p("材料一、材料二") + p("语句 → 依据 → 解释 → 共同点"))
+        self.bodies[1] = body
+        final_result = self.check()
+        write_docx(self.paths[1], body)
+        review_result = CHECKER.validate(lesson_path=self.paths[1], phase="plan-review")
+        for result in (final_result, review_result):
+            with self.subTest(phase=result["phase"]):
+                self.assertTrue(result["automatic_checks_pass"], result["errors"])
+
+    def test_legacy_board_fields_are_rejected(self):
+        for label in ("板书主线", "主板书", "副板书", "生成时机"):
+            with self.subTest(label=label):
+                self.bodies[1] = lesson().replace(
+                    p("九、板书设计"),
+                    p("九、板书设计") + p(label + "：补充说明。"))
+                self.assert_failure(self.check(), "legacy_board_field", "lesson_plan")
 
     def test_default_board_does_not_require_or_allow_an_image_instead(self):
         self.assertTrue(self.check()["automatic_checks_pass"])
-        self.bodies[1] = lesson().replace(p("副板书：暂存两种待检验答案。"), p("副板书：暂存两种待检验答案。") + board_picture())
+        self.bodies[1] = lesson().replace(BOARD_TEXT, BOARD_TEXT + board_picture())
         self.assert_failure(self.check(), "board_text_only", "lesson_plan")
 
     def test_plan_review_only_checks_lesson_without_page_numbers(self):

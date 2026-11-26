@@ -1,10 +1,10 @@
 # Persistent user visual-reference library
 
-Use this reference when the user explicitly supplies a batch of images for future reuse, or when a previously created user visual-reference library is available during courseware production. The library is a retrieval aid, not model training and not a set of slide templates to copy.
+Use this reference when the user explicitly supplies a batch of images for future reuse, or when the current user request explicitly asks to use a previously created library. Availability alone is not an activation trigger. The library is a retrieval aid, not model training and not a set of slide templates to copy.
 
 ## Available bundled library
 
-The user-supplied Chinese classical/ink-wash collection is bundled in `assets/style-references/chinese-ink-wash/`, with 20 unchanged originals and a per-image `index.json`. For requests for 古风水墨, 水墨山水 or a compatible text-derived direction, read `chinese-ink-wash.md` and retrieve the active subset from this index before the existing reference-analysis step. Do not reload every image, force this direction on unrelated lessons, or depend on the original desktop folder. Current-task user instructions and references still take precedence. Including an image in the reference library is not commercial-use permission or authorization to upload it to a public repository.
+The user-supplied Chinese classical/ink-wash collection is bundled in `assets/style-references/chinese-ink-wash/`, with 20 unchanged originals and a per-image `index.json`. Only when the user explicitly asks to reference this collection or use their previous images, read `chinese-ink-wash.md` and retrieve a relevant subset. A request for an ink-wash style or an ancient-poetry topic alone is not a request to consult the library. Do not reload every image, force this direction on unrelated lessons, or depend on the original desktop folder. Current-task user instructions and references still take precedence. Including an image in the reference library is not commercial-use permission or authorization to upload it to a public repository.
 
 ## One-time ingestion
 
@@ -33,9 +33,9 @@ similarity_group: "cluster for duplicate and overuse control"
 
 The index records observable traits and cautious inferences; it does not claim that the base model was trained on the images. If an image is unreadable, corrupt, or lacks enough visual information, exclude it from retrieval and report it in the ingestion result rather than inventing tags.
 
-## Automatic retrieval for each deck
+## Retrieval only when requested
 
-Before visual-direction selection, derive a compact retrieval brief from the source ledger: subject, grade, genre, historical/cultural setting, geography, season, time, central imagery, emotional curve, page functions, projection density, and any explicit user preference. Retrieve candidates in this order:
+Once explicit library use is established, derive a compact retrieval brief from the source ledger: subject, grade, genre, historical/cultural setting, geography, season, time, central imagery, emotional curve, page functions, projection density, and any explicit user preference. Retrieve candidates in this order:
 
 1. factual and cultural compatibility with the textbook;
 2. genre, topic, central imagery, and emotional fit;
@@ -45,21 +45,18 @@ Before visual-direction selection, derive a compact retrieval brief from the sou
 
 Select one master-style anchor and at most two supporting composition or element references. Do not load the whole library into the prompt. If no candidate survives factual, cultural, or audience-fit checks, use a new content-driven direction rather than forcing an attractive but unsuitable reference.
 
-Ancient poetry and classical-literature work should search the library first for compatible landscape, classical, ink-wash, blue-green landscape, gongbi, or literary-illustration references, while still matching the actual poem's season, geography, viewpoint, imagery, and emotional tone.
+For ancient poetry or classical literature, an explicitly requested library lookup can select compatible landscape, ink, gongbi or literary references. Without that request, design directly from textbook understanding; the genre does not enable automatic library loading.
 
-## Combine user references with content-matched research
+## Reference priority
 
-The evidence order is fixed:
+Follow the current `visual-system.md` and `workflow.md` route, which supersedes older automatic retrieval and combined-research instructions:
 
-1. textbook and source ledger control facts, sequence, scene meaning, and historical/cultural accuracy;
-2. the user's current explicit direction controls intentional overrides;
-3. compatible current-task user references establish the primary aesthetic direction;
-4. a compatible selected user-library anchor and supporting references contribute reusable aesthetic, composition, or element principles, subordinate to the current request; and
-5. actual inspected web/image research supplies scene, material and composition evidence matching both the established style and text. Without current-task user images, the direction may instead be derived from textual understanding and design judgment, with compatible authorized-library evidence where available; keep observed cues distinct from inferred choices.
+1. Without an explicit reference-image instruction, use original-textbook understanding directly. Do not search this library simply because it exists.
+2. Explicitly designated current-task images determine the main visual style; textbook understanding partly supports subject/content adaptation and necessary factual accuracy, not a competing style selection.
+3. A library subset contributes only when the user specifically requests that library or their earlier images. If current-task primary images are designated, any requested library support remains subordinate unless the user says to replace them.
+4. Web reference research is also opt-in, not a required companion to library use. Do not automatically add search images.
 
-For a new blueprint, follow `visual-system.md`: understand supplied images first, then actively find same-style, content-compatible visual references. Without current-task images, independently select the permitted research or text-derived design route. A current explicit requirement for web research still controls. No dedicated Xiaohongshu search or standalone screenshot is required. A local revision that retains its direction reuses existing evidence, and a frozen image-rendering contract is not re-planned. Record the actual route truthfully; a library match or design inference must not be presented as a newly searched result.
-
-Extract abstract principles from every active source separately, record provenance and the adopted rules internally, and synthesize one independent master system; do not average conflicting styles or reproduce any source page, asset, text, logo, watermark, or protected composition. Current-task references and researched images are not automatically added to the persistent library. The research record is not a new deliverable or blueprint field.
+Inspect every active image, keep observed traits separate from inferences and record actual paths/IDs and adopted aesthetic rules. Do not copy entire source pages, artwork, logos or protected compositions; do not alter teaching facts to fit a reference. Current-task images are not automatically added to a permanent library. The analysis is internal, not a new report or blueprint field.
 
 ## Variety without style drift
 

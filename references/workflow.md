@@ -15,7 +15,10 @@ task:
   review_mode: professional-advisor
   execution_mode: plan-first  # required lesson-plan approval before downstream work; distinct from review_mode
   mode_source: default
-  page_count: null
+  requested_versions: [A]  # B or [A, B] only when explicitly requested
+  version_source: default
+  page_count: null  # optional single-variant alias, not authoritative for both
+  page_counts: {}  # selected variant IDs mapped to their own totals
   source_period_count: null
   duration_minutes: null
   duration_source: unspecified  # user | source | estimate | unspecified
@@ -36,20 +39,23 @@ lesson_plan:
   approval_evidence: null
 teaching_blocks: []
 visual_research:
-  status: pending  # complete | content-derived | reused | skipped-by-user | unavailable
+  status: pending  # content-derived | reference-led | complete (explicit web research) | reused | skipped-by-user | unavailable
   queries: []
   reference_ids: []
   content_anchors: []
   design_decisions: []
   search_attempts: []
   selected_direction: null
+  variant_decisions: {}  # requested version -> its direction/page-design decisions
   reason: null
 pages: []
 deliverables: []
 checks: []
 ```
 
-Record the explicit request that enabled each optional output or prompt mode. “按流程开始制作” starts the existing scope; it does not enable PPTX, exercises, marketing, or anti-garbled text. Current explicit user changes supersede older task decisions; identify and rebuild only their affected dependencies.
+Record the explicit request that enabled each nondefault variant, optional output or prompt mode. Version selection follows `deliverables.md`: no version specified means A only; explicit B means B only; both must be explicitly requested. A reference image/style request alone does not enable both. “按流程开始制作” starts the existing scope without enabling B, PPTX, exercises, marketing or anti-garbled text. Honor current explicit custom requirements; identify and rebuild only affected dependencies.
+
+Sources, checked understanding, teaching blocks and the approved lesson plan stay shared. Record selected variant IDs on page, visual-decision, script-mapping, deliverable and check entries; resolve a page by `(courseware_version, page)`, not its page number alone. Each selected variant has a complete page sequence and its own `page_counts` value within the same source-based cap. When only one is selected, the existing flat single-variant page records may be reused. For both, do not combine or overwrite independent A/B page orders, scene decisions or display cues. These fields are internal and never printed in lesson-plan/page schemas.
 
 For duration, preserve a user/source value when supplied; otherwise state proposed session count, minutes per session and overall total in the teaching-plan Word, without routine confirmation. Check each session's block sum and the overall sum against the shared pacing record, including transitions, thought and feedback. Never present estimates as confirmed. These session decisions are teaching-plan implementation advice only: simulate and paginate the full requested textbook scope into one continuous complete outline, blueprint and script, not one selected session or multiple decks. No timing fields or period labels enter the fixed outline/blueprint or script section titles. A model-recommended three-session plan is not source_period_count evidence and does not enable the 30–35-page exception.
 
@@ -59,7 +65,9 @@ For ordinary SmartEdu requests, invoke `$smartedu-numbered-lesson-reader` (user 
 
 When the user supplies only local files or another source, use the explicitly authorized materials and record that SmartEdu was not supplied. Never invent platform contents or silently substitute another lesson. A complete direct image-deck contract does not require new textbook intake.
 
-Read lesson inputs within the user's requested scope and the current project's reference materials. New blueprint production may use relevant public-web visual-style research under the routing rules below and `visual-system.md`; without user images, text-grounded design is also an authorized normal route. Neither route authorizes scanning unrelated local folders. Project content never becomes installed Skill content. Explicit future-library reuse authorizes indexing the supplied images under `style-reference-library.md`; ordinary production does not authorize a new reusable rule or library import.
+Record the exact user-requested lesson/section scope before drafting. Access to a whole textbook, related official plan, template or unit does not authorize teaching its other lessons: filter cross-lesson suggestions out of the current plan's goals, tasks, homework, evaluation and reflection. Keep necessary contextual explanation in service of this lesson, not a new course task. Cross-text or unit-integrated learning requires the user's explicit requested scope; otherwise use this lesson's consolidation or omit unnecessary extension. Carry that same boundary into the later lecture, outline and blueprint.
+
+Read lesson inputs within the user's requested scope and the current project's reference materials. New blueprints use textbook understanding directly unless the user explicitly designates style-reference images. Designated references lead the aesthetic direction, with textbook understanding as supporting content context. Visual-reference web search and library retrieval are opt-in only under the rules below and `visual-system.md`; necessary textbook/official-source/curriculum verification is unaffected. Neither route authorizes scanning unrelated local folders. Project content never becomes installed Skill content. Explicit future-library reuse authorizes indexing the supplied images under `style-reference-library.md`; ordinary production does not authorize a new reusable rule or library import.
 
 Give each source item a stable ID and record:
 
@@ -69,6 +77,8 @@ Give each source item a stable ID and record:
 - any source conflict, gap, or uncertainty that affects the product.
 
 Facts come from evidence; user confirmation records a preference, not proof of an empirical claim. Textbook controls facts and sequence; teaching designs and task sheets supply teaching emphasis/tasks. Visual references support aesthetic choices, not new textbook facts or required lesson coverage. Deduplicate repeated segment content into one continuous lesson while preserving required coverage. Check every required ID has a valid target, then review semantic accuracy separately: an ID match alone does not prove coverage.
+
+For every requested topic, inspect its own textbook edition's accompanying `读读写写` section, including the pages after the main text. Preserve its complete word list and exact source anchor in the existing source/understanding record; retain topic attribution when several texts are combined. Treat these words as required in-scope teaching content, not an opt-in exercise package. Map the full list to actual lesson-plan learning blocks before plan handoff, then to visible outline copy in each selected variant after approval. Follow `teaching-plan-standard.md` for classroom treatment. A verified absence is N/A; an unread/missing column page is an unresolved source gap, not evidence that the column does not exist. Use the existing source-recovery/material-conflict rules rather than borrowing another edition's list or inventing one.
 
 ## Review mode
 
@@ -91,14 +101,16 @@ Do not stop at text extraction or a paraphrased summary. Read the original lesso
 
 Only then compare all official teaching designs and task sheets: retain useful prompts, scaffolds and tasks, merge duplicated source segments, and reconcile differences against the original textbook. Official plans are teaching references, not text to paste wholesale; do not invent facts to resolve a conflict. Check quotations, names, factual/interpretive boundaries, sequencing and required coverage once before drafting the lesson plan. Mark missing evidence rather than claiming complete understanding. Reuse this checked synthesis downstream; do not reread unchanged inputs for each document.
 
+Draft the delivered lesson plan for daily teaching/ordinary open classes under `teaching-plan-standard.md`: internal understanding/checks remain thorough, while curriculum-basis and explanatory prose are concise. Before handoff, remove duplicated theory without cutting useful classroom questions, activities or support; separately review the substantive, lesson-specific reflection aspects and their adjustments/rechecks. Keep the existing twelve modules, time rules, key/difficulty depth and approval checkpoint; no sample Word page count becomes a limit.
+
 ## Required lesson-plan-first workflow
 
 | Current user instruction | Mode and handoff |
 |---|---|
-| Ordinary start, “先出教学设计”, “按流程制作”, or “一起出” | `plan-first`: understand sources and verify relevant curriculum standards; draft/check the twelve-module paragraph-template lesson plan with a content-led, flexibly organized process, aligned evaluation and text-only board description; render/verify this Word and hand it off. Set `awaiting-user` and end the turn. Do not generate the outline, final script or visual blueprint before actual approval of this plan version. |
+| Ordinary start, “先出教学设计”, “按流程制作”, or “一起出” | `plan-first`: understand sources and verify relevant curriculum standards; draft/check the twelve-module paragraph-template lesson plan with a content-led, flexibly organized process, aligned evaluation and concise directly writable board content; render/verify this Word and hand it off. Set `awaiting-user` and end the turn. Do not generate the outline, final script or visual blueprint before actual approval of this plan version. |
 | User supplies a specific already-approved plan | Read it, record the user’s explicit approval evidence/version, then continue downstream without requesting the same approval again. |
 
-This selection does not change the four logical outputs, extras, formats or page cap. “教学设计、PPT大纲、逐字稿一起出” retains the default visual blueprint inside the combined Word unless explicitly omitted; “PPT大纲” does not request a PPTX.
+This approval-stage selection does not change output types, optional extras, formats or the per-variant page cap. Select A/B under `deliverables.md` without creating another teaching plan. “教学设计、PPT大纲、逐字稿一起出” retains the visual blueprint in each requested outline's combined Word unless omitted; “PPT大纲” does not request PPTX or both variants.
 
 Use plan-first for all subsequent production. The 2026-10-20 instruction supersedes prior automatic-package defaults. When resuming an unapproved legacy auto task, preserve completed files/source evidence but stop downstream generation until its current teaching plan is explicitly confirmed. Do not delete or remake already valid outputs simply to migrate modes. A generic start, page-count answer or request to receive everything is not a waiver; interpret an actual confirmation against the immediately presented plan version. A later explicit user change to this approval policy may supersede it, but never infer such a change.
 
@@ -114,9 +126,9 @@ Only after actual user approval of the current teaching plan, simulate the teach
 
 Derive the PPT outline from that lecture flow: decide what must be visible at each teaching moment and what remains oral. Do not paste the entire transcript onto slides. Divide into legible pages within the cap, then finalize `P1 页面标题` script sections under `speaker-script-standard.md`: black `师：` speech and red `【…】` non-spoken display/activity/pause/conditional-response cues. The old five script fields remain internal quality dimensions only. No extra outline fields or automatic animations/PPTX; do not reveal answers before inquiry.
 
-Extend the per-page record in `teaching-modes.md` with teaching-block/lecture links, six visual decisions, page-linked spoken paragraphs/non-spoken cues and check status. Keep actual block/lecture/page mappings in these internal records; the teaching-plan body follows the paragraph template with no PPT total count, page numbers or correspondence notes. Link board generation to teaching events, not visible page numbers. The plan's substantive sequence controls downstream production; splitting pages does not authorize rewriting approved goals/mainline. Preserve an explicitly frozen outline or report a material conflict.
+Extend the per-page record in `teaching-modes.md` with teaching-block/lecture links, six visual decisions, page-linked spoken paragraphs/non-spoken cues and check status. Keep actual block/lecture/page mappings in these internal records; the teaching-plan body follows the paragraph template with no PPT total count, page numbers or correspondence notes. Keep the concise board content consistent with the lesson's core concepts; its module contains no main/secondary board or generation-timing commentary. The plan's substantive sequence controls downstream production; splitting pages does not authorize rewriting approved goals/mainline. Preserve an explicitly frozen outline or report a material conflict.
 
-Derive outline, blueprint, script and lesson-plan mappings from this one record. Repeated facts, titles and page numbers are not reinvented independently. Optional image-deck rendering adapts these frozen decisions into its manifest without replanning the lesson.
+Derive the selected outlines, blueprints and scripts from this one record and shared approved lecture/teaching baseline. Each variant adapts on-screen detail, page division and layout, then finalizes its own script against its pages; B is not just A's background replacement, and a shared lecture draft does not replace the two final scripts when both are requested. Repeated facts/terms remain consistent, but version-specific titles, page numbers and display moments are resolved inside their variant. Optional image-deck rendering adapts only its requested variant's frozen decisions without replanning the lesson.
 
 ## Internal sequence
 
@@ -129,42 +141,44 @@ Derive outline, blueprint, script and lesson-plan mappings from this one record.
 | Lecture | Do not infer permission to start downstream production. | After recorded user approval, simulate the teaching sequence from that plan; internally read through the spoken flow before deciding slide breaks. |
 | Scale | Honor confirmed page count; offer options only when the user is still choosing a plan. | Reuse confirmed count or select a source-supported count within the cap. No page-count choice or duration question. |
 | Content | Produce requested planning material only. | Derive page records/outline from the lecture, finalize the page-aligned script and internal cross-file mapping. Check source coverage, order, spoken continuity, display timing and readability together. |
-| Visual | Offer alternatives only if requested or a consequential conflict remains during planning. | Follow the reference route below: inspect supplied images and actively search matching references; without images, independently search or derive concrete design decisions from the text. Select one compatible direction, complete every six-field page blueprint and check unity/variation internally. |
+| Visual | Offer alternatives only if requested or a consequential conflict remains during planning. | Follow the visual-basis route below: without explicit style references derive directly from textbook understanding; with designated images use them as the visual authority and the text as supporting context. Do not automatically search or retrieve library references. Select one compatible direction, complete every six-field page blueprint and check unity/variation internally. |
 | Production | An approved page count alone is not a start. | Freeze the current file list, generate the required documents and explicitly requested extras. |
 | Verification | Inspect only what the current request asks to inspect. | Apply `quality-gates.md`; record actual evidence and deliver once required checks pass. |
 
-In `plan-first`, a checked first-stage lesson plan is a legitimate partial handoff, not a completed package. Use the plan-review validation phase; the not-yet-created documents and page mapping are outside this stage, not failed or invented. Resume from the approved plan instead of redoing source intake. Final handoff includes the three current Word files (the approved plan with routine formatting updates, no visible PPT page references), unless explicitly excluded.
+In `plan-first`, a checked first-stage lesson plan is a legitimate partial handoff, not a completed package. Use plan-review validation; downstream documents and mappings are outside this stage, not failed or invented. Resume from the one approved plan instead of redoing intake or asking for a second plan approval. Final handoff includes three current Words for A-only/B-only or five for explicitly requested A+B, honoring omissions/splits and explicitly activated extras. The shared plan receives only routine formatting updates and no PPT page/version-mapping notes.
 
 After plan approval, automatically read through the final script while walking the actual page order: compare plan intention → spoken instruction/question → currently visible material → anticipated response/teacher feedback → transition. Check omissions, contradictions, duplicated talk, abrupt pronouns/transitions, premature answers and mismatched page cues. Fix the responsible draft/page and recheck the affected links. This reduces inconsistency but is not a guarantee of a flawless real classroom; do not claim automatic checks prove perfect understanding or teaching effectiveness.
 
 If a requested page count conflicts with the single-section cap, do not silently exceed it. During planning give a compliant option. After start apply the established cap when ordinary scope permits and state the adjustment at handoff; if the user also made the conflicting count an immutable requirement, report that unresolved conflict rather than fabricating compliance.
 
-## Topic-matched visual research
+## Visual-basis routing
 
-Before a new blueprint, apply `visual-system.md` to the actual text. With user images, first inspect them and identify a compatible style direction, then actively search for actual scenes, backgrounds, elements, materials, compositions or lighting in that style that fit the lesson. Open and view useful images; search snippets or style names alone are not visual evidence. Do not search only generic PPT templates. An explicit no-web/only-supplied-images instruction overrides this search route.
+After the teaching plan has been confirmed and page content determined, choose the basis once under `visual-system.md`:
 
-Without user images, autonomously choose either relevant web/image research or concrete design based on understanding the text. The content-derived route is normally authorized, not merely a fallback after search failure; do not ask the user for images or a style selection. If the current request explicitly requires online reference research, however, carry out that research rather than substituting text-only design. There is no dedicated Xiaohongshu search, login or case-screenshot step, and no default reference-image attachment.
+1. No designated or explicitly requested visual references: `content-derived`. Use the already checked textbook understanding directly; do not launch web/image searches, consult a stored library or request images. Ordinary textbook-page screenshots remain teaching sources, not an implicit style-reference instruction.
+2. Explicitly supplied/designated reference images: `reference-led`. View the actual designated images and anchor the palette, material, brushwork, atmosphere and light language in them. Learn abstract spatial/hierarchy principles rather than freezing their depicted scene, subject positions or text containers as every page's layout. Use the understood textbook and each approved page's teaching purpose to conceive its concrete scene or knowledge relationship, subject/action, viewpoint and composition inside that same style. Do not replace the reference language with a new style, mix in library images or perform automatic supplementary search. Reuse a layout framework only when the user explicitly fixes it; a supplied style image alone is not that instruction.
+3. User explicitly requests ordinary visual web research or an authorized library: perform only that requested extension. Use the designated image style as primary when one exists. An ancient-poetry topic or a request for an ink-wash style does not itself authorize library retrieval.
+4. User explicitly requests a Xiaohongshu search: apply the dedicated sequence in `visual-system.md`. Capture, save and separately display the real first-screen screenshot, build the blueprint with its observed style traits, and generate the single text-free background reference after the blueprint is finalized. Follow the scope of standalone search or screenshot requests. Record the screenshot and background paths in the existing source/deliverable records.
 
-Keep the actual basis inside `visual_research`:
+Keep truthful evidence in the existing `visual_research` record:
 
-- `complete`: queries, stable visual-reference IDs, exact source URLs or authorized local paths, actually viewed images, adopted/rejected cues and a content-fit synthesis into one master direction. Inaccessible or irrelevant results are not successful references.
-- `content-derived`: no user images and no current mandatory-online instruction; record specific text anchors, aesthetic decisions and their rationale. Do not invent reference IDs, source URLs or claims of viewing images. This route can pass normal visual-quality checks; web-only checks are N/A because the selected route does not require them, not because a tool failed.
-- `reused`: points to existing evidence for the same text and direction, preserving whether its basis was inspected images or content-derived design.
-- `skipped-by-user`: records an explicit no-search/only-supplied-images instruction and the actual supplied-image or text basis.
-- `unavailable`: records actual access failure or unsuccessful targeted research when the search remains required. Required research is not PASS or N/A.
+- `content-derived`: concrete text/page anchors and aesthetic decisions, with no fabricated image IDs, searches or viewing claims. Image-reference/search checks are N/A because the route does not require them; content fit and visual quality still apply.
+- `reference-led`: the user's reference instruction, exact inspected image IDs/paths (or an explicitly requested library subset), observed style anchors and how supporting textbook context is used. Web-search checks are N/A unless additionally requested.
+- `complete`: an explicitly requested web-reference task with actual queries, inspected image URLs/IDs or the actual first-screen screenshot path for Xiaohongshu, the requested style relationship and adopted rules. Search snippets or inaccessible results are not visual evidence.
+- `reused`: actual evidence already accepted for the same project/topic/direction; preserve its original basis and permission scope.
+- `skipped-by-user`: an express no-search/only-given-images instruction and the real supplied-image or textual basis.
+- `unavailable`: a designated image or explicitly requested reference task remains inaccessible. Do not claim success, silently substitute a different source or relabel the failure as a voluntary no-image route.
 
-If optional research without user images fails and the current request does not require online evidence, a switch to `content-derived` is allowed. Retain the failed attempts in `search_attempts` and the switch reason; never relabel the failed search as successful.
-
-Reuse current, inspected references and their analyses for the same text/direction. Research once for the deck, not once per slide or after a Word formatting repair. Source URLs are internal traceability records by default; a requested source list may be supplied separately, never as a seventh blueprint field. Do not claim popularity, asset reuse rights or real-world factual accuracy merely because an image appears in search.
+Only analyze active selected sources, not the whole library. Reuse prior accepted source understanding and the current plan/page records instead of rereading or making another full plan. A new topic/direction requires a fresh basis choice under these rules, not automatic permission to search. Requested provenance lists remain optional separate scope, never a seventh blueprint field. Inspect reference quality and avoid copying source artwork, logos or pseudo-text; reference style authority is not permission to alter textbook facts or classroom-readable copy.
 
 ## Failure and resumption
 
 For a transient source/browser failure, make at most two targeted recovery attempts only when an observation suggests progress; stop repeating identical failures. Do not bypass authentication or permission boundaries. Preserve a completed source digest, accepted pages, valid references and finished files. If a needed input remains inaccessible, finish independent authorized work and disclose the missing item in the final result; do not claim a complete verified package.
 
-If required web style research is unavailable while teaching sources are complete, continue a provisional blueprint from the actual text and accessible authorized references. Finish and check independent Word work; disclose the missing required research and keep its check NOT_RUN or FAIL as appropriate, not PASS or N/A. When no user images were supplied and online research was not explicitly required, instead use the authorized `content-derived` route with the failed attempts and switch reason preserved; this does not automatically make the blueprint a draft or the package incomplete. A content-derived choice made before searching needs no failure record. An explicit user no-search instruction also makes web research N/A. In every case, content-fit and visual-quality checks still apply. Never ask the user to log into Xiaohongshu to recover this route. If essential textbook content is missing, do not invent it to finish a document.
+Without an explicit reference instruction, use the normal content-derived route from the outset; it does not depend on failed searches and is not a provisional substitute. If designated images or an explicitly requested reference search are unavailable, preserve the actual requirement, finish independent authorized work and disclose the narrow input/access gap; keep the relevant check NOT_RUN or FAIL. Do not silently replace image-led work with text-only work or unrequested internet/library images. If a provisional blueprint is useful, label it provisional and do not claim that it follows an unseen reference. Ask for the missing image only when it genuinely blocks the current stage; do not add routine style or page approvals. Xiaohongshu access is relevant only when that search is explicitly requested. Missing essential textbook facts still cannot be invented.
 
-For a scoped edit of an existing blueprint that preserves its topic and master direction, inherit the original reference evidence rather than launching a new full workflow. Missing historical evidence is recorded, not invented; repeat style research only for a newly requested direction/topic or an explicit reference-search request. A complete image-deck execution contract likewise reuses the frozen blueprint and references instead of replanning them. The generated-text ban excludes unmodified source documents and reference images.
+For a scoped edit of an existing blueprint that preserves its topic and master direction, inherit the original reference evidence rather than launching a new full workflow. Missing historical evidence is recorded, not invented; reselect the visual basis only for changed topic/direction/reference instructions; search or retrieve a library only when explicitly requested. A complete image-deck execution contract likewise reuses the frozen blueprint and references instead of replanning them. The generated-text ban excludes unmodified source documents and reference images.
 
 Each check records `PASS | FAIL | NOT_RUN | N/A`, the artifact/version, evidence and reason when not passing. Missing evidence is NOT_RUN, not PASS. A task reaches verified only when all applicable required checks have actual PASS evidence. Unchanged passing files retain their evidence; changes invalidate the affected checks and cross-file relationships. Do not rerender unrelated unchanged files.
 
-On resume, inspect the execution record and existing outputs before doing new source reads or generation. The final delivery contains only requested products, with a concise truthful status. Internal research notes, reference records, review proposals and QA renders remain internal unless requested; do not add a screenshot requirement when resuming a task created under an older rule.
+On resume, inspect the execution record and existing outputs before doing new source reads or generation. The final delivery contains only requested products, with a concise truthful status. Internal research notes, reference records, review proposals and QA renders remain internal unless requested. An older automatic screenshot requirement does not activate the explicit Xiaohongshu route; use the user's current request and retain accepted evidence.

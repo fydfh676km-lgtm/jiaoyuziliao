@@ -1,15 +1,18 @@
 # Product deliverable contracts and capability routing
 
-Read this reference when authoring the lesson plan and again as needed for final production. It defines one Premium package, delivered through the required `plan-first` checkpoint in `workflow.md`: teaching-plan Word first, then downstream artifacts after user approval.
+Read this reference when authoring the lesson plan and again as needed for final production. It defines one shared teaching-plan baseline and the requested courseware variants, delivered through the existing `plan-first` checkpoint in `workflow.md`: teaching-plan Word first, then selected downstream variants after approval of that same plan.
 
 ## Product manifest
 
 ```yaml
 product:
-  version_policy: one-premium-version
-  ppt_outline_visual_blueprint: "<topic>-ppt-outline-visual-blueprint.docx"
+  version_policy: A-default-explicit-variants
+  requested_versions: [A]
   lesson_plan: "<topic>-lesson-plan.docx"
-  speaker_script: "<topic>-speaker-script.docx"
+  versions:
+    A:
+      ppt_outline_visual_blueprint: "<topic>-A-ppt-outline-visual-blueprint.docx"
+      speaker_script: "<topic>-A-speaker-script.docx"
   optional:
     exercise_package: null
     pptx: null
@@ -17,13 +20,31 @@ product:
     xiaohongshu_notes: null
 ```
 
-The filenames are examples derived from the approved topic; replace `<topic>` with the approved topic's delivery-safe name. The default package has four logical document deliverables in three Word files: the combined outline/blueprint Word, the lesson-plan Word, and the speaker-script Word. Reference research/analysis or the authorized content-derived visual route are internal production steps, not extra deliverables. Do not capture or attach a Xiaohongshu search screenshot, reference-image package or research report by default. The exercise package, editable PPTX, PDF preview, and Xiaohongshu notes are opt-in extras: keep them `null` and do not generate or verify them unless the user explicitly requests that specific extra. A normal start command never activates an exercise package.
+The filenames are examples derived from the approved topic; replace `<topic>` with the approved topic's delivery-safe name. The default A package still has four logical document deliverables in three Word files: its combined outline/blueprint, the shared lesson plan, and its script. Put only requested variants in `versions`; for B-only replace the A entry with B, and for both include separate A and B entries. The shared plan is never duplicated. Existing accepted unlabelled files may be recorded as A without renaming or rebuilding them just for migration. Visual-basis analysis is internal: use textbook understanding directly by default, or designated images as the primary visual authority when explicitly supplied. Supplementary visual search/library retrieval is opt-in. An explicit Xiaohongshu search activates the scope-specific image handoff below. Exercises, editable PPTX, PDF and marketing remain opt-in extras; selecting B or both does not activate them.
 
-Apply explicit user omissions/split requests to this manifest. Verify the requested scope rather than generating an omitted file to satisfy defaults. Research evidence belongs to `visual_research` and the source ledger in `workflow.md`, not a mandatory screenshot field. When resuming an older task, retire its automatic `reference_screenshot` requirement while preserving historical files; do not delete user files or trigger a fresh screenshot. If the user explicitly requests references or a source list, deliver only that added scope and verify its actual content.
+## Version selection and pairing
 
-In `plan-first`, the first handoff is only the complete, rendered/checked lesson-plan Word, awaiting actual approval of that version. It contains no PPT total count, page numbers or page correspondence, real or invented, including notes, headers and footers. After approval, complete lecture → outline → aligned script → visual blueprint and deliver the three current Word files; keep real page mappings internal without unauthorized substantive changes. No ordinary start or request to receive everything bypasses this approval. Internal checks are not user confirmation. The new standard uses a text-only board description, not a default board-image deliverable. A request for plan/outline/script together does not implicitly omit the blueprint or request PPTX.
+| Current request | Selected output | Final Word count, without explicit omissions/splits |
+|---|---|---|
+| No version named, ordinary start, or A only | A only | 3: shared plan + A outline/blueprint + A script |
+| B / 参考增强版 explicitly requested | B only; do not also create A | 3: shared plan + B outline/blueprint + B script |
+| A and B / 两个版本 / both explicitly requested | A and B | 5: shared plan + A outline/blueprint + A script + B outline/blueprint + B script |
+
+**A is the existing approved standard**, not an intentionally thin or lower-quality edition. **B is the reference-enhanced content-and-layout edition** defined in `visual-system.md`, not a second lesson plan, a rendering mode, a fixed night/ink/rural style, or an automatic anti-garbled mode. Both remain subject to the existing Premium/Quick selection independently of the A/B labels. A current explicit custom instruction controls the requested scope and treatment; do not infer two versions from a reference attachment or a style request alone. With no version instruction, use A while honoring that requested style. Do not offer a routine version-selection question after start.
+
+Read/understand the sources once and confirm one lesson-plan version once. After approval, each selected variant has its own complete outline, six-field blueprint and separately aligned script. The variants are alternative presentations of the same approved pedagogy, not different halves of the lesson. They may have different page counts within the original per-section cap; preserve each variant's own frozen order, titles, content, display timing and page-script mapping. Do not force A page n to match B page n or stretch the shared plan's teaching time to cover both decks sequentially. Carry the version ID in filenames, document titles and internal records, not new page fields or version-specific notes inside the teaching-plan Word.
+
+For both, hand off five separate Word files, not one outline with two blueprint sections or one script with interleaved A/B page numbers. Only an explicit user merge/split/omission request changes this packaging. When only B changes, preserve valid A and the approved plan; when a variant is not requested, do not produce it as a prerequisite. Optional additional products still require their own explicit request.
+
+Apply explicit user omissions/split requests to this manifest. Verify the requested scope rather than generating an omitted file to satisfy defaults. Research evidence belongs to `visual_research` and the source ledger in `workflow.md`. When resuming an older task, retire its automatic `reference_screenshot` requirement while preserving historical files. An active explicit Xiaohongshu request follows `visual-system.md`. If the user explicitly requests references or a source list, deliver only that added scope and verify its actual content.
+
+In `plan-first`, first hand off only the complete, rendered/checked lesson-plan Word and wait for actual approval of that one plan version. It contains no PPT total count, page numbers or correspondence, including notes, headers and footers. After approval, complete lecture → selected variant outline → aligned variant script → variant blueprint, then deliver three Word files for A-only/B-only or five for both. Keep mappings internal without unauthorized pedagogical changes. Requesting B/both does not bypass or duplicate the plan approval and adds no downstream selection checkpoint. Internal checks are not user confirmation. The board module remains concise teacher preparation, not a board-slide/image deliverable. A request for plan/outline/script together does not omit the blueprint or request PPTX.
 
 ## Format-specific contracts
+
+### Xiaohongshu first screen and overall background reference
+
+Under the explicitly activated route in `visual-system.md`, save and separately display the single `课题名称_小红书搜索首屏.png` in chat at the reference stage. For a request that includes the full visual workflow, add one `课题名称_背景参考图.png` after completing the blueprint. Keep both PNGs with the requested lesson-plan, speaker-script and outline/blueprint Word files in the course-topic folder. A standalone search or screenshot request delivers only its screenshot. Record applicable PNGs as deliverables and check them under `quality-gates.md`. The default Word package applies when this route is inactive.
 
 ### Combined PPT page-outline + visual-blueprint Word — `<topic>-ppt-outline-visual-blueprint.docx`
 
@@ -48,7 +69,7 @@ In `plan-first`, the first handoff is only the complete, rendered/checked lesson
   画面去重与统一约束：
   ```
 
-- Page numbers, titles, page text, and blueprint pages correspond one-to-one and preserve the approved total and order.
+- Within the file's variant, page numbers, titles, page text and blueprint pages correspond one-to-one and preserve its approved total/order. Use that same variant's separately delivered script; cross-variant page matching is not required.
 - The six visual fields appear exactly once in the fixed order, have no numeric/list prefix, and contain nonempty page-specific values. Do not add `页面标题：` or a seventh visual field such as teacher guidance, design intent, key-point labels, or notes.
 - No user-facing string in either section may contain `课时` or its period-label variants.
 - Apply `classroom-readability.md` while dividing the outline and authoring the blueprint: screen copy is the essential material, question and conclusion, not the complete lecture. Put explicit classroom size targets and text-first capacity decisions inside the existing six fields; preserve confirmed text and page count. These slide-size targets do not change the Word document's own paragraph sizes.
@@ -56,19 +77,21 @@ In `plan-first`, the first handoff is only the complete, rendered/checked lesson
 ### Lesson plan Word — `<topic>-lesson-plan.docx`
 
 - Follow [`teaching-plan-standard.md`](teaching-plan-standard.md), [`teaching-plan-template.md`](teaching-plan-template.md) and `../assets/teaching-plan-template.docx`: the 2026-10-20 paragraph template and paired prompt (`../assets/teaching-plan-prompt.docx`), with twelve native numbered modules, reference typography and two functional matrices: 课程基本信息 / 设计依据 / 设计理念 / 教学目标 / 教学重点、难点与突破策略 / 教学准备 / 教—学—评一体化设计 / 教学过程 / 板书设计 / 作业设计 / 教学评价 / 教学反思预设与课后改进. This supersedes the 2026-10-19 A4/black-heading/fixed-process version.
-- Verify concrete applicable curriculum-standard content and academic requirements; write 2–4 observable objectives and align objectives, learning activities, assessment tasks and rubric. Do not invent standards, class data or achieved teaching results. Reflection is anticipatory and conditional.
+- Verify concrete applicable curriculum-standard content and academic requirements; write 2–4 observable objectives and align objectives, learning activities, assessment tasks and rubric. Use the practical daily-teaching/ordinary-open-class prose in `teaching-plan-standard.md`: two concise source-grounded curriculum-basis sentences, focused analysis, and concrete classroom questions/activities/guidance rather than repeated explanatory theory. Reflection stays substantive: approximately five lesson-specific aspects connecting observation, possible problem/cause, actionable adjustment and recheck, with natural small headings/paragraphs rather than empty placeholders or copied example headings. Do not invent standards, class data or achieved teaching results; pre-class reflection is anticipatory and conditional. Preserve the twelve-module template and natural pagination, not a fixed shortened Word page count.
 - Write content-led timed blocks in connected paragraphs, with teacher guidance, student actions/output, evidence, support and logical progression. Block count and optional sublabels follow actual teaching needs, not a five-block/five-field rule or fixed time ratios. Do not put PPT total count, page numbers, correspondence or other production notes anywhere in the teaching-plan Word; preserve cross-file mappings internally.
 - The checked/approved plan guides lecture and pages. State proposed/required session count, minutes per session, per-block times and overall total; check each session and overall sums against actual or clearly estimated shared pacing. Cover every session in the requested scope. This implementation advice neither splits/truncates the continuous complete outline nor enables the source-based page-cap exception. The combined outline/blueprint Word still has no timing fields.
 - Within 教学重点与难点, write 教学重点 and 教学难点 separately, each at least 100 Chinese characters, plus targeted 突破策略. Explain basis, intended understanding/action, obstacle and teaching response; labels or padding do not pass.
 - Apply the visible-emphasis system from `teaching-plan-standard.md`: default to dark red plus bold for short substantive key phrases in `教学重点`, `教学难点`, every major teaching-process block, and the final synthesis. Headings or field labels alone do not satisfy this requirement; reject missing, inconsistent, or excessive emphasis in the rendered Word file.
-- Board defaults to native text describing 板书主线 / 副板书 / 生成时机, with lesson-specific layers, explicit relationships and process-linked growth; do not generate or embed a board image unless separately requested. A disconnected keyword list is insufficient.
+- Board presents the actual brief blackboard content in native text: the lesson title, essential keywords/phrases and clear relationships, using simple indentation, parallel groups or arrows when useful. It should be directly usable on one blackboard, not an essay about implementation or a disconnected keyword list. Do not add 板书主线/主板书, 副板书 or 生成时机 subfields; do not generate or embed a board image unless separately requested. This latest rule overrides the retained source template's old board-filling prompts.
 - Use the new template's student-output/evaluation-evidence terminology where it serves teaching. Do not add unrelated production fields or repeat evidence descriptions merely to fill columns.
+- Keep the lesson-plan metadata label 设计者/日期 but leave its value blank. Do not autofill names/accounts/organizations/dates, write missing-data placeholders or add those authorship/date details in headers, footers or notes; no user follow-up is needed for this deliberately blank field. Other metadata and source-date verification remain unchanged. This rule supersedes the retained template's filling prompts.
+- Keep the entire lesson plan within the user's specified lesson/section scope under `teaching-plan-standard.md`, including optional tasks, homework, evaluation and reflection. Do not add another lesson, next-lesson preview, cross-text reading or an unrequested writing/grammar topic merely because it appears in the same unit/template/reference plan. Homework can consist only of meaningful current-lesson consolidation; optional/extension work is not mandatory. Cross-lesson integration requires an explicit user request and remains limited to its specified scope; downstream courseware inherits this boundary.
 - The new lesson plan includes the template's necessary teaching-period/time and evaluation-evidence information; this supersedes those older lesson-plan-only bans. Do not transfer them into PPT/outline/blueprint/script/exercise period labels. Keep original source/reference files unchanged; never treat a template's claimed policy revision as verified current policy.
 - Do not change approved pedagogical decisions to fit an independently generated outline. Internal page mapping and layout-only improvements may be updated; substantive approved-plan changes follow the authorization boundary in `workflow.md`.
 
 ### Speaker script Word — `<topic>-speaker-script.docx`
 
-- First draft a continuous, natural teacher lecture from the user-approved teaching design, then derive the PPT outline and finalize this script's page mapping. Follow the final shared page order and internal pacing; do not invent a confirmed duration or independently rewrite the teaching sequence.
+- First draft a continuous, natural teacher lecture from the user-approved teaching design, then derive the selected variant's PPT outline and finalize its own script mapping. Follow that variant's frozen page order and internal pacing; keep the common approved teaching sequence, without inventing a confirmed duration or a different lesson mainline.
 - Include an opening, explanation for each page, questions and likely answer directions, transitions, activity instructions, and a closing.
 - Follow [`speaker-script-standard.md`](speaker-script-standard.md) and the retained `../assets/speaker-script-reference.docx`: one `P1 页面标题` section per PPT page, black `师：` spoken paragraphs and separate red `【…】` non-spoken reading/activity/pause/conditional-response cues, naturally interleaved. The old five fields remain internal quality dimensions, not printed labels; do not mechanically add 无 blocks.
 - Do not introduce a new page sequence or contradict the approved page outline.
@@ -119,7 +142,7 @@ Every note includes:
 
 ## Cross-file verification matrix
 
-Compare every listed field across the shared page records and the currently requested artifacts. The default is three Word files, but explicit omissions/splits and scoped edits determine the actual checklist. Optional exercises, PPTX, PDF and notes participate only when requested. For exercises also compare scope, terminology, objective/key-point/difficulty coverage, source anchors and any practice/homework cross-references.
+Apply this matrix separately to each selected variant against the one shared approved plan. Never validate A's outline with B's script or substitute one passing variant for the other's evidence. Default A and B-only each have three Word files; both have five, before explicit omissions/splits. Optional exercises, PPTX, PDF and notes participate only when requested. For exercises also compare scope, terminology, objective/key-point/difficulty coverage, source anchors and any practice/homework cross-references.
 
 | Comparison field | Approved outline/blueprint Word | Lesson plan Word | Speaker script Word | Optional exercise Word | Optional PPTX | Optional PDF | Optional Xiaohongshu notes |
 |---|---|---|---|---|---|---|---|
@@ -139,7 +162,7 @@ Compare every listed field across the shared page records and the currently requ
 Record an explicit evidence-backed verdict before any final-deliverable claim. Each check uses PASS, FAIL, NOT_RUN or N/A with artifact/version and evidence; unavailable required checks are NOT_RUN, never N/A or PASS. These two groups control the transition from `production_approved` to `verified`:
 
 1. **Full format-contract verdict:** check combined outline/blueprint Word (unchanged exact formats, page correspondence, banned terms); lesson-plan Word (twelve standard modules, verified curriculum basis, aligned objectives/tasks/evaluation, connected paragraph process, full-scope session coverage and per-session/overall time consistency, key/difficult points each ≥100 Chinese characters, text board, substantive emphasis and genuine anticipatory reflection); script Word (`P1 页面标题` sections, actual black speech/red cues, natural lecture flow, accurate facts and real display mapping). Render every requested Word, honoring omissions/splits/scoped edits. First `plan-first` handoff checks only the plan, without fictitious page mappings or whole-package completion claims. Optional products remain opt-in.
-2. **Cross-file matrix verdict:** record actual status for each applicable matrix row from shared source/page records. Validate teaching-source coverage and internal block/page mappings, then semantic accuracy. Explicit omissions are N/A with the request recorded. Apply the visual route and evidence rules in `workflow.md`: inspected same-style references or permitted `content-derived` text anchors and design rationale. Both must pass content-fit, unified-style and page-level quality checks; the authorized text-derived route does not itself make a package incomplete. Required online research cannot be replaced or claimed complete when unavailable. Preserve the real basis and any failed attempts. No screenshot evidence or separate reference attachment is required by default.
+2. **Cross-file matrix verdict:** record actual status for each applicable matrix row from shared source/page records. Validate teaching-source coverage and internal block/page mappings, then semantic accuracy. Explicit omissions are N/A with the request recorded. Apply the visual route in `workflow.md`: no explicit style-reference instruction means direct `content-derived` design with no automatic visual search/library retrieval; explicit designated images mean `reference-led` design with their actual inspected style leading and textbook context supporting content. Only additionally requested web/library work enters acceptance. Both normal routes must pass content-fit, style unity and page-level quality checks. Missing designated images or explicitly requested research cannot be claimed complete or silently substituted. Preserve the true basis. Apply the dedicated screenshot and background checks in `quality-gates.md` when the Xiaohongshu route is requested and in scope.
 
 `verified` is entered automatically only when all applicable required checks in both groups pass with evidence. FAIL or NOT_RUN blocks that whole-package verdict; independently checked artifacts may be handed off with missing checks identified. The required `plan-first` checkpoint waits for actual user approval, not for package verification; passing first-stage checks does not authorize the next stage. After actual plan approval, the final downstream handoff requires no further routine acceptance. Do not claim that automatic structural checks alone guarantee no semantic or classroom-flow errors.
 
@@ -152,7 +175,7 @@ For lesson plans, the new curriculum-standard twelve-module template in `teachin
 | Stage | Primary bundled capability | Responsibility |
 |---|---|---|
 | Combined outline/visual-blueprint Word, lesson-plan Word, and speaker-script Word | `documents` | Produce the requested Word files from shared teaching and visual records, honoring explicit omissions or splits. |
-| Board description inside lesson-plan Word | Native document text | Describe lesson-specific main/secondary board structure and generation timing; images only on separate explicit request. |
+| Board content inside lesson-plan Word | Native document text | Present concise, directly writable lesson title, core keywords and relationships; no main/secondary board or generation-timing fields. Images only on separate explicit request. |
 | Explicitly requested exercise-and-answer Word | `documents` | Produce the selected single-lesson or unit exercise package from the frozen source ledger and teaching contracts. |
 | Optional PPTX creation, editing, and verification | `presentations` | Produce and inspect an editable PPTX only when explicitly requested. |
 | Optional original illustrations and backgrounds | `imagegen` | Create needed generated raster assets only for an explicitly requested PPTX/image route. |

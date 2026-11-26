@@ -7,6 +7,8 @@ When explicitly activated, this section constrains only the visual blueprint and
 
 Treat page 1 as an explicit exception. The cover prioritizes maximum visual quality and may use immersive scenes, complex composition, integrated artistic typography, calligraphic treatment, and other high-impact devices. Do not simplify the cover into a generic blank background or apply the inner-page anti-garbled-text restrictions to it.
 
+If editable teaching text is explicitly required, follow the text-ownership rules in `visual-system.md` on the cover as well. Artistic visual integration is not fusion of required editable words into a bitmap; this preserves the cover's stylistic exception without changing any conversion procedure.
+
 ## Font and glyph recipe for opted-in inner pages
 
 Apply this recipe only to page 2 onward while this mode is explicitly active. In `文字字体与重点标注`, name one deck-wide plan using one or two real font families as visual references and keep their roles stable. For Chinese classical/ink-wash courseware, default to `思源宋体` for inner-page titles and `思源黑体` for body copy; for other compatible courseware, one `思源黑体` family with distinct weights is sufficient. An explicit current-task font choice overrides these defaults. The official Source Han families use SIL OFL licensing: [Source Han Serif](https://github.com/adobe-fonts/source-han-serif/blob/master/LICENSE.txt), [Source Han Sans](https://github.com/adobe-fonts/source-han-sans/blob/master/LICENSE.txt). Do not download, install or bundle font files merely to write prompts.

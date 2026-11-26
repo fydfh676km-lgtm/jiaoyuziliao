@@ -11,6 +11,8 @@ Read this reference only when the frozen task contract explicitly requests one o
 
 Do not infer activation from textbook exercises, teaching-plan homework, SmartEdu learning-task sheets, or a generic production command. Do not generate both routes unless both are explicitly requested. If no supported exercise request is present, leave `exercise_package: null`, perform no exercise drafting, and ask no exercise-related question after the explicit start command.
 
+This opt-in rule concerns the separate exercise Word only. Each topic's verified textbook `读读写写` remains mandatory in its teaching plan and every selected variant's visible PPT outline under `teaching-plan-standard.md`; teaching those words does not activate this package, and absence of an exercise request must not remove them.
+
 ## Source authority and construction
 
 Build every item from the frozen source ledger in this order:
