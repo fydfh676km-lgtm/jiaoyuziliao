@@ -28,7 +28,7 @@ Translate the selected reference language or textbook-derived decisions into eve
 
 ## Explicit Xiaohongshu search and background reference
 
-Use this route when the user explicitly asks to search Xiaohongshu. In full production, do it in the visual-reference stage after the lesson-plan checkpoint. For a standalone search or screenshot request, complete steps 1–2 only. An explicit omission or narrower request controls the scope.
+“执行搜索小红书作为参考图的流程” is the fixed command for this route for the current lesson. Other explicit requests to search Xiaohongshu still apply. In full production, do it in the visual-reference stage after the lesson-plan checkpoint. For a standalone search or screenshot request, complete steps 1–2 only. An explicit omission or narrower request controls the scope.
 
 1. Use the system default browser unless the user specifies another. Search inside Xiaohongshu with `#课题名称 课件ppt`, replacing `课题名称` with the actual lesson title. Capture one screenshot of the initial visible results before scrolling or opening an individual post. Inspect the screenshot to ensure it shows the query and actual related result cards. A login, error or loading screen, a search snippet and a reconstructed image do not count.
 2. Save that screenshot as `课题名称_小红书搜索首屏.png` in the course-topic folder and display the same single image inline in the chat as a standalone image before working on the blueprint. Use the user-specified or existing lesson-delivery folder, or the lesson's delivery folder chosen under the current task. Record the query and screenshot path in the existing visual-research record. Follow `workflow.md` for access failures and report any missing or undisplayed image accurately.

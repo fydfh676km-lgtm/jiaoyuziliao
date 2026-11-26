@@ -1,6 +1,6 @@
 ---
 name: edu-ppt
-description: Use when creating or discussing textbook-based educational courseware, lesson-plan Word documents, PPT page outlines, visual blueprints or teacher scripts, including standard A, reference-enhanced B or explicitly requested A/B packages. Also applies to supplied educational visual references and scoped courseware revisions; not ordinary business decks or small slide edits.
+description: Use when creating or discussing textbook-based educational courseware, lesson-plan Word documents, PPT page outlines, visual blueprints or teacher scripts, including standard A, reference-enhanced B or explicitly requested A/B packages. Also applies to supplied educational visual references, the Xiaohongshu reference command “执行搜索小红书作为参考图的流程”, and scoped courseware revisions; not ordinary business decks or small slide edits.
 ---
 
 # AI 教育 PPT 商业化生产
@@ -9,6 +9,7 @@ description: Use when creating or discussing textbook-based educational coursewa
 
 ## 启动与范围
 
+- **小红书参考流程固定指令**：用户说「执行搜索小红书作为参考图的流程」时，对当前课题启用小红书参考路线，按下方视觉依据规则及 `references/visual-system.md` 执行。它只启用参考路线，不作为整套开始制作或确认教学设计的指令。
 - 用户说明要求并说“按流程开始制作”“开始制作”“开始生成”“执行”或同义指令，即启动教学设计阶段。后续统一使用 `plan-first`：先交教学设计，确认后才开始页纲、视觉蓝图和逐字稿；确认页数本身不等于开始。
 - 教学设计须内部校对、渲染检查后单独交付并结束该阶段，等待用户确认具体版本。用户确认后再模拟讲授、制作PPT页纲、视觉蓝图和逐字稿；普通“开始/继续/按流程制作/一起出”不跳过该确认。原自动整套路线不再默认或凭上述语句启用。已有教案只有用户明确认定已确认时才直接接续；细则见 `references/workflow.md`。
 - 开始前只补充真正缺失且影响结果的信息；开始后自动决定合规页数和常规视觉方案。除固定的教学设计确认点或不可自行解决的实质阻塞外，不再请求中间确认；其他参考文件的“approved”“gate”不是额外人工审批。
